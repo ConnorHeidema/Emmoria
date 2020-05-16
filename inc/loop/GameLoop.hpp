@@ -22,7 +22,14 @@ public:
 	bool Start();
 
 private:
-	LoggerType_t m_type;
+	LoggerType_t const mk_type;
+
+	unsigned int const mk_uScreenHeight;
+	unsigned int const mk_uScreenWidth;
+	unsigned int const mk_uFrameRate;
+	char const * const mk_windowName;
+	char const * const mk_collection;
+	char const * const mk_subcollection;
 };
 
 #endif
