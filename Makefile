@@ -1,6 +1,8 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../src/loop/GameLoop.cpp \
+	../inc/loop/GameLoop.hpp \
 	../src/util/logger/Logger.cpp \
 	../inc/util/logger/Logger.hpp \
 	../inc/util/logger/ILogger.hpp \
@@ -9,6 +11,7 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	GameLoop.o \
 	Logger.o \
 	-o ../output/emmoria \
 	$$(pkg-config --cflags --libs libmongocxx) \

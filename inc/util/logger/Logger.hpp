@@ -14,10 +14,10 @@
 class Logger : public ILogger
 {
 public:
-	void DebugLog(LoggerType_t loggerCompatible, char const * const message);
-	void InfoLog(LoggerType_t loggerCompatible, char const * const message);
-	void WarningLog(LoggerType_t loggerCompatible, char const * const message);
-	void ErrorLog(LoggerType_t loggerCompatible, char const * const message);
+	void DebugLog(LoggerType_t loggerCompatible, char const * const message) override;
+	void InfoLog(LoggerType_t loggerCompatible, char const * const message) override;
+	void WarningLog(LoggerType_t loggerCompatible, char const * const message) override;
+	void ErrorLog(LoggerType_t loggerCompatible, char const * const message) override;
 
 private:
 	static char const * const k_greenTextOpener;
