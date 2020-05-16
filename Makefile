@@ -1,11 +1,15 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../src/util/logger/Logger.cpp \
+	../inc/util/logger/Logger.hpp \
+	../inc/util/logger/ILogger.hpp \
 	../main.cpp \
 	$$(pkg-config --cflags --libs libmongocxx) -D$(mode) \
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	Logger.o \
 	-o ../output/emmoria \
 	$$(pkg-config --cflags --libs libmongocxx) \
 	-Wl,-rpath,/usr/local/lib \

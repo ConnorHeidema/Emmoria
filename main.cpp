@@ -1,10 +1,12 @@
 /**
  * This is the entry point of the game.
  */
-#include <iostream>
+
+#include "inc/util/logger/Logger.hpp"
 
 int main (int, char**)
 {
-	std::cout << "Helloworld" << std::endl;
+	auto type = LoggerType_t("main");
+	s_pLogger->DebugLog(type, "Inside main");
 	return 0;
 }
