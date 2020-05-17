@@ -1,7 +1,6 @@
 #include "../../inc/loop/GameLoop.hpp"
 #include "../../inc/util/logger/Logger.hpp"
-
-#include <SFML/Graphics.hpp>
+#include "../../inc/database/DatabaseReader.hpp"
 
 GameLoop::GameLoop()
 	: mk_type("GameLoop")
@@ -16,5 +15,19 @@ GameLoop::GameLoop()
 bool GameLoop::Start()
 {
 	s_pLogger->DebugLog(mk_type, "Gameloop started");
+	auto gameWindow = GetGameWindow_();
+	DatabaseReader databaseReader("mongodb://localhost", short(27017));
+
+
 	return true;
+}
+
+std::shared_ptr<sf::RenderWindow> GameLoop::GetGameWindow_()
+{
+	auto pWindow(std::make_shared<sf::RenderWindow>
+			(sf::VideoMode(mk_uScreenWidth, mk_uScreenHeight),
+			mk_windowName,
+			sf::Style::Fullscreen));
+	pWindow->setFramerateLimit(mk_uFrameRate);
+	return pWindow;
 }

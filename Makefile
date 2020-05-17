@@ -1,6 +1,8 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../src/database/DatabaseReader.cpp \
+	../inc/database/DatabaseReader.hpp \
 	../src/loop/GameLoop.cpp \
 	../inc/loop/GameLoop.hpp \
 	../src/util/logger/Logger.cpp \
@@ -11,6 +13,7 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	DatabaseReader.o \
 	GameLoop.o \
 	Logger.o \
 	-o ../output/emmoria \

@@ -8,6 +8,10 @@
 
 #include "../../inc/util/logger/ILogger.hpp"
 
+#include <SFML/Graphics.hpp>
+
+#include <memory>
+
 class GameLoop
 {
 public:
@@ -22,6 +26,9 @@ public:
 	bool Start();
 
 private:
+
+	std::shared_ptr<sf::RenderWindow> GetGameWindow_();
+
 	LoggerType_t const mk_type;
 
 	unsigned int const mk_uScreenHeight;
