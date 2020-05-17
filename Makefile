@@ -1,6 +1,22 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../src/entity/interactable/simple/RockGround.cpp \
+	../inc/entity/interactable/simple/RockGround.hpp \
+	../src/entity/interactable/simple/RoyalMat.cpp \
+	../inc/entity/interactable/simple/RoyalMat.hpp \
+	../src/entity/interactable/simple/BottomWall.cpp \
+	../inc/entity/interactable/simple/BottomWall.hpp \
+	../src/entity/interactable/simple/RightWall.cpp \
+	../inc/entity/interactable/simple/RightWall.hpp \
+	../src/entity/interactable/simple/LeftWall.cpp \
+	../inc/entity/interactable/simple/LeftWall.hpp \
+	../src/entity/interactable/simple/UpperWall.cpp \
+	../inc/entity/interactable/simple/UpperWall.hpp \
+	../src/entity/interactable/simple/Corner.cpp \
+	../inc/entity/interactable/simple/Corner.hpp \
+	../src/entity/interactable/simple/Grass.cpp \
+	../inc/entity/interactable/simple/Grass.hpp \
 	../src/map/TileMap.cpp \
 	../inc/map/TileMap.hpp \
 	../src/debug/DebugMetricVisualizer.cpp \
@@ -17,6 +33,14 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	RockGround.o \
+	RoyalMat.o \
+	BottomWall.o \
+	RightWall.o \
+	LeftWall.o \
+	UpperWall.o \
+	Corner.o \
+	Grass.o \
 	TileMap.o \
 	DebugMetricVisualizer.o \
 	DatabaseReader.o \
