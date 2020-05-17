@@ -1,6 +1,7 @@
 #include "../../inc/loop/GameLoop.hpp"
 #include "../../inc/util/logger/Logger.hpp"
 #include "../../inc/database/DatabaseReader.hpp"
+#include "../../inc/debug/DebugMetricVisualizer.hpp"
 
 GameLoop::GameLoop()
 	: mk_type("GameLoop")
@@ -15,10 +16,11 @@ GameLoop::GameLoop()
 bool GameLoop::Start()
 {
 	s_pLogger->DebugLog(mk_type, "Gameloop started");
-	auto gameWindow = GetGameWindow_();
-	DatabaseReader databaseReader("mongodb://localhost", short(27017));
-
-
+	auto pGameWindow = GetGameWindow_();
+	DatabaseReader databaseReader(
+		"emmoria",
+		"mongodb://localhost",
+		short(27017));
 	return true;
 }
 

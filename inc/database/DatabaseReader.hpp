@@ -29,13 +29,16 @@ public:
 	 * @param port The port of the database
 	 */
 	DatabaseReader(
+		char const * const database,
 		char const * const databaseUrl,
 		short const port);
 
 	/**
 	 * When a new region needs to be loaded, this will load it in
 	 */
-	void LoadNewRegion();
+	void LoadNewRegion(
+		char const * const collectionName,
+		char const * const subCollectionName);
 
 	/**
 	 * Returns a list of all the things
@@ -47,6 +50,7 @@ private:
 	LoggerType_t const mk_type;
 	mongocxx::instance const mk_inst;
 	mongocxx::client const mk_clientConnection;
+	char const * const mk_databaseName;
 };
 
 #endif
