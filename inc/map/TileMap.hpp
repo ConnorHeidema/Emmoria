@@ -18,13 +18,11 @@ class TileMap
 public:
 	/**
 	 * The constructor, sets the initial state of the tilemap along with the tileset that will be used
-	 * @param tilesetPath The path to the tileset used for the entire array
 	 * @param tileUnitSize the size of each unit within the texture file
 	 * @param tileWidth The width of a unit on the screen
 	 * @param tileHeight The height of a unit on the screen
 	 */
 	TileMap(
-		std::string const tilesetPath,
 		sf::Vector2u const tileUnitSize,
 		unsigned int const tileWidth,
 		unsigned int const tileHeight);
@@ -36,6 +34,13 @@ public:
 	 * @param subTexture The index of the subtexture to use in the texture file
 	 */
 	void PrepareTile(int xIndex, int yIndex, int subTexture);
+
+	/**
+	 * Sets and loads a texture file for the tileset to use
+	 * @param tilesetPath where the texture file is
+	 * @return whether the load was successful or not for the file
+	 */
+	bool SetTextureFile(std::string const tilesetPath);
 
 	/**
 	 * Gets the drawable in a state that is ready to get drawn.

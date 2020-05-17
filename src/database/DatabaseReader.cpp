@@ -15,11 +15,18 @@ using bsoncxx::builder::concatenate_doc;
 DatabaseReader::DatabaseReader(
 		char const * const database,
 		char const * const databaseUrl,
-		short const port)
+		short const port,
+		sf::Vector2u const tileUnitSize,
+		unsigned int const tileWidth,
+		unsigned int const tileHeight)
 	: mk_type("DatabaseReader")
 	, mk_inst{}
 	, mk_clientConnection({mongocxx::uri(std::string(databaseUrl) + ":" + std::to_string(port))})
 	, mk_databaseName(database)
+	, m_bottomLayerTileMap(
+		tileUnitSize,
+		tileWidth,
+		tileHeight)
 {}
 
 void DatabaseReader::LoadNewRegion(

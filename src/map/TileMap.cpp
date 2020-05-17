@@ -4,7 +4,6 @@
 #include <string>
 
 TileMap::TileMap(
-		std::string const tilesetPath,
 		sf::Vector2u const tileUnitSize,
 		unsigned int const tileWidth,
 		unsigned int const tileHeight)
@@ -15,9 +14,6 @@ TileMap::TileMap(
 		, mk_type("TileMap")
 {
 	m_screenArrayVect.assign(tileWidth * tileHeight, 0);
-	m_tileset.loadFromFile(tilesetPath) ?
-		s_pLogger->DebugLog(mk_type, (std::string("Loaded texture for: ") + tilesetPath).c_str()) :
-		s_pLogger->ErrorLog(mk_type, (std::string("Could not load texture") + tilesetPath).c_str());
 }
 
 void TileMap::Load()
@@ -27,11 +23,22 @@ void TileMap::Load()
 	PopulateVertexArray_();
 }
 
-
 void TileMap::PrepareTile(int xIndex, int yIndex, int subTexture)
 {
 	m_screenArrayVect.at((yIndex * m_tileWidth) + xIndex) = subTexture;
 }
+
+bool TileMap::SetTextureFile(std::string const tilesetPath)
+{
+	if (m_tileset.loadFromFile(tilesetPath))
+	{
+		s_pLogger->DebugLog(mk_type, (std::string("Loaded texture for: ") + tilesetPath).c_str());
+		return true;
+	}
+	s_pLogger->ErrorLog(mk_type, (std::string("Could not load texture") + tilesetPath).c_str());
+	return false;
+}
+
 
 void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {

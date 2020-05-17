@@ -36,7 +36,10 @@ public:
 	DatabaseReader(
 		char const * const database,
 		char const * const databaseUrl,
-		short const port);
+		short const port,
+		sf::Vector2u const tileUnitSize,
+		unsigned int const tileWidth,
+		unsigned int const tileHeight);
 
 	/**
 	 * When a new region needs to be loaded, this will load it in
@@ -95,6 +98,7 @@ private:
 	mongocxx::client const mk_clientConnection;
 	char const * const mk_databaseName;
 
+	TileMap m_bottomLayerTileMap;
 	std::list<std::shared_ptr<sf::Drawable>> drawableObjects;
 };
 

@@ -7,6 +7,7 @@
 #define GAME_LOOP_HPP
 
 #include "../../inc/util/logger/ILogger.hpp"
+#include "../../inc/database/DatabaseReader.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -27,7 +28,15 @@ public:
 
 private:
 
-	std::shared_ptr<sf::RenderWindow> GetGameWindow_();
+	/**
+	 * Gets a shared pointer to the gameWindow
+	 */
+	std::shared_ptr<sf::RenderWindow> GetGameWindowPtr_();
+
+	/**
+	 * Gets a shared pointer to the database reader.
+	 */
+	std::shared_ptr<DatabaseReader> GetDatabaseReaderPtr_();
 
 	LoggerType_t const mk_type;
 
@@ -37,6 +46,8 @@ private:
 	char const * const mk_windowName;
 	char const * const mk_collection;
 	char const * const mk_subcollection;
+
+	unsigned int const mk_screenReductionRatio;
 };
 
 #endif

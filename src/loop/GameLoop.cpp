@@ -1,6 +1,5 @@
 #include "../../inc/loop/GameLoop.hpp"
 #include "../../inc/util/logger/Logger.hpp"
-#include "../../inc/database/DatabaseReader.hpp"
 #include "../../inc/debug/DebugMetricVisualizer.hpp"
 
 GameLoop::GameLoop()
@@ -11,21 +10,19 @@ GameLoop::GameLoop()
 	, mk_windowName("Emmoria")
 	, mk_collection("map")
 	, mk_subcollection("dawn_pillar")
+	, mk_screenReductionRatio(120)
 { }
 
 bool GameLoop::Start()
 {
 	s_pLogger->DebugLog(mk_type, "Gameloop started");
-	auto pGameWindow = GetGameWindow_();
-	DatabaseReader databaseReader(
-		"emmoria",
-		"mongodb://localhost",
-		short(27017));
-	databaseReader.LoadNewRegion("map", "dawn_pillar");
+	auto pGameWindow = GetGameWindowPtr_();
+	auto pDatabaseReader = GetDatabaseReaderPtr_();
+	pDatabaseReader->LoadNewRegion(mk_collection, mk_subcollection);
 	return true;
 }
 
-std::shared_ptr<sf::RenderWindow> GameLoop::GetGameWindow_()
+std::shared_ptr<sf::RenderWindow> GameLoop::GetGameWindowPtr_()
 {
 	auto pWindow(std::make_shared<sf::RenderWindow>
 			(sf::VideoMode(mk_uScreenWidth, mk_uScreenHeight),
@@ -33,4 +30,17 @@ std::shared_ptr<sf::RenderWindow> GameLoop::GetGameWindow_()
 			sf::Style::Fullscreen));
 	pWindow->setFramerateLimit(mk_uFrameRate);
 	return pWindow;
+}
+
+std::shared_ptr<DatabaseReader> GameLoop::GetDatabaseReaderPtr_()
+{
+
+	auto pDatabaseReader(std::make_shared<DatabaseReader>(
+		"emmoria",
+		"mongodb://localhost",
+		short(27017),
+		sf::Vector2u(mk_screenReductionRatio, mk_screenReductionRatio),
+		mk_uScreenWidth/mk_screenReductionRatio,
+		mk_uScreenHeight/mk_screenReductionRatio));
+	return pDatabaseReader;
 }
