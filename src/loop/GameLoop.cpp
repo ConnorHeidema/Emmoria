@@ -21,6 +21,7 @@ bool GameLoop::Start()
 		"emmoria",
 		"mongodb://localhost",
 		short(27017));
+	databaseReader.LoadNewRegion("map", "dawn_pillar");
 	return true;
 }
 
