@@ -2,6 +2,7 @@
 #define DATABASE_READER_HPP
 
 #include "../../inc/util/logger/ILogger.hpp"
+#include "../../inc/map/TileMap.hpp"
 
 #include <mongocxx/instance.hpp>
 #include <mongocxx/client.hpp>
