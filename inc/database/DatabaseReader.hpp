@@ -93,6 +93,8 @@ private:
 	mongocxx::instance const mk_inst;
 	mongocxx::client const mk_clientConnection;
 	char const * const mk_databaseName;
+
+	std::list<std::shared_ptr<sf::Drawable>> drawableObjects;
 };
 
 #endif
