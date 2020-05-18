@@ -2,7 +2,7 @@
 	"entities":
 	[
 		{
-			"name":"corner",
+			"name":"Corner",
 			"index":
 			{
 				"x":
@@ -16,7 +16,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -30,7 +30,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -44,7 +44,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -58,7 +58,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -72,7 +72,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -86,7 +86,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -100,7 +100,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -114,7 +114,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -128,7 +128,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -142,7 +142,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -156,7 +156,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -170,7 +170,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -184,7 +184,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -198,7 +198,7 @@
 			}
 		},
 		{
-			"name":"upper_wall",
+			"name":"UpperWall",
 			"index":
 			{
 				"x":
@@ -212,7 +212,7 @@
 			}
 		},
 		{
-			"name":"corner",
+			"name":"Corner",
 			"index":
 			{
 				"x":
@@ -226,7 +226,7 @@
 			}
 		},
 		{
-			"name":"left_wall",
+			"name":"LeftWall",
 			"index":
 			{
 				"x":
@@ -240,7 +240,7 @@
 			}
 		},
 		{
-			"name":"left_wall",
+			"name":"LeftWall",
 			"index":
 			{
 				"x":
@@ -254,7 +254,7 @@
 			}
 		},
 		{
-			"name":"left_wall",
+			"name":"LeftWall",
 			"index":
 			{
 				"x":
@@ -268,7 +268,7 @@
 			}
 		},
 		{
-			"name":"left_wall",
+			"name":"LeftWall",
 			"index":
 			{
 				"x":
@@ -282,7 +282,7 @@
 			}
 		},
 		{
-			"name":"left_wall",
+			"name":"LeftWall",
 			"index":
 			{
 				"x":
@@ -296,7 +296,7 @@
 			}
 		},
 		{
-			"name":"left_wall",
+			"name":"LeftWall",
 			"index":
 			{
 				"x":
@@ -310,7 +310,7 @@
 			}
 		},
 		{
-			"name":"left_wall",
+			"name":"LeftWall",
 			"index":
 			{
 				"x":
@@ -324,7 +324,7 @@
 			}
 		},
 		{
-			"name":"corner",
+			"name":"Corner",
 			"index":
 			{
 				"x":
@@ -338,7 +338,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -352,7 +352,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -366,7 +366,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -380,7 +380,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -394,7 +394,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -408,7 +408,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -422,7 +422,7 @@
 			}
 		},
 		{
-			"name":"royal_mat",
+			"name":"RoyalMat",
 			"index":
 			{
 				"x":
@@ -436,7 +436,7 @@
 			}
 		},
 		{
-			"name":"royal_mat",
+			"name":"RoyalMat",
 			"index":
 			{
 				"x":
@@ -450,7 +450,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -464,7 +464,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -478,7 +478,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -492,7 +492,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -506,7 +506,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -520,7 +520,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -534,7 +534,7 @@
 			}
 		},
 		{
-			"name":"corner",
+			"name":"Corner",
 			"index":
 			{
 				"x":
@@ -548,7 +548,7 @@
 			}
 		},
 		{
-			"name":"right_wall",
+			"name":"RightWall",
 			"index":
 			{
 				"x":
@@ -562,7 +562,7 @@
 			}
 		},
 		{
-			"name":"right_wall",
+			"name":"RightWall",
 			"index":
 			{
 				"x":
@@ -576,7 +576,7 @@
 			}
 		},
 		{
-			"name":"right_wall",
+			"name":"RightWall",
 			"index":
 			{
 				"x":
@@ -590,7 +590,7 @@
 			}
 		},
 		{
-			"name":"right_wall",
+			"name":"RightWall",
 			"index":
 			{
 				"x":
@@ -604,7 +604,7 @@
 			}
 		},
 		{
-			"name":"right_wall",
+			"name":"RightWall",
 			"index":
 			{
 				"x":
@@ -618,7 +618,7 @@
 			}
 		},
 		{
-			"name":"right_wall",
+			"name":"RightWall",
 			"index":
 			{
 				"x":
@@ -632,7 +632,7 @@
 			}
 		},
 		{
-			"name":"right_wall",
+			"name":"RightWall",
 			"index":
 			{
 				"x":
@@ -646,7 +646,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -660,7 +660,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -674,7 +674,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -688,7 +688,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -702,7 +702,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -716,7 +716,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -730,7 +730,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -744,7 +744,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -758,7 +758,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -772,7 +772,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -786,7 +786,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -800,7 +800,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -814,7 +814,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -828,7 +828,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -842,7 +842,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -856,7 +856,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -870,7 +870,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -884,7 +884,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -898,7 +898,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -912,7 +912,7 @@
 			}
 		},
 		{
-			"name":"corner",
+			"name":"Corner",
 			"index":
 			{
 				"x":
@@ -926,7 +926,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -940,7 +940,7 @@
 			}
 		},
 		{
-			"name":"bottom_wall",
+			"name":"BottomWall",
 			"index":
 			{
 				"x":
@@ -954,7 +954,7 @@
 			}
 		},
 		{
-			"name":"corner",
+			"name":"Corner",
 			"index":
 			{
 				"x":
@@ -968,7 +968,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -982,7 +982,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -996,7 +996,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1010,7 +1010,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1024,7 +1024,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1038,7 +1038,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1052,7 +1052,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1066,7 +1066,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1080,7 +1080,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1094,7 +1094,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1108,7 +1108,7 @@
 			}
 		},
 		{
-			"name":"right_wall",
+			"name":"RightWall",
 			"index":
 			{
 				"x":
@@ -1122,7 +1122,7 @@
 			}
 		},
 		{
-			"name":"grass",
+			"name":"Grass",
 			"index":
 			{
 				"x":
@@ -1136,7 +1136,7 @@
 			}
 		},
 		{
-			"name":"grass",
+			"name":"Grass",
 			"index":
 			{
 				"x":
@@ -1150,7 +1150,7 @@
 			}
 		},
 		{
-			"name":"left_wall",
+			"name":"LeftWall",
 			"index":
 			{
 				"x":
@@ -1164,7 +1164,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1178,7 +1178,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1192,7 +1192,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1206,7 +1206,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1220,7 +1220,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1234,7 +1234,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1248,7 +1248,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1262,7 +1262,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1276,7 +1276,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1290,7 +1290,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1304,7 +1304,7 @@
 			}
 		},
 		{
-			"name":"right_wall",
+			"name":"RightWall",
 			"index":
 			{
 				"x":
@@ -1318,7 +1318,7 @@
 			}
 		},
 		{
-			"name":"grass",
+			"name":"Grass",
 			"index":
 			{
 				"x":
@@ -1332,7 +1332,7 @@
 			}
 		},
 		{
-			"name":"grass",
+			"name":"Grass",
 			"index":
 			{
 				"x":
@@ -1346,7 +1346,7 @@
 			}
 		},
 		{
-			"name":"left_wall",
+			"name":"LeftWall",
 			"index":
 			{
 				"x":
@@ -1360,7 +1360,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1374,7 +1374,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1388,7 +1388,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1402,7 +1402,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1416,7 +1416,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1430,7 +1430,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1444,7 +1444,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1458,7 +1458,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1472,7 +1472,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1486,7 +1486,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1500,7 +1500,7 @@
 			}
 		},
 		{
-			"name":"corner",
+			"name":"Corner",
 			"index":
 			{
 				"x":
@@ -1514,7 +1514,7 @@
 			}
 		},
 		{
-			"name":"royal_mat",
+			"name":"RoyalMat",
 			"index":
 			{
 				"x":
@@ -1528,7 +1528,7 @@
 			}
 		},
 		{
-			"name":"royal_mat",
+			"name":"RoyalMat",
 			"index":
 			{
 				"x":
@@ -1542,7 +1542,7 @@
 			}
 		},
 		{
-			"name":"corner",
+			"name":"Corner",
 			"index":
 			{
 				"x":
@@ -1556,7 +1556,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1570,7 +1570,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1584,7 +1584,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1598,7 +1598,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1612,7 +1612,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1626,7 +1626,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1640,7 +1640,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1654,7 +1654,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1668,7 +1668,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1682,7 +1682,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1696,7 +1696,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1710,7 +1710,7 @@
 			}
 		},
 		{
-			"name":"royal_mat",
+			"name":"RoyalMat",
 			"index":
 			{
 				"x":
@@ -1724,7 +1724,7 @@
 			}
 		},
 		{
-			"name":"royal_mat",
+			"name":"RoyalMat",
 			"index":
 			{
 				"x":
@@ -1738,7 +1738,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1752,7 +1752,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1766,7 +1766,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1780,7 +1780,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1794,7 +1794,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1808,7 +1808,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1822,7 +1822,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1836,7 +1836,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1850,7 +1850,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1864,7 +1864,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1878,7 +1878,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1892,7 +1892,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1906,7 +1906,7 @@
 			}
 		},
 		{
-			"name":"royal_mat",
+			"name":"RoyalMat",
 			"index":
 			{
 				"x":
@@ -1920,7 +1920,7 @@
 			}
 		},
 		{
-			"name":"royal_mat",
+			"name":"RoyalMat",
 			"index":
 			{
 				"x":
@@ -1934,7 +1934,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1948,7 +1948,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1962,7 +1962,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1976,7 +1976,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -1990,7 +1990,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":
@@ -2004,7 +2004,7 @@
 			}
 		},
 		{
-			"name":"rock_ground",
+			"name":"RockGround",
 			"index":
 			{
 				"x":

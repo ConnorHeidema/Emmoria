@@ -19,6 +19,18 @@ bool GameLoop::Start()
 	auto pGameWindow = GetGameWindowPtr_();
 	auto pDatabaseReader = GetDatabaseReaderPtr_();
 	pDatabaseReader->LoadNewRegion(mk_collection, mk_subcollection);
+
+	while (pGameWindow->isOpen())
+	{
+		pGameWindow->clear();
+		for (auto pEntity : pDatabaseReader->GetDrawables())
+		{
+			pGameWindow->draw(*pEntity);
+		}
+		pGameWindow->display();
+
+		CheckForEvents_(pGameWindow);
+    }
 	return true;
 }
 
@@ -43,4 +55,24 @@ std::shared_ptr<DatabaseReader> GameLoop::GetDatabaseReaderPtr_()
 		mk_uScreenWidth/mk_screenReductionRatio,
 		mk_uScreenHeight/mk_screenReductionRatio));
 	return pDatabaseReader;
+}
+
+void GameLoop::CheckForEvents_(std::shared_ptr<sf::Window> pGameWindow)
+{
+	sf::Event event;
+	while (pGameWindow->pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed)
+		{
+			pGameWindow->close();
+		}
+		else if(event.type == sf::Event::GainedFocus)
+		{
+			s_pLogger->DebugLog(mk_type, "Window Gained Focus");
+		}
+		else if(event.type == sf::Event::LostFocus)
+		{
+			s_pLogger->DebugLog(mk_type, "Window Lost Focus");
+		}
+	}
 }

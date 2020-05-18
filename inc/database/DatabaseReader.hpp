@@ -3,6 +3,7 @@
 
 #include "../../inc/util/logger/ILogger.hpp"
 #include "../../inc/map/TileMap.hpp"
+#include "../../inc/entity/interactable/IInteractableEntity.hpp"
 
 #include <mongocxx/instance.hpp>
 #include <mongocxx/client.hpp>
@@ -11,6 +12,7 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <memory>
 #include <list>
 
 using Region = std::pair<int, int>;
@@ -52,7 +54,7 @@ public:
 	 * Returns a list of all the things
 	 * that need to be drawn to the screen
 	 */
-	std::list<sf::Drawable> GetDrawables();
+	std::list<std::shared_ptr<sf::Drawable>> GetDrawables();
 
 private:
 
@@ -70,6 +72,14 @@ private:
 		Range rangeX,
 		std::string const& keyY,
 		Range rangeY);
+
+	/**
+	 * Determines whether an entity should be loaded onto the tile map
+	 * @param element The entity being inspected
+	 * @return whether the entity should be loaded into the tile map
+	 */
+	bool ShouldDrawInArray_(bsoncxx::v_noabi::array::element element);
+
 
 	/**
 	 * Creates the query for only getting contrained regions over one dimension
@@ -98,7 +108,8 @@ private:
 	mongocxx::client const mk_clientConnection;
 	char const * const mk_databaseName;
 
-	TileMap m_bottomLayerTileMap;
+	std::shared_ptr<TileMap> m_pBottomLayerTileMap;
+	std::list<std::shared_ptr<IInteractableEntity>> interactableObjects;
 	std::list<std::shared_ptr<sf::Drawable>> drawableObjects;
 };
 

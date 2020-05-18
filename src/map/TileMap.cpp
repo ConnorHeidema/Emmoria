@@ -23,9 +23,12 @@ void TileMap::Load()
 	PopulateVertexArray_();
 }
 
-void TileMap::PrepareTile(int xIndex, int yIndex, int subTexture)
+void TileMap::PrepareTile(int xIndex, int yIndex, std::shared_ptr<int> pSubTexture)
 {
-	m_screenArrayVect.at((yIndex * m_tileWidth) + xIndex) = subTexture;
+	s_pLogger->DebugLog(mk_type, std::to_string(xIndex).c_str());
+	s_pLogger->DebugLog(mk_type, std::to_string(yIndex).c_str());
+	s_pLogger->DebugLog(mk_type, std::to_string(*pSubTexture).c_str());
+	m_screenArrayVect.at((yIndex * m_tileWidth) + xIndex) = pSubTexture;
 }
 
 bool TileMap::SetTextureFile(std::string const tilesetPath)
@@ -78,7 +81,7 @@ int TileMap::GetCurrentTileNumber_(
 	int xTileIndex,
 	int yTileIndex)
 {
-	return m_screenArrayVect[xTileIndex + yTileIndex * m_tileWidth];
+	return *m_screenArrayVect[xTileIndex + yTileIndex * m_tileWidth];
 }
 
 void TileMap::DefineQuadCorners_(

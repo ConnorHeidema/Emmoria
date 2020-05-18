@@ -1,5 +1,6 @@
 #include "../../inc/database/DatabaseReader.hpp"
 #include "../../inc/util/logger/Logger.hpp"
+#include "../../inc/entity/interactable/InteractableEntityFactory.hpp"
 
 #include <bsoncxx/json.hpp>
 
@@ -23,10 +24,10 @@ DatabaseReader::DatabaseReader(
 	, mk_inst{}
 	, mk_clientConnection({mongocxx::uri(std::string(databaseUrl) + ":" + std::to_string(port))})
 	, mk_databaseName(database)
-	, m_bottomLayerTileMap(
+	, m_pBottomLayerTileMap(std::make_shared<TileMap>(
 		tileUnitSize,
 		tileWidth,
-		tileHeight)
+		tileHeight))
 {}
 
 void DatabaseReader::LoadNewRegion(
@@ -35,9 +36,38 @@ void DatabaseReader::LoadNewRegion(
 {
 	auto collection = mk_clientConnection[mk_databaseName][std::string(collectionName) + "." + std::string(subCollectionName)];
 	auto documents = collection.find({});
-	for(auto doc : documents) {
+
+	m_pBottomLayerTileMap->SetTextureFile("image/background/Generic.png");
+
+	for(auto doc : documents)
+	{
+		bsoncxx::document::element allEntities{doc["entities"]};
+		auto entitySets = allEntities.get_array().value;
+		for (auto entity : entitySets)
+		{
+			if (ShouldDrawInArray_(entity))
+			{
+				interactableObjects.emplace_back(
+					InteractableEntityFactory::CreateInteractableEntity(
+						entity, m_pBottomLayerTileMap));
+			}
+		}
 		s_pLogger->DebugLog(mk_type, bsoncxx::to_json(doc).c_str());
 	}
+	m_pBottomLayerTileMap->Load();
+}
+
+bool DatabaseReader::ShouldDrawInArray_(bsoncxx::v_noabi::array::element element)
+{
+	bsoncxx::document::element indexObject{element["index"]};
+	return indexObject.length() != 0;
+}
+
+std::list<std::shared_ptr<sf::Drawable>> DatabaseReader::GetDrawables()
+{
+	std::list<std::shared_ptr<sf::Drawable>> toReturn;
+	toReturn.emplace_back(m_pBottomLayerTileMap);
+	return toReturn;
 }
 
 mongocxx::cursor DatabaseReader::GetRegions_(

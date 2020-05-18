@@ -5,6 +5,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <memory>
+
 using TileMapSubTextureArray = int;
 
 /**
@@ -33,7 +35,7 @@ public:
 	 * @param yIndex The vertical location to put the subtexture
 	 * @param subTexture The index of the subtexture to use in the texture file
 	 */
-	void PrepareTile(int xIndex, int yIndex, int subTexture);
+	void PrepareTile(int xIndex, int yIndex, std::shared_ptr<int> subTexture);
 
 	/**
 	 * Sets and loads a texture file for the tileset to use
@@ -116,7 +118,7 @@ private:
 
 	unsigned int const m_quadVertices;
 
-	std::vector<int> m_screenArrayVect;
+	std::vector<std::shared_ptr<int>> m_screenArrayVect;
 
 	LoggerType_t const mk_type;
 };

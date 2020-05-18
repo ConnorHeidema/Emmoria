@@ -38,6 +38,8 @@ private:
 	 */
 	std::shared_ptr<DatabaseReader> GetDatabaseReaderPtr_();
 
+	void CheckForEvents_(std::shared_ptr<sf::Window> pGameWindow);
+
 	LoggerType_t const mk_type;
 
 	unsigned int const mk_uScreenHeight;
