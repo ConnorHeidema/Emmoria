@@ -25,9 +25,6 @@ void TileMap::Load()
 
 void TileMap::PrepareTile(int xIndex, int yIndex, std::shared_ptr<int> pSubTexture)
 {
-	s_pLogger->DebugLog(mk_type, std::to_string(xIndex).c_str());
-	s_pLogger->DebugLog(mk_type, std::to_string(yIndex).c_str());
-	s_pLogger->DebugLog(mk_type, std::to_string(*pSubTexture).c_str());
 	m_screenArrayVect.at((yIndex * m_tileWidth) + xIndex) = pSubTexture;
 }
 

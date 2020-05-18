@@ -52,7 +52,6 @@ void DatabaseReader::LoadNewRegion(
 						entity, m_pBottomLayerTileMap));
 			}
 		}
-		s_pLogger->DebugLog(mk_type, bsoncxx::to_json(doc).c_str());
 	}
 	m_pBottomLayerTileMap->Load();
 }

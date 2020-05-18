@@ -30,6 +30,7 @@ using bsoncxx::builder::stream::document;
 class DatabaseReader
 {
 public:
+
 	/**
 	 * Constructor
 	 * @param databaseUrl The url of the database

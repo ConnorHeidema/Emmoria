@@ -6,7 +6,7 @@ GameLoop::GameLoop()
 	: mk_type("GameLoop")
 	, mk_uScreenHeight(sf::VideoMode::getDesktopMode().height)
 	, mk_uScreenWidth(sf::VideoMode::getDesktopMode().width)
-	, mk_uFrameRate(60)
+	, mk_uFrameRate(1000)
 	, mk_windowName("Emmoria")
 	, mk_collection("map")
 	, mk_subcollection("dawn_pillar")
@@ -19,7 +19,7 @@ bool GameLoop::Start()
 	auto pGameWindow = GetGameWindowPtr_();
 	auto pDatabaseReader = GetDatabaseReaderPtr_();
 	pDatabaseReader->LoadNewRegion(mk_collection, mk_subcollection);
-
+	DebugMetricVisualizer debugMetricVisualizer;
 	while (pGameWindow->isOpen())
 	{
 		pGameWindow->clear();
@@ -27,6 +27,8 @@ bool GameLoop::Start()
 		{
 			pGameWindow->draw(*pEntity);
 		}
+		debugMetricVisualizer.Update();
+		pGameWindow->draw(debugMetricVisualizer);
 		pGameWindow->display();
 
 		CheckForEvents_(pGameWindow);
