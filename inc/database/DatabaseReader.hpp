@@ -15,8 +15,6 @@
 #include <memory>
 #include <list>
 
-using Region = std::pair<int, int>;
-using Position = std::pair<int, int>;
 using Range = std::pair<int, int>;
 
 using bsoncxx::builder::stream::document;
@@ -33,8 +31,12 @@ public:
 
 	/**
 	 * Constructor
+	 * @param database The name of the database to connect to
 	 * @param databaseUrl The url of the database
 	 * @param port The port of the database
+	 * @param tileUnitSize The size of each tile unit
+	 * @param tileWidth The width each tile should take
+	 * @param tileHeight The height each tile should take
 	 */
 	DatabaseReader(
 		char const * const database,
@@ -46,6 +48,8 @@ public:
 
 	/**
 	 * When a new region needs to be loaded, this will load it in
+	 * @param collectionName The name of the collection being loaded
+	 * @param subCollectionName The name of the subcollection being loaded
 	 */
 	void LoadNewRegion(
 		char const * const collectionName,
@@ -66,13 +70,14 @@ private:
 	 * @param rangeX The range of regions wanted in the x plane
 	 * @param keyY The y key
 	 * @param rangeY The range of regions wanted in the y plane
+	 * @return A cursor to the list of documents that match the criteria
 	 */
 	mongocxx::cursor GetRegions_(
 		mongocxx::collection& collection,
 		std::string const& keyX,
-		Range rangeX,
+		Range const& rangeX,
 		std::string const& keyY,
-		Range rangeY);
+		Range const& rangeY);
 
 	/**
 	 * Determines whether an entity should be loaded onto the tile map
@@ -80,7 +85,6 @@ private:
 	 * @return whether the entity should be loaded into the tile map
 	 */
 	bool ShouldDrawInArray_(bsoncxx::v_noabi::array::element element);
-
 
 	/**
 	 * Creates the query for only getting contrained regions over one dimension
@@ -90,8 +94,8 @@ private:
 	 */
 	void UpdateCondition1D_(
 		document& condition /*in-out*/,
-		std::string const key,
-		Range range);
+		std::string const& key,
+		Range const& range);
 
 	/**
 	 * Combines 2 conditions together

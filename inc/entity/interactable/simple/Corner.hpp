@@ -4,14 +4,13 @@
 #include "../../../../inc/entity/interactable/IInteractableEntity.hpp"
 
 /**
- * The class represent a patch of grass and its interactable properties
+ * The class represents a corner which cannot be traversed
  */
 class Corner
 	: public IInteractableEntity
 {
 public:
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
-private:
 };
 
 #endif

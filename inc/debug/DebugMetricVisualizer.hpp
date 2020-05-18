@@ -39,13 +39,14 @@ private:
 
 	/**
 	 * Gets the relevant string for the time elapsed.
+	 * @return The string to print
 	 */
 	std::string GetTimeString_();
 
 	/**
 	 * Checks the keys that have been pressed on an update.
 	 */
-	void CheckKey_();
+	void CheckKeys_();
 
 	/**
 	 * Checks if the left or right mouse button have been clicked
@@ -54,6 +55,7 @@ private:
 
 	/**
 	 * Gets the final string that should be printed to the screen
+	 * @return The total debug string to return
 	 */
 	std::string GetDebugString_() const;
 

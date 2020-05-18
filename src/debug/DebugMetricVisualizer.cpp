@@ -28,7 +28,7 @@ void DebugMetricVisualizer::Update()
 	m_timeRun = GetTimeString_();
 	m_framesInSecond++;
 
-	CheckKey_();
+	CheckKeys_();
 	CheckMouse_();
 }
 
@@ -59,7 +59,7 @@ std::string DebugMetricVisualizer::GetTimeString_()
 	return std::to_string(minutes) + ":" + std::to_string(seconds);
 }
 
-void DebugMetricVisualizer::CheckKey_()
+void DebugMetricVisualizer::CheckKeys_()
 {
 	std::string ret = "";
 	#define IS_PRESSED_DEBUG(x) \

@@ -4,14 +4,13 @@
 #include "../../../../inc/entity/interactable/IInteractableEntity.hpp"
 
 /**
- * The class represent a patch of grass and its interactable properties
+ * This class represents a wall at the top of the screen.
  */
 class UpperWall
 	: public IInteractableEntity
 {
 public:
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
-private:
 };
 
 #endif

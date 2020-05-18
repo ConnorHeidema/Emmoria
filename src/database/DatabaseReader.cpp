@@ -72,9 +72,9 @@ std::list<std::shared_ptr<sf::Drawable>> DatabaseReader::GetDrawables()
 mongocxx::cursor DatabaseReader::GetRegions_(
 	mongocxx::collection& collection,
 	std::string const& keyX,
-	Range rangeX,
+	Range const& rangeX,
 	std::string const& keyY,
-	Range rangeY)
+	Range const& rangeY)
 {
 	document query, conditionX, conditionY;
 	UpdateCondition1D_(conditionX, keyX, rangeX);
@@ -85,8 +85,8 @@ mongocxx::cursor DatabaseReader::GetRegions_(
 
 void DatabaseReader::UpdateCondition1D_(
 	document& condition /*in-out*/,
-	std::string const key,
-	Range range)
+	std::string const& key,
+	Range const& range)
 {
 	condition <<
 			key <<

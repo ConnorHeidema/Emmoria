@@ -11,7 +11,6 @@ class Grass
 {
 public:
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
-private:
 };
 
 #endif

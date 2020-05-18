@@ -3,7 +3,6 @@ all:
 	cd build && g++ -c -Wall -Werror \
 	../src/entity/interactable/InteractableEntityFactory.cpp \
 	../inc/entity/interactable/InteractableEntityFactory.hpp \
-	../src/entity/interactable/IInteractableEntity.cpp \
 	../inc/entity/interactable/IInteractableEntity.hpp \
 	../src/entity/interactable/simple/RockGround.cpp \
 	../inc/entity/interactable/simple/RockGround.hpp \

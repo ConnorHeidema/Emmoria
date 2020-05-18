@@ -6,7 +6,7 @@ GameLoop::GameLoop()
 	: mk_type("GameLoop")
 	, mk_uScreenHeight(sf::VideoMode::getDesktopMode().height)
 	, mk_uScreenWidth(sf::VideoMode::getDesktopMode().width)
-	, mk_uFrameRate(1000)
+	, mk_uFrameRate(60)
 	, mk_windowName("Emmoria")
 	, mk_collection("map")
 	, mk_subcollection("dawn_pillar")
@@ -48,7 +48,6 @@ std::shared_ptr<sf::RenderWindow> GameLoop::GetGameWindowPtr_()
 
 std::shared_ptr<DatabaseReader> GameLoop::GetDatabaseReaderPtr_()
 {
-
 	auto pDatabaseReader(std::make_shared<DatabaseReader>(
 		"emmoria",
 		"mongodb://localhost",
