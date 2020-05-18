@@ -11,7 +11,7 @@ GameLoop::GameLoop()
 	, mk_subcollection("dawn_pillar")
 	, mk_screenReductionRatio(120)
 	#ifdef DEBUG
-		, debugMetricVisualizer()
+		, m_debugMetricVisualizer()
 	#endif
 { }
 
@@ -81,8 +81,8 @@ void GameLoop::RunLoop_(
 		pGameWindow->draw(*pEntity);
 	}
 	#ifdef DEBUG
-		debugMetricVisualizer.Update();
-		pGameWindow->draw(debugMetricVisualizer);
+		m_debugMetricVisualizer.Update();
+		pGameWindow->draw(m_debugMetricVisualizer);
 	#endif
 	pGameWindow->display();
 	CheckForEvents_(pGameWindow);

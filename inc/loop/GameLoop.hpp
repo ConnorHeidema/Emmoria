@@ -66,7 +66,7 @@ private:
 	unsigned int const mk_screenReductionRatio;
 
 	#ifdef DEBUG
-		DebugMetricVisualizer debugMetricVisualizer;
+		DebugMetricVisualizer m_debugMetricVisualizer;
 	#endif
 };
 
