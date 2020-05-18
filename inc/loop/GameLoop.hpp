@@ -4,6 +4,7 @@
 #include "../../inc/util/logger/ILogger.hpp"
 #include "../../inc/database/DatabaseReader.hpp"
 #include "../../inc/debug/DebugMetricVisualizer.hpp"
+#include "../../inc/util/Location.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -54,7 +55,18 @@ private:
 		std::shared_ptr<sf::RenderWindow> pGameWindow,
 		std::shared_ptr<DatabaseReader> pDatabaseReader);
 
+	/**
+	 * Writes all the entitiess to the screen
+	 * @param pDatabaseReader the database reader which provides the entities
+	 */
+	void DrawAllEntities_(
+		std::shared_ptr<sf::RenderWindow> pGameWindow,
+		std::shared_ptr<DatabaseReader> pDatabaseReader);
+
+
 	LoggerType_t const mk_type;
+
+	Location m_location;
 
 	unsigned int const mk_uScreenHeight;
 	unsigned int const mk_uScreenWidth;

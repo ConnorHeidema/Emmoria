@@ -3,6 +3,7 @@
 
 GameLoop::GameLoop()
 	: mk_type("GameLoop")
+	, m_location(std::pair<int, int>(0,0))
 	, mk_uScreenHeight(sf::VideoMode::getDesktopMode().height)
 	, mk_uScreenWidth(sf::VideoMode::getDesktopMode().width)
 	, mk_uFrameRate(60)
@@ -75,15 +76,23 @@ void GameLoop::RunLoop_(
 	std::shared_ptr<sf::RenderWindow> pGameWindow,
 	std::shared_ptr<DatabaseReader> pDatabaseReader)
 {
+	m_location.UpdateCurrentPosition();
 	pGameWindow->clear();
-	for (auto pEntity : pDatabaseReader->GetDrawables())
-	{
-		pGameWindow->draw(*pEntity);
-	}
+	DrawAllEntities_(pGameWindow, pDatabaseReader);
 	#ifdef DEBUG
 		m_debugMetricVisualizer.Update();
 		pGameWindow->draw(m_debugMetricVisualizer);
 	#endif
 	pGameWindow->display();
 	CheckForEvents_(pGameWindow);
+}
+
+void GameLoop::DrawAllEntities_(
+	std::shared_ptr<sf::RenderWindow> pGameWindow,
+	std::shared_ptr<DatabaseReader> pDatabaseReader)
+{
+	for (auto pEntity : pDatabaseReader->GetDrawables())
+	{
+		pGameWindow->draw(*pEntity);
+	}
 }

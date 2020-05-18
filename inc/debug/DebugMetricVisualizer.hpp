@@ -69,6 +69,7 @@ private:
 
 	std::string m_leftMousePositionPressed;
 	std::string m_RightMousePositionPressed;
+	std::string m_mousePosition;
 
 	std::string m_timeRun;
 	int m_minutesElapsed;

@@ -8,6 +8,7 @@ DebugMetricVisualizer::DebugMetricVisualizer()
 	, m_lastCharactersPressed("")
 	, m_leftMousePositionPressed("")
 	, m_RightMousePositionPressed("")
+	, m_mousePosition("")
 	, m_timeRun("")
 	, m_minutesElapsed(0)
 	, m_secondsElapsed(0)
@@ -93,21 +94,21 @@ void DebugMetricVisualizer::CheckMouse_()
 {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		m_leftMousePositionPressed += "Left at : (" +
-		std::to_string(sf::Mouse::getPosition().x) + ", " +
-		std::to_string(sf::Mouse::getPosition().y) + ")";
+		m_leftMousePositionPressed += "Left clicked";
 	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 	{
-		m_RightMousePositionPressed += "Right at : (" +
+		m_RightMousePositionPressed += "Right clicked";
+	}
+	m_mousePosition = "Mouse position at : (" +
 		std::to_string(sf::Mouse::getPosition().x) + ", " +
 		std::to_string(sf::Mouse::getPosition().y) + ")";
-	}
 }
 
 std::string DebugMetricVisualizer::GetDebugString_() const
 {
 	return
+		m_mousePosition + "\n" +
 		m_leftMousePositionPressed + "\n" +
 		m_RightMousePositionPressed + "\n" +
 		m_lastCharactersPressed + "\n" +

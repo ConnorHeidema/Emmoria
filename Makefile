@@ -1,6 +1,8 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../src/util/Location.cpp \
+	../inc/util/Location.hpp \
 	../src/entity/interactable/InteractableEntityFactory.cpp \
 	../inc/entity/interactable/InteractableEntityFactory.hpp \
 	../inc/entity/interactable/IInteractableEntity.hpp \
@@ -36,6 +38,7 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	Location.o \
 	InteractableEntityFactory.o \
 	RockGround.o \
 	RoyalMat.o \
