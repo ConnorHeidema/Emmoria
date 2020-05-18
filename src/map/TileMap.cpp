@@ -86,21 +86,21 @@ void TileMap::DefineQuadCorners_(
 	int xTileIndex,
 	int yTileIndex)
 {
-		currentTile[TOP_LEFT].position = sf::Vector2f(
-			xTileIndex * m_tileUnitSize.x,
-			yTileIndex * m_tileUnitSize.y);
+	currentTile[TOP_LEFT].position = sf::Vector2f(
+		xTileIndex * m_tileUnitSize.x,
+		yTileIndex * m_tileUnitSize.y);
 
-		currentTile[TOP_RIGHT].position = sf::Vector2f(
-			(xTileIndex + 1) * m_tileUnitSize.x,
-			yTileIndex * m_tileUnitSize.y);
+	currentTile[TOP_RIGHT].position = sf::Vector2f(
+		(xTileIndex + 1) * m_tileUnitSize.x,
+		yTileIndex * m_tileUnitSize.y);
 
-		currentTile[BOTTOM_RIGHT].position = sf::Vector2f(
-			(xTileIndex + 1) * m_tileUnitSize.x,
-			(yTileIndex + 1) * m_tileUnitSize.y);
+	currentTile[BOTTOM_RIGHT].position = sf::Vector2f(
+		(xTileIndex + 1) * m_tileUnitSize.x,
+		(yTileIndex + 1) * m_tileUnitSize.y);
 
-		currentTile[BOTTOM_LEFT].position = sf::Vector2f(
-			xTileIndex * m_tileUnitSize.x,
-			(yTileIndex + 1) * m_tileUnitSize.y);
+	currentTile[BOTTOM_LEFT].position = sf::Vector2f(
+		xTileIndex * m_tileUnitSize.x,
+		(yTileIndex + 1) * m_tileUnitSize.y);
 }
 
 void TileMap::ApplyTexturesToCorners_(
@@ -108,19 +108,19 @@ void TileMap::ApplyTexturesToCorners_(
 	int textureRow,
 	int textureColumn)
 {
-		currentTile[TOP_LEFT].texCoords = sf::Vector2f
-			(textureRow * m_tileUnitSize.x,
-			textureColumn * m_tileUnitSize.y);
+	currentTile[TOP_LEFT].texCoords = sf::Vector2f
+		(textureRow * m_tileUnitSize.x,
+		textureColumn * m_tileUnitSize.y);
 
-		currentTile[TOP_RIGHT].texCoords = sf::Vector2f(
-			(textureRow + 1) * m_tileUnitSize.x,
-			textureColumn * m_tileUnitSize.y);
+	currentTile[TOP_RIGHT].texCoords = sf::Vector2f(
+		(textureRow + 1) * m_tileUnitSize.x,
+		textureColumn * m_tileUnitSize.y);
 
-		currentTile[BOTTOM_RIGHT].texCoords = sf::Vector2f(
-			(textureRow + 1) * m_tileUnitSize.x,
-			(textureColumn + 1) * m_tileUnitSize.y);
+	currentTile[BOTTOM_RIGHT].texCoords = sf::Vector2f(
+		(textureRow + 1) * m_tileUnitSize.x,
+		(textureColumn + 1) * m_tileUnitSize.y);
 
-		currentTile[BOTTOM_LEFT].texCoords = sf::Vector2f(
-			textureRow * m_tileUnitSize.x,
-			(textureColumn + 1) * m_tileUnitSize.y);
+	currentTile[BOTTOM_LEFT].texCoords = sf::Vector2f(
+		textureRow * m_tileUnitSize.x,
+		(textureColumn + 1) * m_tileUnitSize.y);
 }

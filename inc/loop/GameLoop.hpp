@@ -3,6 +3,7 @@
 
 #include "../../inc/util/logger/ILogger.hpp"
 #include "../../inc/database/DatabaseReader.hpp"
+#include "../../inc/debug/DebugMetricVisualizer.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -44,6 +45,15 @@ private:
 
 	void CheckForEvents_(std::shared_ptr<sf::Window> pGameWindow);
 
+	/**
+	 * Runs everything that needs to be run within the game loop
+	 * @param pGameWindow the window that is being written to
+	 * @param pDatabaseReader the databaseReader
+	 */
+	void RunLoop_(
+		std::shared_ptr<sf::RenderWindow> pGameWindow,
+		std::shared_ptr<DatabaseReader> pDatabaseReader);
+
 	LoggerType_t const mk_type;
 
 	unsigned int const mk_uScreenHeight;
@@ -54,6 +64,10 @@ private:
 	char const * const mk_subcollection;
 
 	unsigned int const mk_screenReductionRatio;
+
+	#ifdef DEBUG
+		DebugMetricVisualizer debugMetricVisualizer;
+	#endif
 };
 
 #endif

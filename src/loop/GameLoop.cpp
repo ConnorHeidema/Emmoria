@@ -1,6 +1,5 @@
 #include "../../inc/loop/GameLoop.hpp"
 #include "../../inc/util/logger/Logger.hpp"
-#include "../../inc/debug/DebugMetricVisualizer.hpp"
 
 GameLoop::GameLoop()
 	: mk_type("GameLoop")
@@ -11,6 +10,9 @@ GameLoop::GameLoop()
 	, mk_collection("map")
 	, mk_subcollection("dawn_pillar")
 	, mk_screenReductionRatio(120)
+	#ifdef DEBUG
+		, debugMetricVisualizer()
+	#endif
 { }
 
 bool GameLoop::Start()
@@ -22,16 +24,7 @@ bool GameLoop::Start()
 	DebugMetricVisualizer debugMetricVisualizer;
 	while (pGameWindow->isOpen())
 	{
-		pGameWindow->clear();
-		for (auto pEntity : pDatabaseReader->GetDrawables())
-		{
-			pGameWindow->draw(*pEntity);
-		}
-		debugMetricVisualizer.Update();
-		pGameWindow->draw(debugMetricVisualizer);
-		pGameWindow->display();
-
-		CheckForEvents_(pGameWindow);
+		RunLoop_(pGameWindow, pDatabaseReader);
     }
 	return true;
 }
@@ -76,4 +69,21 @@ void GameLoop::CheckForEvents_(std::shared_ptr<sf::Window> pGameWindow)
 			s_pLogger->DebugLog(mk_type, "Window Lost Focus");
 		}
 	}
+}
+
+void GameLoop::RunLoop_(
+	std::shared_ptr<sf::RenderWindow> pGameWindow,
+	std::shared_ptr<DatabaseReader> pDatabaseReader)
+{
+	pGameWindow->clear();
+	for (auto pEntity : pDatabaseReader->GetDrawables())
+	{
+		pGameWindow->draw(*pEntity);
+	}
+	#ifdef DEBUG
+		debugMetricVisualizer.Update();
+		pGameWindow->draw(debugMetricVisualizer);
+	#endif
+	pGameWindow->display();
+	CheckForEvents_(pGameWindow);
 }
