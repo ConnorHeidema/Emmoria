@@ -3,7 +3,8 @@
 
 #include "../../inc/util/logger/ILogger.hpp"
 #include "../../inc/map/TileMap.hpp"
-#include "../../inc/entity/interactable/IInteractableEntity.hpp"
+#include "../../inc/entity/IGridded.hpp"
+#include "../../inc/entity/DrawableTransformable.hpp"
 
 #include <mongocxx/instance.hpp>
 #include <mongocxx/client.hpp>
@@ -59,7 +60,7 @@ public:
 	 * Returns a list of all the things
 	 * that need to be drawn to the screen
 	 */
-	std::list<std::shared_ptr<sf::Drawable>> GetDrawables();
+	std::list<std::shared_ptr<DrawableTransformable>> GetDrawableTransformables();
 
 private:
 
@@ -114,8 +115,8 @@ private:
 	char const * const mk_databaseName;
 
 	std::shared_ptr<TileMap> m_pBottomLayerTileMap;
-	std::list<std::shared_ptr<IInteractableEntity>> interactableObjects;
-	std::list<std::shared_ptr<sf::Drawable>> drawableObjects;
+	std::list<std::shared_ptr<IGridded>> interactableObjects;
+	std::list<std::shared_ptr<DrawableTransformable>> drawableObjects;
 };
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "../../inc/util/logger/ILogger.hpp"
 
-#include <SFML/Graphics.hpp>
+#include "../../inc/entity/DrawableTransformable.hpp"
 
 #include <memory>
 
@@ -14,8 +14,7 @@ using TileMapSubTextureArray = int;
  * This is convenient to reduce the number of openGL draw calls significantly
  */
 class TileMap
-	: public sf::Drawable
-	, public sf::Transformable
+	: public DrawableTransformable
 {
 public:
 	/**

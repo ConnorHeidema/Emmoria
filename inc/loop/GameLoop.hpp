@@ -66,7 +66,7 @@ private:
 
 	LoggerType_t const mk_type;
 
-	Location m_location;
+	std::shared_ptr<Location> m_pLocation;
 
 	unsigned int const mk_uScreenHeight;
 	unsigned int const mk_uScreenWidth;

@@ -1,4 +1,4 @@
-#include "../../../../inc/entity/interactable/simple/RoyalMat.hpp"
+#include "../../../inc/entity/simple/RoyalMat.hpp"
 
 std::shared_ptr<int> RoyalMat::GetSubTextureIndexPtr()
 {

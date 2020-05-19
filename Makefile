@@ -1,27 +1,32 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../src/entity/EntityContainer.cpp \
+	../inc/entity/EntityContainer.hpp \
+	../inc/entity/IUpdatable.hpp \
+	../inc/entity/IInteractable.hpp \
+	../inc/entity/DrawableTransformable.hpp \
 	../src/util/Location.cpp \
 	../inc/util/Location.hpp \
-	../src/entity/interactable/InteractableEntityFactory.cpp \
-	../inc/entity/interactable/InteractableEntityFactory.hpp \
-	../inc/entity/interactable/IInteractableEntity.hpp \
-	../src/entity/interactable/simple/RockGround.cpp \
-	../inc/entity/interactable/simple/RockGround.hpp \
-	../src/entity/interactable/simple/RoyalMat.cpp \
-	../inc/entity/interactable/simple/RoyalMat.hpp \
-	../src/entity/interactable/simple/BottomWall.cpp \
-	../inc/entity/interactable/simple/BottomWall.hpp \
-	../src/entity/interactable/simple/RightWall.cpp \
-	../inc/entity/interactable/simple/RightWall.hpp \
-	../src/entity/interactable/simple/LeftWall.cpp \
-	../inc/entity/interactable/simple/LeftWall.hpp \
-	../src/entity/interactable/simple/UpperWall.cpp \
-	../inc/entity/interactable/simple/UpperWall.hpp \
-	../src/entity/interactable/simple/Corner.cpp \
-	../inc/entity/interactable/simple/Corner.hpp \
-	../src/entity/interactable/simple/Grass.cpp \
-	../inc/entity/interactable/simple/Grass.hpp \
+	../src/entity/EntityFactory.cpp \
+	../inc/entity/EntityFactory.hpp \
+	../inc/entity/IGridded.hpp \
+	../src/entity/simple/RockGround.cpp \
+	../inc/entity/simple/RockGround.hpp \
+	../src/entity/simple/RoyalMat.cpp \
+	../inc/entity/simple/RoyalMat.hpp \
+	../src/entity/simple/BottomWall.cpp \
+	../inc/entity/simple/BottomWall.hpp \
+	../src/entity/simple/RightWall.cpp \
+	../inc/entity/simple/RightWall.hpp \
+	../src/entity/simple/LeftWall.cpp \
+	../inc/entity/simple/LeftWall.hpp \
+	../src/entity/simple/UpperWall.cpp \
+	../inc/entity/simple/UpperWall.hpp \
+	../src/entity/simple/Corner.cpp \
+	../inc/entity/simple/Corner.hpp \
+	../src/entity/simple/Grass.cpp \
+	../inc/entity/simple/Grass.hpp \
 	../src/map/TileMap.cpp \
 	../inc/map/TileMap.hpp \
 	../src/debug/DebugMetricVisualizer.cpp \
@@ -38,8 +43,9 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	EntityContainer.o \
 	Location.o \
-	InteractableEntityFactory.o \
+	EntityFactory.o \
 	RockGround.o \
 	RoyalMat.o \
 	BottomWall.o \

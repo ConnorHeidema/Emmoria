@@ -1,5 +1,5 @@
-#ifndef I_INTERACTABLE_ENTITY_HPP
-#define I_INTERACTABLE_ENTITY_HPP
+#ifndef I_GRIDDED_HPP
+#define I_GRIDDED_HPP
 
 #include <memory>
 /**
@@ -7,7 +7,7 @@
  * This includes a pointer to where the subtexture is in the
  * texture file
  */
-class IInteractableEntity
+class IGridded
 {
 public:
 	/**
@@ -15,7 +15,7 @@ public:
 	 * The subindex is used by the TileMap
 	 */
 	virtual std::shared_ptr<int> GetSubTextureIndexPtr() = 0;
-	virtual ~IInteractableEntity() {};
+	virtual ~IGridded() {};
 };
 
 #endif

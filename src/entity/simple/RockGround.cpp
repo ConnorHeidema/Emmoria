@@ -1,4 +1,4 @@
-#include "../../../../inc/entity/interactable/simple/RockGround.hpp"
+#include "../../../inc/entity/simple/RockGround.hpp"
 
 std::shared_ptr<int> RockGround::GetSubTextureIndexPtr()
 {

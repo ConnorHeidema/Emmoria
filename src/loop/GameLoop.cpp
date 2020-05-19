@@ -1,9 +1,10 @@
 #include "../../inc/loop/GameLoop.hpp"
 #include "../../inc/util/logger/Logger.hpp"
+#include "../../inc/entity/DrawableTransformable.hpp"
 
 GameLoop::GameLoop()
 	: mk_type("GameLoop")
-	, m_location(std::pair<int, int>(0,0))
+	, m_pLocation(std::make_shared<Location>(std::pair<int, int>(0, 0)))
 	, mk_uScreenHeight(sf::VideoMode::getDesktopMode().height)
 	, mk_uScreenWidth(sf::VideoMode::getDesktopMode().width)
 	, mk_uFrameRate(60)
@@ -76,7 +77,7 @@ void GameLoop::RunLoop_(
 	std::shared_ptr<sf::RenderWindow> pGameWindow,
 	std::shared_ptr<DatabaseReader> pDatabaseReader)
 {
-	m_location.UpdateCurrentPosition();
+	m_pLocation->UpdateCurrentPosition();
 	pGameWindow->clear();
 	DrawAllEntities_(pGameWindow, pDatabaseReader);
 	#ifdef DEBUG
@@ -91,8 +92,10 @@ void GameLoop::DrawAllEntities_(
 	std::shared_ptr<sf::RenderWindow> pGameWindow,
 	std::shared_ptr<DatabaseReader> pDatabaseReader)
 {
-	for (auto pEntity : pDatabaseReader->GetDrawables())
+	auto pair = m_pLocation->GetCurrentPosition();
+	for (auto pEntity : pDatabaseReader->GetDrawableTransformables())
 	{
+		pEntity->setPosition(sf::Vector2f(-pair.first, -pair.second));
 		pGameWindow->draw(*pEntity);
 	}
 }

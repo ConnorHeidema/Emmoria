@@ -1,6 +1,6 @@
 #include "../../inc/database/DatabaseReader.hpp"
 #include "../../inc/util/logger/Logger.hpp"
-#include "../../inc/entity/interactable/InteractableEntityFactory.hpp"
+#include "../../inc/entity/EntityFactory.hpp"
 
 #include <bsoncxx/json.hpp>
 
@@ -48,11 +48,12 @@ void DatabaseReader::LoadNewRegion(
 			if (ShouldDrawInArray_(entity))
 			{
 				interactableObjects.emplace_back(
-					InteractableEntityFactory::CreateInteractableEntity(
+					EntityFactory::CreateInteractableEntity(
 						entity, m_pBottomLayerTileMap));
 			}
 		}
 	}
+	m_pBottomLayerTileMap->setPosition(100, 300);
 	m_pBottomLayerTileMap->Load();
 }
 
@@ -62,9 +63,9 @@ bool DatabaseReader::ShouldDrawInArray_(bsoncxx::v_noabi::array::element element
 	return indexObject.length() != 0;
 }
 
-std::list<std::shared_ptr<sf::Drawable>> DatabaseReader::GetDrawables()
+std::list<std::shared_ptr<DrawableTransformable>> DatabaseReader::GetDrawableTransformables()
 {
-	std::list<std::shared_ptr<sf::Drawable>> toReturn;
+	std::list<std::shared_ptr<DrawableTransformable>> toReturn;
 	toReturn.emplace_back(m_pBottomLayerTileMap);
 	return toReturn;
 }

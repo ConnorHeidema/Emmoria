@@ -1,4 +1,4 @@
-#include "../../../../inc/entity/interactable/simple/LeftWall.hpp"
+#include "../../../inc/entity/simple/LeftWall.hpp"
 
 std::shared_ptr<int> LeftWall::GetSubTextureIndexPtr()
 {

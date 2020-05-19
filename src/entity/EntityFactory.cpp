@@ -1,22 +1,22 @@
-#include "../../../inc/entity/interactable/InteractableEntityFactory.hpp"
-#include "../../../inc/entity/interactable/simple/Grass.hpp"
-#include "../../../inc/entity/interactable/simple/BottomWall.hpp"
-#include "../../../inc/entity/interactable/simple/Corner.hpp"
-#include "../../../inc/entity/interactable/simple/LeftWall.hpp"
-#include "../../../inc/entity/interactable/simple/RightWall.hpp"
-#include "../../../inc/entity/interactable/simple/RockGround.hpp"
-#include "../../../inc/entity/interactable/simple/RoyalMat.hpp"
-#include "../../../inc/entity/interactable/simple/UpperWall.hpp"
+#include "../../inc/entity/EntityFactory.hpp"
+#include "../../inc/entity/simple/Grass.hpp"
+#include "../../inc/entity/simple/BottomWall.hpp"
+#include "../../inc/entity/simple/Corner.hpp"
+#include "../../inc/entity/simple/LeftWall.hpp"
+#include "../../inc/entity/simple/RightWall.hpp"
+#include "../../inc/entity/simple/RockGround.hpp"
+#include "../../inc/entity/simple/RoyalMat.hpp"
+#include "../../inc/entity/simple/UpperWall.hpp"
 
-#include "../../../inc/util/logger/Logger.hpp"
+#include "../../inc/util/logger/Logger.hpp"
 
-std::shared_ptr<IInteractableEntity> InteractableEntityFactory::CreateInteractableEntity(
+std::shared_ptr<IGridded> EntityFactory::CreateInteractableEntity(
 	bsoncxx::array::element element,
 	std::shared_ptr<TileMap> pBottomLayerTileMap)
 {
 	auto stringName = GetStringName_(element);
 
-	std::shared_ptr<IInteractableEntity> createdEntity =
+	std::shared_ptr<IGridded> createdEntity =
 		GetInteractableEntity_(stringName);
 
 	auto coordinate = GetCoordinate_(element);
@@ -27,7 +27,7 @@ std::shared_ptr<IInteractableEntity> InteractableEntityFactory::CreateInteractab
 	return createdEntity;
 }
 
-Coordinate InteractableEntityFactory::GetCoordinate_(bsoncxx::array::element element)
+Coordinate EntityFactory::GetCoordinate_(bsoncxx::array::element element)
 {
 	bsoncxx::document::element position{element["index"]};
 	bsoncxx::document::element xPositionElement{position["x"]};
@@ -37,14 +37,14 @@ Coordinate InteractableEntityFactory::GetCoordinate_(bsoncxx::array::element ele
 	return Coordinate(xIndex, yIndex);
 }
 
-std::string InteractableEntityFactory::GetStringName_(bsoncxx::array::element element)
+std::string EntityFactory::GetStringName_(bsoncxx::array::element element)
 {
 	bsoncxx::document::element entityName{element["name"]};
 	auto entityNameValue = entityName.get_utf8().value;
 	return entityNameValue.to_string();
 }
 
-std::shared_ptr<IInteractableEntity> InteractableEntityFactory::GetInteractableEntity_(std::string const& stringName)
+std::shared_ptr<IGridded> EntityFactory::GetInteractableEntity_(std::string const& stringName)
 {
 
 	#define CREATE_ENTITY(x) \
@@ -62,7 +62,7 @@ std::shared_ptr<IInteractableEntity> InteractableEntityFactory::GetInteractableE
 	#undef CREATE_ENTITY
 }
 
-std::shared_ptr<IInteractableEntity> InteractableEntityFactory::GetDefaultInteractableEntity_()
+std::shared_ptr<IGridded> EntityFactory::GetDefaultInteractableEntity_()
 {
 	return std::make_shared<Grass>();
 }

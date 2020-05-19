@@ -1,8 +1,8 @@
-#ifndef INTERACTABLE_ENTITY_FACTORY_HPP
-#define INTERACTABLE_ENTITY_FACTORY_HPP
+#ifndef ENTITY_FACTORY_HPP
+#define ENTITY_FACTORY_HPP
 
-#include "../../../inc/map/TileMap.hpp"
-#include "../../../inc/entity/interactable/IInteractableEntity.hpp"
+#include "../../inc/map/TileMap.hpp"
+#include "../../inc/entity/IGridded.hpp"
 
 #include <bsoncxx/builder/stream/document.hpp>
 
@@ -11,7 +11,7 @@
 
 using Coordinate = std::pair<int, int>;
 
-class InteractableEntityFactory
+class EntityFactory
 {
 public:
 	/**
@@ -19,7 +19,7 @@ public:
 	 * @param element The element with the entity information
 	 * @param pBottomLayerTileMap The tilemap which the entity will be created on.
 	 */
-	static std::shared_ptr<IInteractableEntity> CreateInteractableEntity(
+	static std::shared_ptr<IGridded> CreateInteractableEntity(
 		bsoncxx::array::element element,
 		std::shared_ptr<TileMap> pBottomLayerTileMap);
 private:
@@ -43,13 +43,13 @@ private:
 	 * @param stringName The name of the entiyt
 	 * @return the interactable entity
 	 */
-	static std::shared_ptr<IInteractableEntity> GetInteractableEntity_(
+	static std::shared_ptr<IGridded> GetInteractableEntity_(
 		std::string const& stringName);
 
 	/**
 	 * Returns an entity if no other interactable entity can be found.
 	 */
-	static std::shared_ptr<IInteractableEntity> GetDefaultInteractableEntity_();
+	static std::shared_ptr<IGridded> GetDefaultInteractableEntity_();
 };
 
 #endif

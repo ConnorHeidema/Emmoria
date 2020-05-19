@@ -1,4 +1,4 @@
-#include "../../../../inc/entity/interactable/simple/Grass.hpp"
+#include "../../../inc/entity/simple/Grass.hpp"
 
 std::shared_ptr<int> Grass::GetSubTextureIndexPtr()
 {
