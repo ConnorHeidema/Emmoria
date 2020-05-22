@@ -1,6 +1,7 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../inc/entity/EntityCombination.hpp \
 	../src/entity/EntityContainer.cpp \
 	../inc/entity/EntityContainer.hpp \
 	../inc/entity/IUpdatable.hpp \

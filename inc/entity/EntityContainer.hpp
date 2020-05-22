@@ -4,6 +4,8 @@
 #include "../../inc/entity/DrawableTransformable.hpp"
 #include "../../inc/entity/IUpdatable.hpp"
 #include "../../inc/entity/IInteractable.hpp"
+#include "../../inc/entity/IGridded.hpp"
+#include "../../inc/entity/EntityCombination.hpp"
 
 #include <list>
 #include <memory>
@@ -16,21 +18,54 @@
 class EntityContainer
 {
 public:
+
 	std::list<std::shared_ptr<DrawableTransformable>> GetDrawableTransformableEntities();
-	std::list<std::shared_ptr<IUpdatable>> GetUpdatableEntities();
+	std::list<std::shared_ptr<IGridded>> GetGriddedEntities();
 	std::list<std::shared_ptr<IInteractable>> GetInteractableEntities();
+	std::list<std::shared_ptr<IUpdatable>> GetUpdatableEntities();
 
-	void RemoveDrawableTransformableEntity(std::shared_ptr<DrawableTransformable> drawableTransformableEntity);
-	void RemoveUpdatableEntity(std::shared_ptr<IUpdatable> updatableEntity);
-	void RemoveInteractableEntity(std::shared_ptr<IInteractable> interactableEntity);
 
-	void InsertDrawableTransformableEntity(std::shared_ptr<DrawableTransformable> drawableTransformableEntity);
-	void InsertUpdatableEntity(std::shared_ptr<IUpdatable> updatableEntity);
-	void InsertInteractableEntity(std::shared_ptr<IInteractable> interactableEntity);
+	#define REMOVE(entity) void Remove##entity##Entity(std::shared_ptr<entity>)
+		REMOVE(DrawableTransformable);
+		REMOVE(IGridded);
+		REMOVE(IInteractable);
+		REMOVE(IUpdatable);
+	#undef REMOVE
+
+	#define INSERT(entity) void Insert##entity##Entity(std::shared_ptr<entity>)
+		INSERT(DrawableTransformable);
+		INSERT(IGridded);
+		INSERT(IInteractable);
+		INSERT(IUpdatable);
+	#undef INSERT
+
+	#define INSERT(interface1, interface2) void Insert##interface1##interface2##Entity(std::shared_ptr<interface1##interface2>)
+		INSERT(DrawableTransformable, IGridded);
+		INSERT(DrawableTransformable, IInteractable);
+		INSERT(DrawableTransformable, IUpdatable);
+		INSERT(IGridded, IInteractable);
+		INSERT(IGridded, IUpdatable);
+		INSERT(IInteractable, IUpdatable);
+	#undef INSERT
+
+	#define INSERT(interface1, interface2, interface3) \
+		void Insert##interface1##interface2##interface3##Entity(std::shared_ptr<interface1##interface2##interface3>)
+		INSERT(DrawableTransformable, IGridded, IInteractable);
+		INSERT(DrawableTransformable, IGridded, IUpdatable);
+		INSERT(DrawableTransformable, IInteractable, IUpdatable);
+		INSERT(IGridded, IInteractable, IUpdatable);
+	#undef INSERT
+
+	#define INSERT(interface1, interface2, interface3, interface4) \
+		void Insert##interface1##interface2##interface3##interface4##Entity(std::shared_ptr<interface1##interface2##interface3##interface4>)
+		INSERT(DrawableTransformable, IGridded, IInteractable, IUpdatable);
+	#undef INSERT
+
 private:
-	std::list<std::shared_ptr<DrawableTransformable>> m_drawableTransformableEntitiesList;
-	std::list<std::shared_ptr<IUpdatable>> m_updatableEntitiesList;
-	std::list<std::shared_ptr<IInteractable>> m_interactableEntitiesList;
+	std::list<std::shared_ptr<DrawableTransformable>> m_entityDrawableTransformableList;
+	std::list<std::shared_ptr<IGridded>> m_entityIGriddedList;
+	std::list<std::shared_ptr<IInteractable>> m_entityIInteractableList;
+	std::list<std::shared_ptr<IUpdatable>> m_entityIUpdatableList;
 };
 
 #endif
