@@ -20,6 +20,7 @@ std::shared_ptr<IGridded> EntityFactory::CreateInteractableEntity(
 		GetInteractableEntity_(stringName);
 
 	auto coordinate = GetCoordinate_(element);
+
 	pBottomLayerTileMap->PrepareTile(
 		coordinate.first,
 		coordinate.second,

@@ -10,11 +10,18 @@
 class IGridded
 {
 public:
+
+	IGridded() : m_xIndex(0), m_yIndex(0) {};
+
 	/**
 	 * Gets the index of the subtextureindex.
 	 * The subindex is used by the TileMap
 	 */
 	virtual std::shared_ptr<int> GetSubTextureIndexPtr() = 0;
+
+	int m_xIndex;
+	int m_yIndex;
+
 	virtual ~IGridded() {};
 };
 
