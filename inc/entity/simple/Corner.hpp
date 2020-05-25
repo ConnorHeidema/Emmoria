@@ -10,6 +10,7 @@ class Corner
 	: public IGridded
 {
 public:
+	Corner(int x, int y) : IGridded(x, y) {}
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 };
 

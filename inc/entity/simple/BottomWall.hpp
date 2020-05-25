@@ -11,6 +11,7 @@ class BottomWall
 	: public IGridded
 {
 public:
+	BottomWall(int x, int y) : IGridded(x, y) {}
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 };
 

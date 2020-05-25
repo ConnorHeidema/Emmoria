@@ -12,6 +12,10 @@ GameLoop::GameLoop()
 	, mk_collection("map")
 	, mk_subcollection("dawn_pillar")
 	, mk_screenReductionRatio(120)
+	, m_entityContainer(
+		sf::Vector2u(mk_screenReductionRatio, mk_screenReductionRatio),
+		mk_uScreenWidth/mk_screenReductionRatio,
+		mk_uScreenHeight/mk_screenReductionRatio)
 	#ifdef DEBUG
 		, m_debugMetricVisualizer()
 	#endif
@@ -22,7 +26,7 @@ bool GameLoop::Start()
 	s_pLogger->DebugLog(mk_type, "Gameloop started");
 	auto pGameWindow = GetGameWindowPtr_();
 	auto pDatabaseReader = GetDatabaseReaderPtr_();
-	pDatabaseReader->LoadNewRegion(mk_collection, mk_subcollection);
+	pDatabaseReader->LoadNewRegion(mk_collection, mk_subcollection, m_entityContainer);
 	DebugMetricVisualizer debugMetricVisualizer;
 	while (pGameWindow->isOpen())
 	{
@@ -93,7 +97,7 @@ void GameLoop::DrawAllEntities_(
 	std::shared_ptr<DatabaseReader> pDatabaseReader)
 {
 	auto pair = m_pLocation->GetCurrentPosition();
-	for (auto pEntity : pDatabaseReader->GetDrawableTransformables())
+	for (auto&& pEntity : m_entityContainer.GetDrawableTransformableEntities())
 	{
 		pEntity->setPosition(sf::Vector2f(-pair.first, -pair.second));
 		pGameWindow->draw(*pEntity);

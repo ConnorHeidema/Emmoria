@@ -3,6 +3,7 @@
 
 #include "../../inc/map/TileMap.hpp"
 #include "../../inc/entity/IGridded.hpp"
+#include "../../inc/entity/EntityContainer.hpp"
 
 #include <bsoncxx/builder/stream/document.hpp>
 
@@ -14,6 +15,15 @@ using Coordinate = std::pair<int, int>;
 class EntityFactory
 {
 public:
+
+	static void LoadEntityOntoContainer(
+		bsoncxx::array::element element,
+		EntityContainer& entityContainer);
+
+	static void MapGriddablesToTilemap(
+		EntityContainer& entityContainer,
+		std::string tilemapName);
+
 	/**
 	 * Creates and sets an interactable entity from a found and checked element
 	 * @param element The element with the entity information

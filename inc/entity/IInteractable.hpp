@@ -4,6 +4,7 @@
 class IInteractable
 {
 public:
+	IInteractable(int x, int y) {}
 	virtual ~IInteractable() {};
 };
 

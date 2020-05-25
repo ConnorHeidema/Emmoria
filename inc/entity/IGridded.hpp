@@ -10,8 +10,7 @@
 class IGridded
 {
 public:
-
-	IGridded() : m_xIndex(0), m_yIndex(0) {};
+	IGridded(int x, int y) : m_xIndex(x), m_yIndex(y) {}
 
 	/**
 	 * Gets the index of the subtextureindex.

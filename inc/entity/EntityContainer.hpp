@@ -6,6 +6,7 @@
 #include "../../inc/entity/IInteractable.hpp"
 #include "../../inc/entity/IGridded.hpp"
 #include "../../inc/entity/EntityCombination.hpp"
+#include "../../inc/map/TileMap.hpp"
 
 #include <list>
 #include <memory>
@@ -19,11 +20,15 @@ class EntityContainer
 {
 public:
 
+	EntityContainer(sf::Vector2u tileUnitSize, unsigned int tileWidth, unsigned int tileHeight)
+		: m_pTileMap(std::make_shared<TileMap>(tileUnitSize, tileWidth, tileHeight)) {}
+
+	std::shared_ptr<TileMap> m_pTileMap;
+
 	std::list<std::shared_ptr<DrawableTransformable>> GetDrawableTransformableEntities();
 	std::list<std::shared_ptr<IGridded>> GetGriddedEntities();
 	std::list<std::shared_ptr<IInteractable>> GetInteractableEntities();
 	std::list<std::shared_ptr<IUpdatable>> GetUpdatableEntities();
-
 
 	#define REMOVE(entity) void Remove##entity##Entity(std::shared_ptr<entity>)
 		REMOVE(DrawableTransformable);

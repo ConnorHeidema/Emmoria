@@ -5,6 +5,7 @@
 #include "../../inc/map/TileMap.hpp"
 #include "../../inc/entity/IGridded.hpp"
 #include "../../inc/entity/DrawableTransformable.hpp"
+#include "../../inc/entity/EntityContainer.hpp"
 
 #include <mongocxx/instance.hpp>
 #include <mongocxx/client.hpp>
@@ -54,7 +55,8 @@ public:
 	 */
 	void LoadNewRegion(
 		char const * const collectionName,
-		char const * const subCollectionName);
+		char const * const subCollectionName,
+		EntityContainer& entityContainer);
 
 	/**
 	 * Returns a list of all the things

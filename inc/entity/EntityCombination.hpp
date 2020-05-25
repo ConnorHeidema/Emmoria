@@ -15,7 +15,12 @@
 	class firstInterface##secondInterface \
 		: public firstInterface \
 		, public secondInterface \
-		{ public: virtual ~firstInterface##secondInterface() {}; }
+		{ public: \
+		firstInterface##secondInterface(int x, int y) \
+		: firstInterface(x, y) \
+		, secondInterface(x, y) \
+		{} \
+		virtual ~firstInterface##secondInterface() {}; }
 
 	CLASS(DrawableTransformable, IGridded);
 	CLASS(DrawableTransformable, IInteractable);
@@ -30,7 +35,13 @@
 		: public firstInterface \
 		, public secondInterface \
 		, public thirdInterface \
-		{ public: virtual ~firstInterface##secondInterface##thirdInterface() {}; }
+		{ public:\
+		firstInterface##secondInterface##thirdInterface(int x, int y) \
+		: firstInterface(x, y) \
+		, secondInterface(x, y) \
+		, thirdInterface(x, y) \
+		{} \
+			 virtual ~firstInterface##secondInterface##thirdInterface() {}; }
 
 	CLASS(DrawableTransformable, IGridded, IInteractable);
 	CLASS(DrawableTransformable, IGridded, IUpdatable);

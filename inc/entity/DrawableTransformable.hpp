@@ -8,6 +8,7 @@ class DrawableTransformable
 	, public sf::Transformable
 {
 public:
+	DrawableTransformable(int x, int y) {};
 	virtual ~DrawableTransformable() {};
 };
 

@@ -1,6 +1,7 @@
 #include "../../inc/database/DatabaseReader.hpp"
 #include "../../inc/util/logger/Logger.hpp"
 #include "../../inc/entity/EntityFactory.hpp"
+#include "../../inc/entity/EntityContainer.hpp"
 
 #include <bsoncxx/json.hpp>
 
@@ -32,29 +33,24 @@ DatabaseReader::DatabaseReader(
 
 void DatabaseReader::LoadNewRegion(
 	char const * const collectionName,
-	char const * const subCollectionName)
+	char const * const subCollectionName,
+	EntityContainer& entityContainer)
 {
 	auto collection = mk_clientConnection[mk_databaseName][std::string(collectionName) + "." + std::string(subCollectionName)];
 	auto documents = collection.find({});
 
-	m_pBottomLayerTileMap->SetTextureFile("image/background/Generic.png");
-
-	for(auto doc : documents)
+	for (auto doc : documents)
 	{
 		bsoncxx::document::element allEntities{doc["entities"]};
 		auto entitySets = allEntities.get_array().value;
 		for (auto entity : entitySets)
 		{
-			if (ShouldDrawInArray_(entity))
-			{
-				interactableObjects.emplace_back(
-					EntityFactory::CreateInteractableEntity(
-						entity, m_pBottomLayerTileMap));
-			}
+			EntityFactory::LoadEntityOntoContainer(entity, entityContainer);
 		}
 	}
-	m_pBottomLayerTileMap->setPosition(100, 300);
-	m_pBottomLayerTileMap->Load();
+	EntityFactory::MapGriddablesToTilemap(entityContainer, "image/background/Generic.png");
+	entityContainer.m_pTileMap->Load();
+	entityContainer.InsertDrawableTransformableEntity(entityContainer.m_pTileMap);
 }
 
 bool DatabaseReader::ShouldDrawInArray_(bsoncxx::v_noabi::array::element element)

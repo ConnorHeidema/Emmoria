@@ -4,6 +4,7 @@
 class IUpdatable
 {
 public:
+	IUpdatable(int x, int y) {}
 	virtual ~IUpdatable() {};
 };
 

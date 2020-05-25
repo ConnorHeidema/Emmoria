@@ -5,6 +5,7 @@
 #include "../../inc/database/DatabaseReader.hpp"
 #include "../../inc/debug/DebugMetricVisualizer.hpp"
 #include "../../inc/util/Location.hpp"
+#include "../../inc/entity/EntityContainer.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -76,6 +77,8 @@ private:
 	char const * const mk_subcollection;
 
 	unsigned int const mk_screenReductionRatio;
+
+	EntityContainer m_entityContainer;
 
 	#ifdef DEBUG
 		DebugMetricVisualizer m_debugMetricVisualizer;

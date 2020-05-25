@@ -7,7 +7,8 @@ TileMap::TileMap(
 		sf::Vector2u const tileUnitSize,
 		unsigned int const tileWidth,
 		unsigned int const tileHeight)
-		: m_tileUnitSize(tileUnitSize)
+		: DrawableTransformable(0, 0)
+		, m_tileUnitSize(tileUnitSize)
 		, m_tileWidth(tileWidth)
 		, m_tileHeight(tileHeight)
 		, m_quadVertices(4u)

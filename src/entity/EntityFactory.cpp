@@ -10,6 +10,64 @@
 
 #include "../../inc/util/logger/Logger.hpp"
 
+void EntityFactory::LoadEntityOntoContainer(
+	bsoncxx::array::element element,
+	EntityContainer& entityContainer)
+{
+	int x = -1;
+	int y = -1;
+	bsoncxx::document::element indexObject{element["index"]};
+	auto stringName = GetStringName_(element);
+	if (indexObject.length() != 0)
+	{
+		Coordinate coordinate = GetCoordinate_(element);
+		x = coordinate.first;
+		y = coordinate.second;
+	}
+	#define LOAD_ENTITY(entity, interface1) \
+		else if (stringName == #entity) \
+		{ \
+			entityContainer.Insert##interface1##Entity(std::make_shared<entity>(x, y)); \
+		}
+	#define LOAD_ENTITY2(entity, interface1, interface2) \
+		else if (stringName == #entity) \
+		{ \
+			entityContainer.Insert##interface1##interface2##Entity(std::make_shared<entity>(x, y)); \
+			return; \
+		}
+	#define LOAD_ENTITY3(entity, interface1, interface2, interface3) \
+		else if (stringName == #entity) \
+		{ \
+			entityContainer.Insert##interface1##interface2##interface3##Entity(std::make_shared<entity>(x, y)); \
+			return; \
+		}
+
+		if (false) {}
+		LOAD_ENTITY2(Grass, IGridded, IUpdatable)
+		LOAD_ENTITY(RoyalMat, IGridded)
+		LOAD_ENTITY(BottomWall, IGridded)
+		LOAD_ENTITY(UpperWall, IGridded)
+		LOAD_ENTITY(RockGround, IGridded)
+		LOAD_ENTITY(LeftWall, IGridded)
+		LOAD_ENTITY(RightWall, IGridded)
+		LOAD_ENTITY(Corner, IGridded)
+
+	#undef LOAD_ENTITY3
+	#undef LOAD_ENTITY2
+	#undef LOAD_ENTITY
+}
+
+void EntityFactory::MapGriddablesToTilemap(
+	EntityContainer& entityContainer,
+	std::string tilemapName)
+{
+	entityContainer.m_pTileMap->SetTextureFile(tilemapName);
+	for (auto&& gridded : entityContainer.GetGriddedEntities())
+	{
+		entityContainer.m_pTileMap->PrepareTile(gridded->m_xIndex, gridded->m_yIndex, gridded->GetSubTextureIndexPtr());
+	}
+}
+
 std::shared_ptr<IGridded> EntityFactory::CreateInteractableEntity(
 	bsoncxx::array::element element,
 	std::shared_ptr<TileMap> pBottomLayerTileMap)
@@ -47,11 +105,12 @@ std::string EntityFactory::GetStringName_(bsoncxx::array::element element)
 
 std::shared_ptr<IGridded> EntityFactory::GetInteractableEntity_(std::string const& stringName)
 {
-
-	#define CREATE_ENTITY(x) \
-		else if (stringName == #x) \
+	int x;
+	int y;
+	#define CREATE_ENTITY(entity) \
+		else if (stringName == #entity) \
 		{ \
-			return std::make_shared<x>(); \
+			return std::make_shared<entity>(x, y); \
 		}
 
 		if (false){}
@@ -65,5 +124,5 @@ std::shared_ptr<IGridded> EntityFactory::GetInteractableEntity_(std::string cons
 
 std::shared_ptr<IGridded> EntityFactory::GetDefaultInteractableEntity_()
 {
-	return std::make_shared<Grass>();
+	return std::make_shared<Grass>(-1, -1);
 }

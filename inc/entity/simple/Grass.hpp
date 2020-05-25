@@ -10,6 +10,7 @@ class Grass
 	: public IGriddedIUpdatable
 {
 public:
+	Grass(int x, int y) : IGriddedIUpdatable(x, y) {}
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 	virtual ~Grass() {};
 };

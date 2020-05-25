@@ -11,6 +11,7 @@ class LeftWall
 	: public IGridded
 {
 public:
+	LeftWall(int x, int y) : IGridded(x, y) {}
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 };
 
