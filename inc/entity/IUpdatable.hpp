@@ -5,6 +5,7 @@ class IUpdatable
 {
 public:
 	IUpdatable(int x, int y) {}
+	virtual void Update() = 0;
 	virtual ~IUpdatable() {};
 };
 

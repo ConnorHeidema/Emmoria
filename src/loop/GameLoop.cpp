@@ -83,7 +83,8 @@ void GameLoop::RunLoop_(
 {
 	m_pLocation->UpdateCurrentPosition();
 	pGameWindow->clear();
-	DrawAllEntities_(pGameWindow, pDatabaseReader);
+	DrawAllEntities_(pGameWindow);
+	UpdateAllEntities_();
 	#ifdef DEBUG
 		m_debugMetricVisualizer.Update();
 		pGameWindow->draw(m_debugMetricVisualizer);
@@ -92,9 +93,16 @@ void GameLoop::RunLoop_(
 	CheckForEvents_(pGameWindow);
 }
 
+void GameLoop::UpdateAllEntities_()
+{
+	for (auto&& pEntity : m_entityContainer.GetUpdatableEntities())
+	{
+		pEntity->Update();
+	}
+	m_entityContainer.m_pTileMap->Load();
+}
 void GameLoop::DrawAllEntities_(
-	std::shared_ptr<sf::RenderWindow> pGameWindow,
-	std::shared_ptr<DatabaseReader> pDatabaseReader)
+	std::shared_ptr<sf::RenderWindow> pGameWindow)
 {
 	auto pair = m_pLocation->GetCurrentPosition();
 	for (auto&& pEntity : m_entityContainer.GetDrawableTransformableEntities())

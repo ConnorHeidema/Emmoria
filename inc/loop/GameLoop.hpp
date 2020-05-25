@@ -61,9 +61,9 @@ private:
 	 * @param pDatabaseReader the database reader which provides the entities
 	 */
 	void DrawAllEntities_(
-		std::shared_ptr<sf::RenderWindow> pGameWindow,
-		std::shared_ptr<DatabaseReader> pDatabaseReader);
+		std::shared_ptr<sf::RenderWindow> pGameWindow);
 
+	void UpdateAllEntities_();
 
 	LoggerType_t const mk_type;
 
