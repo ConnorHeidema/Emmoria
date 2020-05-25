@@ -60,6 +60,9 @@ void TileMap::PopulateVertexArray_()
 	}
 }
 
+/**
+ * I should be able to just call this fx instead of loading the entire tilemap!
+ */
 void TileMap::PopulateQuad_(
 	int const xTileIndex,
 	int const yTileIndex)
