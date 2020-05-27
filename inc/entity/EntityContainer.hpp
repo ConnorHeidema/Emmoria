@@ -61,11 +61,6 @@ public:
 		INSERT(IGridded, IInteractable, IUpdatable);
 	#undef INSERT
 
-	#define INSERT(interface1, interface2, interface3, interface4) \
-		void Insert##interface1##interface2##interface3##interface4##Entity(std::shared_ptr<interface1##interface2##interface3##interface4>)
-		INSERT(DrawableTransformable, IGridded, IInteractable, IUpdatable);
-	#undef INSERT
-
 private:
 	std::list<std::shared_ptr<DrawableTransformable>> m_entityDrawableTransformableList;
 	std::list<std::shared_ptr<IGridded>> m_entityIGriddedList;

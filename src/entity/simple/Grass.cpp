@@ -3,10 +3,11 @@
 
 void Grass::Update()
 {
-	(*p_tmp) = (*p_tmp + 1) % 4;
+	m_currentFrame = (m_currentFrame + 1) % m_cyclicFrame;
+	(*m_ptmp) = m_currentFrame / (m_cyclicFrame / m_numAnimations);
 }
 
 std::shared_ptr<int> Grass::GetSubTextureIndexPtr()
 {
-	return p_tmp;
+	return m_ptmp;
 }

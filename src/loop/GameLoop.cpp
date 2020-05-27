@@ -5,8 +5,8 @@
 GameLoop::GameLoop()
 	: mk_type("GameLoop")
 	, m_pLocation(std::make_shared<Location>(std::pair<int, int>(0, 0)))
-	, mk_uScreenHeight(sf::VideoMode::getDesktopMode().height)
 	, mk_uScreenWidth(sf::VideoMode::getDesktopMode().width)
+	, mk_uScreenHeight(sf::VideoMode::getDesktopMode().height)
 	, mk_uFrameRate(60)
 	, mk_windowName("Emmoria")
 	, mk_collection("map")
@@ -50,10 +50,7 @@ std::shared_ptr<DatabaseReader> GameLoop::GetDatabaseReaderPtr_()
 	auto pDatabaseReader(std::make_shared<DatabaseReader>(
 		"emmoria",
 		"mongodb://localhost",
-		short(27017),
-		sf::Vector2u(mk_screenReductionRatio, mk_screenReductionRatio),
-		mk_uScreenWidth/mk_screenReductionRatio,
-		mk_uScreenHeight/mk_screenReductionRatio));
+		short(27017)));
 	return pDatabaseReader;
 }
 
@@ -101,6 +98,7 @@ void GameLoop::UpdateAllEntities_()
 	}
 	m_entityContainer.m_pTileMap->Load();
 }
+
 void GameLoop::DrawAllEntities_(
 	std::shared_ptr<sf::RenderWindow> pGameWindow)
 {

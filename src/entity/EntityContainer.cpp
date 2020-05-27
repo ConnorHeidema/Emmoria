@@ -89,16 +89,3 @@ void EntityContainer::InsertIUpdatableEntity(std::shared_ptr<IUpdatable> updatab
 	INSERT(IGridded, IInteractable, IUpdatable)
 
 #undef INSERT
-
-#define INSERT(interface1, interface2, interface3, interface4) \
-	void EntityContainer::Insert##interface1##interface2##interface3##interface4##Entity(std::shared_ptr<interface1##interface2##interface3##interface4> entity) \
-	{ \
-		m_entity##interface1##List.emplace_back(entity); \
-		m_entity##interface2##List.emplace_back(entity); \
-		m_entity##interface3##List.emplace_back(entity); \
-		m_entity##interface4##List.emplace_back(entity); \
-	}
-
-	INSERT(DrawableTransformable, IGridded, IInteractable, IUpdatable)
-
-#undef INSERT

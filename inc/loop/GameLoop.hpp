@@ -56,6 +56,8 @@ private:
 		std::shared_ptr<sf::RenderWindow> pGameWindow,
 		std::shared_ptr<DatabaseReader> pDatabaseReader);
 
+	void UpdateAllEntities_();
+
 	/**
 	 * Writes all the entitiess to the screen
 	 * @param pDatabaseReader the database reader which provides the entities
@@ -63,14 +65,12 @@ private:
 	void DrawAllEntities_(
 		std::shared_ptr<sf::RenderWindow> pGameWindow);
 
-	void UpdateAllEntities_();
-
 	LoggerType_t const mk_type;
 
 	std::shared_ptr<Location> m_pLocation;
 
-	unsigned int const mk_uScreenHeight;
 	unsigned int const mk_uScreenWidth;
+	unsigned int const mk_uScreenHeight;
 	unsigned int const mk_uFrameRate;
 	char const * const mk_windowName;
 	char const * const mk_collection;

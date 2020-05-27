@@ -23,9 +23,7 @@ using bsoncxx::builder::stream::document;
 
 /**
  * The databasereader interfaces with mongodb when necessary
- * in order to aggregate different forms of objects
- * these objects are all the drawable objects,
- * and all the interactable objects
+ * in order to aggregate different regions of objects
  */
 class DatabaseReader
 {
@@ -36,33 +34,23 @@ public:
 	 * @param database The name of the database to connect to
 	 * @param databaseUrl The url of the database
 	 * @param port The port of the database
-	 * @param tileUnitSize The size of each tile unit
-	 * @param tileWidth The width each tile should take
-	 * @param tileHeight The height each tile should take
 	 */
 	DatabaseReader(
 		char const * const database,
 		char const * const databaseUrl,
-		short const port,
-		sf::Vector2u const tileUnitSize,
-		unsigned int const tileWidth,
-		unsigned int const tileHeight);
+		short const port);
 
 	/**
 	 * When a new region needs to be loaded, this will load it in
 	 * @param collectionName The name of the collection being loaded
 	 * @param subCollectionName The name of the subcollection being loaded
+	 * @param entityContainer A reference to the entity container that will be filled
+	 * 						  with the appropriate lists of containers
 	 */
 	void LoadNewRegion(
 		char const * const collectionName,
 		char const * const subCollectionName,
 		EntityContainer& entityContainer);
-
-	/**
-	 * Returns a list of all the things
-	 * that need to be drawn to the screen
-	 */
-	std::list<std::shared_ptr<DrawableTransformable>> GetDrawableTransformables();
 
 private:
 
@@ -115,10 +103,6 @@ private:
 	mongocxx::instance const mk_inst;
 	mongocxx::client const mk_clientConnection;
 	char const * const mk_databaseName;
-
-	std::shared_ptr<TileMap> m_pBottomLayerTileMap;
-	std::list<std::shared_ptr<IGridded>> interactableObjects;
-	std::list<std::shared_ptr<DrawableTransformable>> drawableObjects;
 };
 
 #endif

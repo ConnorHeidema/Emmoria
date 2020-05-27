@@ -1,7 +1,3 @@
-/**
- * This class acts as the interface for any logger object made
- */
-
 #ifndef I_LOGGER_HPP
 #define I_LOGGER_HPP
 
@@ -31,6 +27,9 @@ private:
 	char const * const m_typeName;
 };
 
+/**
+ * This class acts as the interface for any logger object made
+ */
 class ILogger
 {
 public:

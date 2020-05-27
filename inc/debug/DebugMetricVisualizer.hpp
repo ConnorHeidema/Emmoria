@@ -18,7 +18,7 @@ class DebugMetricVisualizer
 {
 public:
 	/**
-	 * Empty initializes a lot of variables that will track how
+	 * Initializes a lot of variables that will track how
 	 * the game is performing
 	 */
 	DebugMetricVisualizer();

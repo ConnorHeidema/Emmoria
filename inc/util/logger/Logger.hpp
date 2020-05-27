@@ -1,9 +1,3 @@
-/**
- * The concrete implementation of the logger for most systems.
- * This logger will simply print to the console with varying
- * degrees of colour depending on the severity.
- */
-
 #ifndef LOGGER_HPP
 #define LOGGER_HPP
 
@@ -11,6 +5,11 @@
 
 #include <memory>
 
+/**
+ * The concrete implementation of the logger for most systems.
+ * This logger will simply print to the console with varying
+ * degrees of colour depending on the severity.
+ */
 class Logger : public ILogger
 {
 public:

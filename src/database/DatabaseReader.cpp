@@ -17,18 +17,11 @@ using bsoncxx::builder::concatenate_doc;
 DatabaseReader::DatabaseReader(
 		char const * const database,
 		char const * const databaseUrl,
-		short const port,
-		sf::Vector2u const tileUnitSize,
-		unsigned int const tileWidth,
-		unsigned int const tileHeight)
+		short const port)
 	: mk_type("DatabaseReader")
 	, mk_inst{}
 	, mk_clientConnection({mongocxx::uri(std::string(databaseUrl) + ":" + std::to_string(port))})
 	, mk_databaseName(database)
-	, m_pBottomLayerTileMap(std::make_shared<TileMap>(
-		tileUnitSize,
-		tileWidth,
-		tileHeight))
 {}
 
 void DatabaseReader::LoadNewRegion(
@@ -57,13 +50,6 @@ bool DatabaseReader::ShouldDrawInArray_(bsoncxx::v_noabi::array::element element
 {
 	bsoncxx::document::element indexObject{element["index"]};
 	return indexObject.length() != 0;
-}
-
-std::list<std::shared_ptr<DrawableTransformable>> DatabaseReader::GetDrawableTransformables()
-{
-	std::list<std::shared_ptr<DrawableTransformable>> toReturn;
-	toReturn.emplace_back(m_pBottomLayerTileMap);
-	return toReturn;
 }
 
 mongocxx::cursor DatabaseReader::GetRegions_(

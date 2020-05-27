@@ -12,11 +12,22 @@ class Grass
 	: public IGriddedIUpdatable
 {
 public:
-	Grass(int x, int y) : IGriddedIUpdatable(x, y), p_tmp(std::make_shared<int>(0)) {}
+	Grass(int x, int y) :
+		IGriddedIUpdatable(x, y),
+		m_ptmp(std::make_shared<int>(0)),
+		m_currentFrame(0),
+		m_cyclicFrame(60),
+		m_numAnimations(4)
+	{}
+	virtual ~Grass() {};
+
 	void Update() override;
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
-	virtual ~Grass() {};
-	std::shared_ptr<int> p_tmp;
+private:
+	std::shared_ptr<int> m_ptmp;
+	int m_currentFrame;
+	int m_cyclicFrame;
+	int m_numAnimations;
 };
 
 #endif
