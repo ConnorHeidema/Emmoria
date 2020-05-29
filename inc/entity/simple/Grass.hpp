@@ -16,7 +16,7 @@ public:
 		IGriddedIUpdatable(x, y),
 		m_ptmp(std::make_shared<int>(0)),
 		m_currentFrame(0),
-		m_cyclicFrame(60),
+		m_cyclicFrame(120),
 		m_numAnimations(4)
 	{}
 	virtual ~Grass() {};

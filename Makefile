@@ -1,6 +1,8 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../src/entity/player/Player.cpp \
+	../inc/entity/player/Player.hpp \
 	../inc/entity/EntityCombination.hpp \
 	../src/entity/EntityContainer.cpp \
 	../inc/entity/EntityContainer.hpp \
@@ -44,6 +46,7 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	Player.o \
 	EntityContainer.o \
 	Location.o \
 	EntityFactory.o \
