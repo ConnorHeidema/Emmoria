@@ -119,6 +119,8 @@ private:
 
 	std::vector<std::shared_ptr<int>> m_screenArrayVect;
 
+	int const mk_tileNotDefined;
+
 	LoggerType_t const mk_type;
 };
 #endif

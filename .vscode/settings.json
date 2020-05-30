@@ -50,5 +50,8 @@
 		"functional": "cpp",
 		"ratio": "cpp",
 		"list": "cpp"
+	},
+	"files.exclude": {
+		"**/*.gch": true
 	}
 }

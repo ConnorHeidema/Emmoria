@@ -52,6 +52,17 @@ public:
 		char const * const subCollectionName,
 		EntityContainer& entityContainer);
 
+	/**
+	 * This will load in the opening load screen with the files that the user can select
+	 * @param collectionName The name of the collection being loaded
+	 * @param subCollectionName The name of the subcollection being loaded
+	 * @param entityContainer A reference to the entity container that will be filled
+	 * 						  with the appropriate lists of containers
+	 */
+	void LoadFilesScreen(
+		char const * const collectionName,
+		EntityContainer& entityContainer);
+
 private:
 
 	/**
@@ -69,13 +80,6 @@ private:
 		Range const& rangeX,
 		std::string const& keyY,
 		Range const& rangeY);
-
-	/**
-	 * Determines whether an entity should be loaded onto the tile map
-	 * @param element The entity being inspected
-	 * @return whether the entity should be loaded into the tile map
-	 */
-	bool ShouldDrawInArray_(bsoncxx::v_noabi::array::element element);
 
 	/**
 	 * Creates the query for only getting contrained regions over one dimension

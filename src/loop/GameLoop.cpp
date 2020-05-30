@@ -9,8 +9,9 @@ GameLoop::GameLoop()
 	, mk_uScreenHeight(sf::VideoMode::getDesktopMode().height)
 	, mk_uFrameRate(60)
 	, mk_windowName("Emmoria")
-	, mk_collection("map")
-	, mk_subcollection("dawn_pillar")
+	, mk_collection("files")
+	, mk_subcollection("")
+	, mk_iconDir("image/logo/logo.png")
 	, mk_screenReductionRatio(120)
 	, m_entityContainer(
 		sf::Vector2u(mk_screenReductionRatio, mk_screenReductionRatio),
@@ -24,9 +25,12 @@ GameLoop::GameLoop()
 bool GameLoop::Start()
 {
 	s_pLogger->DebugLog(mk_type, "Gameloop started");
+
 	auto pGameWindow = GetGameWindowPtr_();
+
 	auto pDatabaseReader = GetDatabaseReaderPtr_();
-	pDatabaseReader->LoadNewRegion(mk_collection, mk_subcollection, m_entityContainer);
+	pDatabaseReader->LoadFilesScreen(mk_collection, m_entityContainer);
+	//pDatabaseReader->LoadNewRegion(mk_collection, mk_subcollection, m_entityContainer);
 	DebugMetricVisualizer debugMetricVisualizer;
 	while (pGameWindow->isOpen())
 	{
@@ -42,7 +46,15 @@ std::shared_ptr<sf::RenderWindow> GameLoop::GetGameWindowPtr_()
 			mk_windowName,
 			sf::Style::Fullscreen));
 	pWindow->setFramerateLimit(mk_uFrameRate);
+	SetIcon_(pWindow);
 	return pWindow;
+}
+
+void GameLoop::SetIcon_(std::shared_ptr<sf::Window> pGameWindow)
+{
+	sf::Image icon;
+	icon.loadFromFile(mk_iconDir);
+	pGameWindow->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
 std::shared_ptr<DatabaseReader> GameLoop::GetDatabaseReaderPtr_()

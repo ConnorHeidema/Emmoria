@@ -46,12 +46,6 @@ void DatabaseReader::LoadNewRegion(
 	entityContainer.InsertDrawableTransformableEntity(entityContainer.m_pTileMap);
 }
 
-bool DatabaseReader::ShouldDrawInArray_(bsoncxx::v_noabi::array::element element)
-{
-	bsoncxx::document::element indexObject{element["index"]};
-	return indexObject.length() != 0;
-}
-
 mongocxx::cursor DatabaseReader::GetRegions_(
 	mongocxx::collection& collection,
 	std::string const& keyX,
@@ -89,4 +83,20 @@ void DatabaseReader::CombineConditions_(
 			open_document << concatenate_doc{firstCondition.view()} << close_document <<
 			open_document << concatenate_doc{secondCondition.view()} << close_document <<
 		close_array;
+}
+
+void DatabaseReader::LoadFilesScreen(
+	char const * const collectionName,
+	EntityContainer& entityContainer)
+{
+	auto collection = mk_clientConnection[mk_databaseName][std::string(collectionName)];
+	auto documents = collection.find({});
+
+	for (auto doc : documents)
+	{
+		s_pLogger->InfoLog(mk_type, bsoncxx::to_json(doc).c_str());
+	}
+	//EntityFactory::MapGriddablesToTilemap(entityContainer, "image/file/file.png");
+	//entityContainer.m_pTileMap->Load();
+	//entityContainer.InsertDrawableTransformableEntity(entityContainer.m_pTileMap);
 }

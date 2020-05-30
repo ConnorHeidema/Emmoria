@@ -12,6 +12,7 @@ TileMap::TileMap(
 		, m_tileWidth(tileWidth)
 		, m_tileHeight(tileHeight)
 		, m_quadVertices(4u)
+		, mk_tileNotDefined(-1)
 		, mk_type("TileMap")
 {
 	m_screenArrayVect.assign(tileWidth * tileHeight, 0);
@@ -68,6 +69,13 @@ void TileMap::PopulateQuad_(
 	int const yTileIndex)
 {
 	int tileNumber = GetCurrentTileNumber_(xTileIndex, yTileIndex);
+	if (tileNumber == mk_tileNotDefined)
+	{
+		s_pLogger->DebugLog(mk_type, (std::string("Tilemap region: (") +
+			std::to_string(xTileIndex) + std::string(",") +
+			std::to_string(yTileIndex) + std::string(") is not defined")).c_str());
+		return;
+	}
 	int textureColumn = tileNumber % (m_tileset.getSize().x / m_tileUnitSize.x);
 	int textureRow = tileNumber / (m_tileset.getSize().x / m_tileUnitSize.x);
 
@@ -82,7 +90,14 @@ int TileMap::GetCurrentTileNumber_(
 	int xTileIndex,
 	int yTileIndex)
 {
-	return *m_screenArrayVect[xTileIndex + yTileIndex * m_tileWidth];
+	if (m_screenArrayVect[xTileIndex + yTileIndex * m_tileWidth] != nullptr)
+	{
+		return *m_screenArrayVect[xTileIndex + yTileIndex * m_tileWidth];
+	}
+	else
+	{
+		return mk_tileNotDefined;
+	}
 }
 
 void TileMap::DefineQuadCorners_(

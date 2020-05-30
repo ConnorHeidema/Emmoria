@@ -40,6 +40,12 @@ private:
 	std::shared_ptr<sf::RenderWindow> GetGameWindowPtr_();
 
 	/**
+	 * Sets the icon for the application window
+	 * @param pGameWindow The constructed window
+	 */
+	void SetIcon_(std::shared_ptr<sf::Window> pGameWindow);
+
+	/**
 	 * Gets a shared pointer to the database reader.
 	 * @return the databaseReader
 	 */
@@ -75,6 +81,7 @@ private:
 	char const * const mk_windowName;
 	char const * const mk_collection;
 	char const * const mk_subcollection;
+	char const * const mk_iconDir;
 
 	unsigned int const mk_screenReductionRatio;
 
