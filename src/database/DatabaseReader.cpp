@@ -1,7 +1,7 @@
-#include "../../inc/database/DatabaseReader.hpp"
-#include "../../inc/util/logger/Logger.hpp"
-#include "../../inc/entity/EntityFactory.hpp"
-#include "../../inc/entity/EntityContainer.hpp"
+#include "database/DatabaseReader.hpp"
+#include "util/logger/Logger.hpp"
+#include "entity/EntityFactory.hpp"
+#include "entity/EntityContainer.hpp"
 
 #include <bsoncxx/json.hpp>
 

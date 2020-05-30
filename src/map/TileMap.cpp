@@ -1,5 +1,5 @@
-#include "../../inc/map/TileMap.hpp"
-#include "../../inc/util/logger/Logger.hpp"
+#include "map/TileMap.hpp"
+#include "util/logger/Logger.hpp"
 
 #include <string>
 

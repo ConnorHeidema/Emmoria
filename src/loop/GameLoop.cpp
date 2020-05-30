@@ -1,6 +1,6 @@
-#include "../../inc/loop/GameLoop.hpp"
-#include "../../inc/util/logger/Logger.hpp"
-#include "../../inc/entity/DrawableTransformable.hpp"
+#include "loop/GameLoop.hpp"
+#include "util/logger/Logger.hpp"
+#include "entity/DrawableTransformable.hpp"
 
 GameLoop::GameLoop()
 	: mk_type("GameLoop")

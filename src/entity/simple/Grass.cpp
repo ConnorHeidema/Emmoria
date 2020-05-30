@@ -1,5 +1,4 @@
-#include "../../../inc/entity/simple/Grass.hpp"
-#include <iostream>
+#include <entity/simple/Grass.hpp>
 
 void Grass::Update()
 {

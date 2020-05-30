@@ -1,7 +1,7 @@
 #ifndef ROYAL_MAT_HPP
 #define ROYAL_MAT_HPP
 
-#include "../../../inc/entity/IGridded.hpp"
+#include "entity/IGridded.hpp"
 
 /**
  * This class represents a mat which is at the start of the game

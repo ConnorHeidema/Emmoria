@@ -1,4 +1,4 @@
-#include "../../../inc/entity/simple/UpperWall.hpp"
+#include "entity/simple/UpperWall.hpp"
 
 std::shared_ptr<int> UpperWall::GetSubTextureIndexPtr()
 {

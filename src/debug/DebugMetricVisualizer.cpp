@@ -1,4 +1,4 @@
-#include "../../inc/debug/DebugMetricVisualizer.hpp"
+#include "debug/DebugMetricVisualizer.hpp"
 
 #include <list>
 

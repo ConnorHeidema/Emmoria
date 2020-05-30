@@ -1,7 +1,7 @@
 #ifndef LEFT_WALL_HPP
 #define LEFT_WALL_HPP
 
-#include "../../../inc/entity/IGridded.hpp"
+#include "entity/IGridded.hpp"
 
 /**
  * The class represent a wall at the left of the screen

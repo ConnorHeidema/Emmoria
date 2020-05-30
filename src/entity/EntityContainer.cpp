@@ -1,4 +1,4 @@
-#include "../../inc/entity/EntityContainer.hpp"
+#include "entity/EntityContainer.hpp"
 
 std::list<std::shared_ptr<DrawableTransformable>> EntityContainer::GetDrawableTransformableEntities()
 {

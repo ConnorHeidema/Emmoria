@@ -1,4 +1,4 @@
-#include "../../../inc/entity/simple/RightWall.hpp"
+#include "entity/simple/RightWall.hpp"
 
 std::shared_ptr<int> RightWall::GetSubTextureIndexPtr()
 {

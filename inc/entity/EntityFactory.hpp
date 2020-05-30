@@ -1,9 +1,9 @@
 #ifndef ENTITY_FACTORY_HPP
 #define ENTITY_FACTORY_HPP
 
-#include "../../inc/map/TileMap.hpp"
-#include "../../inc/entity/IGridded.hpp"
-#include "../../inc/entity/EntityContainer.hpp"
+#include "map/TileMap.hpp"
+#include "entity/IGridded.hpp"
+#include "entity/EntityContainer.hpp"
 
 #include <bsoncxx/builder/stream/document.hpp>
 

@@ -1,14 +1,14 @@
-#include "../../inc/entity/EntityFactory.hpp"
-#include "../../inc/entity/simple/Grass.hpp"
-#include "../../inc/entity/simple/BottomWall.hpp"
-#include "../../inc/entity/simple/Corner.hpp"
-#include "../../inc/entity/simple/LeftWall.hpp"
-#include "../../inc/entity/simple/RightWall.hpp"
-#include "../../inc/entity/simple/RockGround.hpp"
-#include "../../inc/entity/simple/RoyalMat.hpp"
-#include "../../inc/entity/simple/UpperWall.hpp"
+#include "entity/EntityFactory.hpp"
+#include "entity/simple/Grass.hpp"
+#include "entity/simple/BottomWall.hpp"
+#include "entity/simple/Corner.hpp"
+#include "entity/simple/LeftWall.hpp"
+#include "entity/simple/RightWall.hpp"
+#include "entity/simple/RockGround.hpp"
+#include "entity/simple/RoyalMat.hpp"
+#include "entity/simple/UpperWall.hpp"
 
-#include "../../inc/util/logger/Logger.hpp"
+#include "util/logger/Logger.hpp"
 
 void EntityFactory::LoadEntityOntoContainer(
 	bsoncxx::array::element element,

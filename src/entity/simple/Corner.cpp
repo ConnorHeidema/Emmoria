@@ -1,4 +1,4 @@
-#include "../../../inc/entity/simple/Corner.hpp"
+#include "entity/simple/Corner.hpp"
 
 std::shared_ptr<int> Corner::GetSubTextureIndexPtr()
 {

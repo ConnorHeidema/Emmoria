@@ -1,4 +1,4 @@
-#include "../../../inc/entity/player/Player.hpp"
+#include "entity/player/Player.hpp"
 
 void Player::Update()
 {

@@ -1,9 +1,9 @@
 #ifndef TILE_MAP_HPP
 #define TILE_MAP_HPP
 
-#include "../../inc/util/logger/ILogger.hpp"
+#include "util/logger/ILogger.hpp"
 
-#include "../../inc/entity/DrawableTransformable.hpp"
+#include "entity/DrawableTransformable.hpp"
 
 #include <memory>
 

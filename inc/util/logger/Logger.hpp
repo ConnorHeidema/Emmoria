@@ -1,7 +1,7 @@
 #ifndef LOGGER_HPP
 #define LOGGER_HPP
 
-#include "../../../inc/util/logger/ILogger.hpp"
+#include "util/logger/ILogger.hpp"
 
 #include <memory>
 

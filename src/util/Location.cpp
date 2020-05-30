@@ -1,4 +1,4 @@
-#include "../../inc/util/Location.hpp"
+#include "util/Location.hpp"
 
 #include <SFML/Graphics.hpp>
 

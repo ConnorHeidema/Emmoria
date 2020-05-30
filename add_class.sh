@@ -14,7 +14,7 @@ ie: ./add_class.sh object ActionObject"
 # This appends the file names in the makefile to create the object files
 create_object_files ()
 {
-	sed -i '3 a \\t../inc/'"$1"'/'"$2"'.hpp \\' Makefile
+	sed -i '3 a \\t/'"$1"'/'"$2"'.hpp \\' Makefile
 	sed -i '3 a \\t../src/'"$1"'/'"$2"'.cpp \\' Makefile
 }
 

@@ -1,7 +1,7 @@
 #ifndef GRASS_HPP
 #define GRASS_HPP
 
-#include "../../../inc/entity/EntityCombination.hpp"
+#include "entity/EntityCombination.hpp"
 
 #include <memory>
 

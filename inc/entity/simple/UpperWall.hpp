@@ -1,7 +1,7 @@
 #ifndef UPPER_WALL_HPP
 #define UPPER_WALL_HPP
 
-#include "../../../inc/entity/IGridded.hpp"
+#include "entity/IGridded.hpp"
 
 /**
  * This class represents a wall at the top of the screen.

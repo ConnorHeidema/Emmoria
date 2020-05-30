@@ -1,11 +1,11 @@
 #ifndef DATABASE_READER_HPP
 #define DATABASE_READER_HPP
 
-#include "../../inc/util/logger/ILogger.hpp"
-#include "../../inc/map/TileMap.hpp"
-#include "../../inc/entity/IGridded.hpp"
-#include "../../inc/entity/DrawableTransformable.hpp"
-#include "../../inc/entity/EntityContainer.hpp"
+#include "util/logger/ILogger.hpp"
+#include "map/TileMap.hpp"
+#include "entity/IGridded.hpp"
+#include "entity/DrawableTransformable.hpp"
+#include "entity/EntityContainer.hpp"
 
 #include <mongocxx/instance.hpp>
 #include <mongocxx/client.hpp>

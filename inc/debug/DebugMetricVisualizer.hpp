@@ -1,7 +1,7 @@
 #ifndef DEBUG_METRIC_VISUALIZER_HPP
 #define DEBUG_METRIC_VISUALIZER_HPP
 
-#include "../../inc/util/logger/Logger.hpp"
+#include "util/logger/Logger.hpp"
 
 #include <SFML/Graphics.hpp>
 
