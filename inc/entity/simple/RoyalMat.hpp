@@ -10,7 +10,7 @@ class RoyalMat
 	: public IGridded
 {
 public:
-	RoyalMat(int x, int y) : IGridded(x, y) {}
+	RoyalMat(int x, int y, std::shared_ptr<TileMap> pTileMap) : IGridded(x, y, pTileMap) {}
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 };
 

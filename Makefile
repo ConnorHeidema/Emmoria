@@ -1,6 +1,8 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../inc/util/observer/IGriddedSubject.hpp \
+	../inc/util/observer/IGriddedObserver.hpp \
 	../src/entity/button/FileButton.cpp \
 	../inc/entity/button/FileButton.hpp \
 	../src/entity/player/Player.cpp \
@@ -68,7 +70,7 @@ all:
 	GameLoop.o \
 	Logger.o \
 	-o ../output/emmoria \
-	 -I/media/connor/DATA/Documents/git/FirstSfmlMongoProject/Emmoria/inc \
+	-I/media/connor/DATA/Documents/git/FirstSfmlMongoProject/Emmoria/inc \
 	$$(pkg-config --cflags --libs libmongocxx) \
 	-Wl,-rpath,/usr/local/lib \
 	-lsfml-graphics -lsfml-window -lsfml-system

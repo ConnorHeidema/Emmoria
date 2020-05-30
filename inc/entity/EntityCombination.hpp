@@ -5,6 +5,7 @@
 #include "entity/IGridded.hpp"
 #include "entity/IInteractable.hpp"
 #include "entity/IUpdatable.hpp"
+#include "map/TileMap.hpp"
 
 /**
  * This file defines all the classes that may be mixed for entities
@@ -16,9 +17,9 @@
 		: public firstInterface \
 		, public secondInterface \
 		{ public: \
-		firstInterface##secondInterface(int x, int y) \
-		: firstInterface(x, y) \
-		, secondInterface(x, y) \
+		firstInterface##secondInterface(int x, int y, std::shared_ptr<TileMap> pTileMap) \
+		: firstInterface(x, y, pTileMap) \
+		, secondInterface(x, y, pTileMap) \
 		{} \
 		virtual ~firstInterface##secondInterface() {}; }
 
@@ -36,10 +37,10 @@
 		, public secondInterface \
 		, public thirdInterface \
 		{ public:\
-		firstInterface##secondInterface##thirdInterface(int x, int y) \
-		: firstInterface(x, y) \
-		, secondInterface(x, y) \
-		, thirdInterface(x, y) \
+		firstInterface##secondInterface##thirdInterface(int x, int y, std::shared_ptr<TileMap> pTileMap) \
+		: firstInterface(x, y, pTileMap) \
+		, secondInterface(x, y, pTileMap) \
+		, thirdInterface(x, y, pTileMap) \
 		{} \
 			 virtual ~firstInterface##secondInterface##thirdInterface() {}; }
 

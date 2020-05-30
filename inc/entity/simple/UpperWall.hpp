@@ -10,7 +10,7 @@ class UpperWall
 	: public IGridded
 {
 public:
-	UpperWall(int x, int y) : IGridded(x, y) {}
+	UpperWall(int x, int y, std::shared_ptr<TileMap> pTileMap) : IGridded(x, y, pTileMap) {}
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 };
 

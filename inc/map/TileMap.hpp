@@ -2,6 +2,7 @@
 #define TILE_MAP_HPP
 
 #include "util/logger/ILogger.hpp"
+#include "util/observer/IGriddedObserver.hpp"
 
 #include "entity/DrawableTransformable.hpp"
 
@@ -15,6 +16,7 @@ using TileMapSubTextureArray = int;
  */
 class TileMap
 	: public DrawableTransformable
+	, public IGriddedObserver
 {
 public:
 	/**
@@ -49,6 +51,9 @@ public:
 	 * on each tile that should be drawn on the screen.
 	 */
 	void Load();
+
+	void OnNotify(int x, int y) override;
+
 private:
 	/**
 	 * Labels the index of the quad points to more easily

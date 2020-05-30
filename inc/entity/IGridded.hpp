@@ -1,25 +1,25 @@
 #ifndef I_GRIDDED_HPP
 #define I_GRIDDED_HPP
 
+#include "map/TileMap.hpp"
+#include "util/observer/IGriddedSubject.hpp"
+
 #include <memory>
 /**
  * Includes the components all interactable entities should have.
  * This includes a pointer to where the subtexture is in the
  * texture file
  */
-class IGridded
+class IGridded : public IGriddedSubject
 {
 public:
-	IGridded(int x, int y) : m_xIndex(x), m_yIndex(y) {}
+	IGridded(int x, int y, std::shared_ptr<TileMap> pTileMap) : IGriddedSubject(x, y) { RegisterObserver(pTileMap); }
 
 	/**
 	 * Gets the index of the subtextureindex.
 	 * The subindex is used by the TileMap
 	 */
 	virtual std::shared_ptr<int> GetSubTextureIndexPtr() = 0;
-
-	int m_xIndex;
-	int m_yIndex;
 
 	virtual ~IGridded() {};
 };

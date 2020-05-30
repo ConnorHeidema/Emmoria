@@ -27,18 +27,18 @@ void EntityFactory::LoadEntityOntoContainer(
 	#define LOAD_ENTITY(entity, interface1) \
 		else if (stringName == #entity) \
 		{ \
-			entityContainer.Insert##interface1##Entity(std::make_shared<entity>(x, y)); \
+			entityContainer.Insert##interface1##Entity(std::make_shared<entity>(x, y, entityContainer.m_pTileMap)); \
 		}
 	#define LOAD_ENTITY2(entity, interface1, interface2) \
 		else if (stringName == #entity) \
 		{ \
-			entityContainer.Insert##interface1##interface2##Entity(std::make_shared<entity>(x, y)); \
+			entityContainer.Insert##interface1##interface2##Entity(std::make_shared<entity>(x, y, entityContainer.m_pTileMap)); \
 			return; \
 		}
 	#define LOAD_ENTITY3(entity, interface1, interface2, interface3) \
 		else if (stringName == #entity) \
 		{ \
-			entityContainer.Insert##interface1##interface2##interface3##Entity(std::make_shared<entity>(x, y)); \
+			entityContainer.Insert##interface1##interface2##interface3##Entity(std::make_shared<entity>(x, y, entityContainer.m_pTileMap)); \
 			return; \
 		}
 
@@ -68,24 +68,6 @@ void EntityFactory::MapGriddablesToTilemap(
 	}
 }
 
-std::shared_ptr<IGridded> EntityFactory::CreateInteractableEntity(
-	bsoncxx::array::element element,
-	std::shared_ptr<TileMap> pBottomLayerTileMap)
-{
-	auto stringName = GetStringName_(element);
-
-	std::shared_ptr<IGridded> createdEntity =
-		GetInteractableEntity_(stringName);
-
-	auto coordinate = GetCoordinate_(element);
-
-	pBottomLayerTileMap->PrepareTile(
-		coordinate.first,
-		coordinate.second,
-		createdEntity->GetSubTextureIndexPtr());
-	return createdEntity;
-}
-
 Coordinate EntityFactory::GetCoordinate_(bsoncxx::array::element element)
 {
 	bsoncxx::document::element position{element["index"]};
@@ -101,28 +83,4 @@ std::string EntityFactory::GetStringName_(bsoncxx::array::element element)
 	bsoncxx::document::element entityName{element["name"]};
 	auto entityNameValue = entityName.get_utf8().value;
 	return entityNameValue.to_string();
-}
-
-std::shared_ptr<IGridded> EntityFactory::GetInteractableEntity_(std::string const& stringName)
-{
-	int x;
-	int y;
-	#define CREATE_ENTITY(entity) \
-		else if (stringName == #entity) \
-		{ \
-			return std::make_shared<entity>(x, y); \
-		}
-
-		if (false){}
-		CREATE_ENTITY(Grass) CREATE_ENTITY(RoyalMat) CREATE_ENTITY(BottomWall)
-		CREATE_ENTITY(UpperWall) CREATE_ENTITY(RockGround) CREATE_ENTITY(LeftWall)
-		CREATE_ENTITY(RightWall) CREATE_ENTITY(Corner)
-		else { return GetDefaultInteractableEntity_(); }
-
-	#undef CREATE_ENTITY
-}
-
-std::shared_ptr<IGridded> EntityFactory::GetDefaultInteractableEntity_()
-{
-	return std::make_shared<Grass>(-1, -1);
 }

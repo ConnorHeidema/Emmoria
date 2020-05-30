@@ -7,8 +7,8 @@ class Player
 	: public DrawableTransformableIInteractableIUpdatable
 {
 public:
-	Player(int x, int y) :
-		DrawableTransformableIInteractableIUpdatable(x, y),
+	Player(int x, int y, std::shared_ptr<TileMap> pTileMap) :
+		DrawableTransformableIInteractableIUpdatable(x, y, pTileMap),
 		m_ptmp(std::make_shared<int>(11)) // Player looks like a hole for now
 	{}
 

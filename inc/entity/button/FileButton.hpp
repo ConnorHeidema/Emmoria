@@ -7,7 +7,7 @@ class FileButton
 	: public DrawableTransformableIInteractable
 {
 public:
-	FileButton(int x, int y) : DrawableTransformableIInteractable(x, y) {}
+	FileButton(int x, int y, std::shared_ptr<TileMap> pTileMap) : DrawableTransformableIInteractable(x, y, pTileMap) {}
 
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

@@ -7,7 +7,7 @@ TileMap::TileMap(
 		sf::Vector2u const tileUnitSize,
 		unsigned int const tileWidth,
 		unsigned int const tileHeight)
-		: DrawableTransformable(0, 0)
+		: DrawableTransformable(0, 0, nullptr)
 		, m_tileUnitSize(tileUnitSize)
 		, m_tileWidth(tileWidth)
 		, m_tileHeight(tileHeight)
@@ -23,6 +23,11 @@ void TileMap::Load()
 	m_vertices.setPrimitiveType(sf::Quads);
 	m_vertices.resize(m_tileWidth * m_tileHeight * m_quadVertices);
 	PopulateVertexArray_();
+}
+
+void TileMap::OnNotify(int x, int y)
+{
+	PopulateQuad_(x, y);
 }
 
 void TileMap::PrepareTile(int xIndex, int yIndex, std::shared_ptr<int> pSubTexture)
@@ -61,9 +66,6 @@ void TileMap::PopulateVertexArray_()
 	}
 }
 
-/**
- * I should be able to just call this fx instead of loading the entire tilemap!
- */
 void TileMap::PopulateQuad_(
 	int const xTileIndex,
 	int const yTileIndex)

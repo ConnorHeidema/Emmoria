@@ -11,7 +11,7 @@ class RightWall
 	: public IGridded
 {
 public:
-	RightWall(int x, int y) : IGridded(x, y) {}
+	RightWall(int x, int y, std::shared_ptr<TileMap> pTileMap) : IGridded(x, y, pTileMap) {}
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 };
 
