@@ -7,6 +7,7 @@
 #include "entity/simple/RockGround.hpp"
 #include "entity/simple/RoyalMat.hpp"
 #include "entity/simple/UpperWall.hpp"
+#include "entity/button/FileButton.hpp"
 
 #include "util/logger/Logger.hpp"
 
@@ -24,24 +25,8 @@ void EntityFactory::LoadEntityOntoContainer(
 		x = coordinate.first;
 		y = coordinate.second;
 	}
-	#define LOAD_ENTITY(entity, interface1) \
-		else if (stringName == #entity) \
-		{ \
-			entityContainer.Insert##interface1##Entity(std::make_shared<entity>(x, y, entityContainer.m_pTileMap)); \
-		}
-	#define LOAD_ENTITY2(entity, interface1, interface2) \
-		else if (stringName == #entity) \
-		{ \
-			entityContainer.Insert##interface1##interface2##Entity(std::make_shared<entity>(x, y, entityContainer.m_pTileMap)); \
-			return; \
-		}
-	#define LOAD_ENTITY3(entity, interface1, interface2, interface3) \
-		else if (stringName == #entity) \
-		{ \
-			entityContainer.Insert##interface1##interface2##interface3##Entity(std::make_shared<entity>(x, y, entityContainer.m_pTileMap)); \
-			return; \
-		}
 
+	#include "util/define/DefineLoadEntity.hpp"
 		if (false) {}
 		LOAD_ENTITY2(Grass, IGridded, IUpdatable)
 		LOAD_ENTITY(RoyalMat, IGridded)
@@ -51,10 +36,8 @@ void EntityFactory::LoadEntityOntoContainer(
 		LOAD_ENTITY(LeftWall, IGridded)
 		LOAD_ENTITY(RightWall, IGridded)
 		LOAD_ENTITY(Corner, IGridded)
-
-	#undef LOAD_ENTITY3
-	#undef LOAD_ENTITY2
-	#undef LOAD_ENTITY
+		LOAD_ENTITY2(FileButton, DrawableTransformable, IInteractable)
+	#include "util/define/UndefineLoadEntity.hpp"
 }
 
 void EntityFactory::MapGriddablesToTilemap(

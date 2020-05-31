@@ -15,7 +15,7 @@ TileMap::TileMap(
 		, mk_tileNotDefined(-1)
 		, mk_type("TileMap")
 {
-	m_screenArrayVect.assign(tileWidth * tileHeight, 0);
+	m_screenArrayVect.assign(tileWidth * tileHeight, nullptr);
 }
 
 void TileMap::Load()
@@ -92,14 +92,9 @@ int TileMap::GetCurrentTileNumber_(
 	int xTileIndex,
 	int yTileIndex)
 {
-	if (m_screenArrayVect[xTileIndex + yTileIndex * m_tileWidth] != nullptr)
-	{
-		return *m_screenArrayVect[xTileIndex + yTileIndex * m_tileWidth];
-	}
-	else
-	{
-		return mk_tileNotDefined;
-	}
+	return (m_screenArrayVect[xTileIndex + yTileIndex * m_tileWidth] != nullptr ?
+		*m_screenArrayVect[xTileIndex + yTileIndex * m_tileWidth] :
+		mk_tileNotDefined);
 }
 
 void TileMap::DefineQuadCorners_(

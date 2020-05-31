@@ -1,6 +1,8 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../inc/util/define/UndefineLoadEntity.hpp \
+	../inc/util/define/DefineLoadEntity.hpp \
 	../inc/util/observer/IGriddedSubject.hpp \
 	../inc/util/observer/IGriddedObserver.hpp \
 	../src/entity/button/FileButton.cpp \

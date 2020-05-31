@@ -1,0 +1,8 @@
+#ifndef UNDEFINE_LOAD_ENTITY_HPP
+#define UNDEFINE_LOAD_ENTITY_HPP
+
+#undef LOAD_ENTITY3
+#undef LOAD_ENTITY2
+#undef LOAD_ENTITY
+
+#endif

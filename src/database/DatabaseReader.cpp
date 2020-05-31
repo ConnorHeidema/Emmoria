@@ -4,6 +4,8 @@
 #include "entity/EntityContainer.hpp"
 
 #include <bsoncxx/json.hpp>
+#include <bsoncxx/stdx/string_view.hpp>
+#include <bsoncxx/string/to_string.hpp>
 
 #include <string>
 
@@ -85,6 +87,7 @@ void DatabaseReader::CombineConditions_(
 		close_array;
 }
 
+// WORKING ON THIS TO GET FILESCREEN WORKING!!!
 void DatabaseReader::LoadFilesScreen(
 	char const * const collectionName,
 	EntityContainer& entityContainer)
@@ -95,8 +98,15 @@ void DatabaseReader::LoadFilesScreen(
 	for (auto doc : documents)
 	{
 		s_pLogger->InfoLog(mk_type, bsoncxx::to_json(doc).c_str());
+		for (auto ele : doc)
+		{
+			auto field_key{ele.key()};
+			s_pLogger->WarningLog(mk_type, field_key.data());
+			//EntityFactory::LoadEntityOntoContainer(, entityContainer);
+			auto ele_val{ele.get_value()};
+		}
 	}
-	//EntityFactory::MapGriddablesToTilemap(entityContainer, "image/file/file.png");
-	//entityContainer.m_pTileMap->Load();
-	//entityContainer.InsertDrawableTransformableEntity(entityContainer.m_pTileMap);
+	EntityFactory::MapGriddablesToTilemap(entityContainer, "image/file/file.png");
+	entityContainer.m_pTileMap->Load();
+	entityContainer.InsertDrawableTransformableEntity(entityContainer.m_pTileMap);
 }
