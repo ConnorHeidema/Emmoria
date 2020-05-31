@@ -14,7 +14,7 @@ ie: ./add_class.sh object ActionObject"
 # This appends the file names in the makefile to create the object files
 create_object_files ()
 {
-	sed -i '3 a \\t/'"$1"'/'"$2"'.hpp \\' Makefile
+	sed -i '3 a \\t../inc/'"$1"'/'"$2"'.hpp \\' Makefile
 	sed -i '3 a \\t../src/'"$1"'/'"$2"'.cpp \\' Makefile
 }
 
@@ -35,34 +35,16 @@ edit_makefile ()
 # This actually creates the default source file
 add_source_file ()
 {
-	dots_to_add="../"
-	dots="../../"
-	directory_depth=`echo $1 | tr -cd '/' | wc -c`
-
-	for ((i=1; i <= $directory_depth; i++));
-	do
-		dots+=$dots_to_add
-	done
-
 	if [ ! -s src/$1/$2 ]
 	then
 		mkdir -p src/$1
-		echo "#include \"${dots}inc/$1/$2.hpp\"" >> src/$1/$2.cpp
+		echo "#include \"$1/$2.hpp\"" >> src/$1/$2.cpp
 	fi
 }
 
 # This creates the default header file for the class you wish to make
 add_include_file ()
 {
-	dots_to_add="../"
-	dots="../../"
-	directory_depth=`echo $1 | tr -cd '/' | wc -c`
-
-	for ((i=1; i <= $directory_depth; i++));
-	do
-		dots+=$dots_to_add
-	done
-
 	snake_case=`echo $2 | sed -r 's/([A-Z])/_\L\1/g' | sed 's/^_//'`
 	upper_and_underscore=${snake_case^^}_HPP
 

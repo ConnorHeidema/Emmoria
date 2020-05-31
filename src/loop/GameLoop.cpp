@@ -9,8 +9,10 @@ GameLoop::GameLoop()
 	, mk_uScreenHeight(sf::VideoMode::getDesktopMode().height)
 	, mk_uFrameRate(60)
 	, mk_windowName("Emmoria")
-	, mk_collection("files")
-	, mk_subcollection("")
+	//, mk_collection("files")
+	//, mk_subcollection("")
+	, mk_collection("map")
+	, mk_subcollection("dawn_pillar")
 	, mk_iconDir("image/logo/logo.png")
 	, mk_screenReductionRatio(120)
 	, m_entityContainer(
@@ -29,8 +31,8 @@ bool GameLoop::Start()
 	auto pGameWindow = GetGameWindowPtr_();
 
 	auto pDatabaseReader = GetDatabaseReaderPtr_();
-	pDatabaseReader->LoadFilesScreen(mk_collection, m_entityContainer);
-	//pDatabaseReader->LoadNewRegion(mk_collection, mk_subcollection, m_entityContainer);
+	//pDatabaseReader->LoadFilesScreen(mk_collection, m_entityContainer);
+	pDatabaseReader->LoadNewRegion(mk_collection, mk_subcollection, m_entityContainer);
 	while (pGameWindow->isOpen()) { RunLoop_(pGameWindow, pDatabaseReader); }
 	return true;
 }

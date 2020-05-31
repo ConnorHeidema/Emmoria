@@ -1,6 +1,12 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../src/entity/simple/Sign.cpp \
+	../inc/entity/simple/Sign.hpp \
+	../src/entity/simple/Stair.cpp \
+	../inc/entity/simple/Stair.hpp \
+	../src/entity/simple/Hole.cpp \
+	../inc/entity/simple/Hole.hpp \
 	../inc/util/define/UndefineLoadEntity.hpp \
 	../inc/util/define/DefineLoadEntity.hpp \
 	../inc/util/observer/IGriddedSubject.hpp \
@@ -53,6 +59,9 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	Sign.o \
+	Stair.o \
+	Hole.o \
 	FileButton.o \
 	Player.o \
 	EntityContainer.o \

@@ -7,6 +7,9 @@
 #include "entity/simple/RockGround.hpp"
 #include "entity/simple/RoyalMat.hpp"
 #include "entity/simple/UpperWall.hpp"
+#include "entity/simple/Stair.hpp"
+#include "entity/simple/Hole.hpp"
+#include "entity/simple/Sign.hpp"
 #include "entity/button/FileButton.hpp"
 
 #include "util/logger/Logger.hpp"
@@ -37,6 +40,9 @@ void EntityFactory::LoadEntityOntoContainer(
 		LOAD_ENTITY(RightWall, IGridded)
 		LOAD_ENTITY(Corner, IGridded)
 		LOAD_ENTITY2(FileButton, DrawableTransformable, IInteractable)
+		LOAD_ENTITY2(Sign, IGridded, IInteractable)
+		LOAD_ENTITY2(Stair, IGridded, IInteractable)
+		LOAD_ENTITY2(Hole, IGridded, IInteractable)
 	#include "util/define/UndefineLoadEntity.hpp"
 }
 
