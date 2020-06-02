@@ -2,6 +2,9 @@
 #define I_INTERACTABLE_HPP
 
 #include "map/TileMap.hpp"
+
+#include <bsoncxx/builder/stream/document.hpp>
+
 #include <memory>
 
 class IInteractable

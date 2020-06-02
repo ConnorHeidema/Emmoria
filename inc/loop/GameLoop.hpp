@@ -6,6 +6,7 @@
 #include "debug/DebugMetricVisualizer.hpp"
 #include "util/Location.hpp"
 #include "entity/EntityContainer.hpp"
+#include "entity/Returnable.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -79,9 +80,10 @@ private:
 	unsigned int const mk_uScreenHeight;
 	unsigned int const mk_uFrameRate;
 	char const * const mk_windowName;
-	char const * const mk_collection;
-	char const * const mk_subcollection;
+	std::string m_collection;
+	std::string m_subcollection;
 	char const * const mk_iconDir;
+	Returnable m_returnable;
 
 	unsigned int const mk_screenReductionRatio;
 

@@ -1,6 +1,7 @@
 #include "loop/GameLoop.hpp"
 #include "util/logger/Logger.hpp"
 #include "entity/DrawableTransformable.hpp"
+#include "entity/Returnable.hpp"
 
 GameLoop::GameLoop()
 	: mk_type("GameLoop")
@@ -9,11 +10,12 @@ GameLoop::GameLoop()
 	, mk_uScreenHeight(sf::VideoMode::getDesktopMode().height)
 	, mk_uFrameRate(60)
 	, mk_windowName("Emmoria")
-	//, mk_collection("files")
-	//, mk_subcollection("")
-	, mk_collection("map")
-	, mk_subcollection("dawn_pillar")
+	, m_collection("files")
+	, m_subcollection("")
+	//, mk_collection("map")
+	//, mk_subcollection("dawn_pillar")
 	, mk_iconDir("image/logo/logo.png")
+	, m_returnable()
 	, mk_screenReductionRatio(120)
 	, m_entityContainer(
 		sf::Vector2u(mk_screenReductionRatio, mk_screenReductionRatio),
@@ -32,7 +34,7 @@ bool GameLoop::Start()
 
 	auto pDatabaseReader = GetDatabaseReaderPtr_();
 	//pDatabaseReader->LoadFilesScreen(mk_collection, m_entityContainer);
-	pDatabaseReader->LoadNewRegion(mk_collection, mk_subcollection, m_entityContainer);
+	pDatabaseReader->LoadNewRegion(m_collection.c_str(), m_subcollection.c_str(), m_entityContainer);
 	while (pGameWindow->isOpen()) { RunLoop_(pGameWindow, pDatabaseReader); }
 	return true;
 }
@@ -92,6 +94,18 @@ void GameLoop::RunLoop_(
 	pGameWindow->clear();
 	DrawAllEntities_(pGameWindow);
 	UpdateAllEntities_();
+	if (m_returnable.updated)
+	{
+		m_entityContainer.ClearAllEntities();
+	 	m_collection = m_returnable.collection;
+		m_subcollection = m_returnable.subCollection;
+		s_pLogger->WarningLog(mk_type, "Loading new region");
+		s_pLogger->WarningLog(mk_type, m_collection.c_str());
+		s_pLogger->WarningLog(mk_type, m_subcollection.c_str());
+		pDatabaseReader->LoadNewRegion(m_collection.c_str(), m_subcollection.c_str(), m_entityContainer);
+		m_pLocation->Reset();
+		m_returnable = Returnable();
+	}
 	#ifdef DEBUG
 		m_debugMetricVisualizer.Update();
 		pGameWindow->draw(m_debugMetricVisualizer);
@@ -104,7 +118,15 @@ void GameLoop::UpdateAllEntities_()
 {
 	for (auto&& pEntity : m_entityContainer.GetUpdatableEntities())
 	{
-		pEntity->Update();
+		auto returnable = pEntity->Update();
+		if (returnable.updated)
+		{
+			s_pLogger->InfoLog(mk_type, "Loading new location");
+			m_returnable.collection = returnable.collection;
+			m_returnable.subCollection = returnable.subCollection;
+			m_returnable.updated = true;
+			break;
+		}
 	}
 }
 

@@ -89,3 +89,11 @@ void EntityContainer::InsertIUpdatableEntity(std::shared_ptr<IUpdatable> updatab
 	INSERT(IGridded, IInteractable, IUpdatable)
 
 #undef INSERT
+
+void EntityContainer::ClearAllEntities()
+{
+	m_entityDrawableTransformableList.clear();
+	m_entityIGriddedList.clear();
+	m_entityIInteractableList.clear();
+	m_entityIUpdatableList.clear();
+}

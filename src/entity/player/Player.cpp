@@ -1,6 +1,6 @@
 #include "entity/player/Player.hpp"
 
-void Player::Update()
+Returnable Player::Update()
 {
-
+	return Returnable();
 }

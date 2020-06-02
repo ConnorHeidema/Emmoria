@@ -20,7 +20,7 @@ DebugMetricVisualizer::DebugMetricVisualizer()
 }
 
 
-void DebugMetricVisualizer::Update()
+Returnable DebugMetricVisualizer::Update()
 {
 	m_lastCharactersPressed = "";
 	m_leftMousePositionPressed = "";
@@ -31,6 +31,7 @@ void DebugMetricVisualizer::Update()
 
 	CheckKeys_();
 	CheckMouse_();
+	return Returnable();
 }
 
 void DebugMetricVisualizer::draw(

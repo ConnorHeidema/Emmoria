@@ -11,7 +11,8 @@ class LeftWall
 	: public IGridded
 {
 public:
-	LeftWall(int x, int y, std::shared_ptr<TileMap> pTileMap) : IGridded(x, y, pTileMap) {}
+	LeftWall(int x, int y, std::shared_ptr<TileMap> pTileMap,
+		bsoncxx::array::element element) : IGridded(x, y, pTileMap) {}
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 };
 

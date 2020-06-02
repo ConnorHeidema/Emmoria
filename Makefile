@@ -1,6 +1,8 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror \
+	../src/entity/Returnable.cpp \
+	../inc/entity/Returnable.hpp \
 	../src/entity/simple/Sign.cpp \
 	../inc/entity/simple/Sign.hpp \
 	../src/entity/simple/Stair.cpp \
@@ -59,6 +61,7 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	Returnable.o \
 	Sign.o \
 	Stair.o \
 	Hole.o \

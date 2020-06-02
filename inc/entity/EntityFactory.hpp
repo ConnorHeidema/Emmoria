@@ -33,6 +33,9 @@ private:
 	 */
 	static Coordinate GetCoordinate_(bsoncxx::array::element element);
 
+
+	static Coordinate GetLocation_(bsoncxx::array::element element);
+
 	/**
 	 * Gets the name of the entity
 	 * @param element The element the name can be found from

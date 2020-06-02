@@ -4,6 +4,8 @@
 #include "map/TileMap.hpp"
 #include "util/observer/IGriddedSubject.hpp"
 
+#include <bsoncxx/builder/stream/document.hpp>
+
 #include <memory>
 /**
  * Includes the components all interactable entities should have.

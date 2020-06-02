@@ -2,6 +2,8 @@
 #define DRAWABLE_TRANSFORMABLE_HPP
 
 #include <SFML/Graphics.hpp>
+#include <bsoncxx/builder/stream/document.hpp>
+
 #include <memory>
 
 class TileMap;

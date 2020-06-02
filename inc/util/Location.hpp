@@ -27,6 +27,12 @@ public:
 	 * Updates the current position if certain keys are pressed
 	 */
 	void UpdateCurrentPosition();
+
+	/**
+	 * Resets the current location
+	 */
+	void Reset();
+
 private:
 	std::pair<int, int> m_currentPosition;
 	int const m_positionDelta;

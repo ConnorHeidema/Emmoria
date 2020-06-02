@@ -61,6 +61,7 @@ public:
 		INSERT(IGridded, IInteractable, IUpdatable);
 	#undef INSERT
 
+	void ClearAllEntities();
 private:
 	std::list<std::shared_ptr<DrawableTransformable>> m_entityDrawableTransformableList;
 	std::list<std::shared_ptr<IGridded>> m_entityIGriddedList;

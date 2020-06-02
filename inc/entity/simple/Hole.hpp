@@ -10,7 +10,8 @@ class Hole
 	: public IGriddedIInteractable
 {
 public:
-	Hole(int x, int y, std::shared_ptr<TileMap> pTileMap) : IGriddedIInteractable(x, y, pTileMap) {}
+	Hole(int x, int y, std::shared_ptr<TileMap> pTileMap,
+		bsoncxx::array::element element) : IGriddedIInteractable(x, y, pTileMap) {}
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 };
 

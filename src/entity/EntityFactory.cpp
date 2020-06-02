@@ -11,6 +11,7 @@
 #include "entity/simple/Hole.hpp"
 #include "entity/simple/Sign.hpp"
 #include "entity/button/FileButton.hpp"
+#include "util/logger/Logger.hpp"
 
 #include "util/logger/Logger.hpp"
 
@@ -18,13 +19,22 @@ void EntityFactory::LoadEntityOntoContainer(
 	bsoncxx::array::element element,
 	EntityContainer& entityContainer)
 {
+	auto stringName = GetStringName_(element);
+
 	int x = -1;
 	int y = -1;
 	bsoncxx::document::element indexObject{element["index"]};
-	auto stringName = GetStringName_(element);
 	if (indexObject.length() != 0)
 	{
 		Coordinate coordinate = GetCoordinate_(element);
+		x = coordinate.first;
+		y = coordinate.second;
+	}
+	bsoncxx::document::element positionObject{element["position"]};
+	if (positionObject.length() != 0)
+	{
+		s_pLogger->WarningLog(LoggerType_t("EntityFactory"), "BeforeGetLocation");
+		Coordinate coordinate = GetLocation_(element);
 		x = coordinate.first;
 		y = coordinate.second;
 	}
@@ -39,7 +49,7 @@ void EntityFactory::LoadEntityOntoContainer(
 		LOAD_ENTITY(LeftWall, IGridded)
 		LOAD_ENTITY(RightWall, IGridded)
 		LOAD_ENTITY(Corner, IGridded)
-		LOAD_ENTITY2(FileButton, DrawableTransformable, IInteractable)
+		LOAD_ENTITY2(FileButton, DrawableTransformable, IUpdatable)
 		LOAD_ENTITY2(Sign, IGridded, IInteractable)
 		LOAD_ENTITY2(Stair, IGridded, IInteractable)
 		LOAD_ENTITY2(Hole, IGridded, IInteractable)
@@ -60,6 +70,16 @@ void EntityFactory::MapGriddablesToTilemap(
 Coordinate EntityFactory::GetCoordinate_(bsoncxx::array::element element)
 {
 	bsoncxx::document::element position{element["index"]};
+	bsoncxx::document::element xPositionElement{position["x"]};
+	int xIndex = xPositionElement.get_int32();
+	bsoncxx::document::element yPositionElement{position["y"]};
+	int yIndex = yPositionElement.get_int32();
+	return Coordinate(xIndex, yIndex);
+}
+
+Coordinate EntityFactory::GetLocation_(bsoncxx::array::element element)
+{
+	bsoncxx::document::element position{element["position"]};
 	bsoncxx::document::element xPositionElement{position["x"]};
 	int xIndex = xPositionElement.get_int32();
 	bsoncxx::document::element yPositionElement{position["y"]};

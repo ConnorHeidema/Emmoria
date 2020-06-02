@@ -12,7 +12,8 @@ class Grass
 	: public IGriddedIUpdatable
 {
 public:
-	Grass(int x, int y, std::shared_ptr<TileMap> pTileMap) :
+	Grass(int x, int y, std::shared_ptr<TileMap> pTileMap,
+		bsoncxx::array::element element) :
 		IGriddedIUpdatable(x, y, pTileMap),
 		m_ptmp(std::make_shared<int>(0)),
 		m_currentFrame(0),
@@ -22,7 +23,7 @@ public:
 
 	virtual ~Grass() {};
 
-	void Update() override;
+	Returnable Update() override;
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 private:
 	std::shared_ptr<int> m_ptmp;

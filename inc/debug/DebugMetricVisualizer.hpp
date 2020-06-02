@@ -2,6 +2,7 @@
 #define DEBUG_METRIC_VISUALIZER_HPP
 
 #include "util/logger/Logger.hpp"
+#include "entity/Returnable.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -26,7 +27,7 @@ public:
 	/**
 	 * Each frame should update the metrics received
 	 */
-	void Update();
+	Returnable Update();
 
 private:
 	/**

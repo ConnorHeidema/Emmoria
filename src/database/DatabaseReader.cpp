@@ -31,7 +31,10 @@ void DatabaseReader::LoadNewRegion(
 	char const * const subCollectionName,
 	EntityContainer& entityContainer)
 {
-	auto collection = mk_clientConnection[mk_databaseName][std::string(collectionName) + "." + std::string(subCollectionName)];
+	auto qualifiedCollection = subCollectionName != NULL && subCollectionName[0] == '\0' ?
+		std::string(collectionName) :
+		std::string(collectionName) + "." + std::string(subCollectionName);
+	auto collection = mk_clientConnection[mk_databaseName][qualifiedCollection];
 	auto documents = collection.find({});
 
 	for (auto doc : documents)
@@ -85,28 +88,4 @@ void DatabaseReader::CombineConditions_(
 			open_document << concatenate_doc{firstCondition.view()} << close_document <<
 			open_document << concatenate_doc{secondCondition.view()} << close_document <<
 		close_array;
-}
-
-// WORKING ON THIS TO GET FILESCREEN WORKING!!!
-void DatabaseReader::LoadFilesScreen(
-	char const * const collectionName,
-	EntityContainer& entityContainer)
-{
-	auto collection = mk_clientConnection[mk_databaseName][std::string(collectionName)];
-	auto documents = collection.find({});
-
-	for (auto doc : documents)
-	{
-		s_pLogger->InfoLog(mk_type, bsoncxx::to_json(doc).c_str());
-		for (auto ele : doc)
-		{
-			auto field_key{ele.key()};
-			s_pLogger->WarningLog(mk_type, field_key.data());
-			//EntityFactory::LoadEntityOntoContainer(, entityContainer);
-			auto ele_val{ele.get_value()};
-		}
-	}
-	EntityFactory::MapGriddablesToTilemap(entityContainer, "image/file/file.png");
-	entityContainer.m_pTileMap->Load();
-	entityContainer.InsertDrawableTransformableEntity(entityContainer.m_pTileMap);
 }

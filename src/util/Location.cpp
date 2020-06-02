@@ -31,5 +31,10 @@ void Location::UpdateCurrentPosition()
 	{
 		m_currentPosition.first += m_positionDelta;
 	}
+}
 
+void Location::Reset()
+{
+	m_currentPosition.first = 0;
+	m_currentPosition.second = 0;
 }
