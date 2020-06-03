@@ -1,3 +1,4 @@
+#include "entity/player/Player.hpp"
 #include "entity/EntityFactory.hpp"
 #include "entity/simple/Grass.hpp"
 #include "entity/simple/BottomWall.hpp"
@@ -41,7 +42,6 @@ void EntityFactory::LoadEntityOntoContainer(
 
 	#include "util/define/DefineLoadEntity.hpp"
 		if (false) {}
-		LOAD_ENTITY2(Grass, IGridded, IUpdatable)
 		LOAD_ENTITY(RoyalMat, IGridded)
 		LOAD_ENTITY(BottomWall, IGridded)
 		LOAD_ENTITY(UpperWall, IGridded)
@@ -49,10 +49,12 @@ void EntityFactory::LoadEntityOntoContainer(
 		LOAD_ENTITY(LeftWall, IGridded)
 		LOAD_ENTITY(RightWall, IGridded)
 		LOAD_ENTITY(Corner, IGridded)
+		LOAD_ENTITY2(Grass, IGridded, IUpdatable)
 		LOAD_ENTITY2(FileButton, DrawableTransformable, IUpdatable)
 		LOAD_ENTITY2(Sign, IGridded, IInteractable)
 		LOAD_ENTITY2(Stair, IGridded, IInteractable)
 		LOAD_ENTITY2(Hole, IGridded, IInteractable)
+		LOAD_ENTITY3(Player, DrawableTransformable, IInteractable, IUpdatable)
 	#include "util/define/UndefineLoadEntity.hpp"
 }
 
