@@ -1,6 +1,6 @@
 #include "debug/DebugMetricVisualizer.hpp"
 
-#include <list>
+#include "util/logger/ILogger.hpp"
 
 DebugMetricVisualizer::DebugMetricVisualizer()
 	: m_type("DebugMetricVisualizer")

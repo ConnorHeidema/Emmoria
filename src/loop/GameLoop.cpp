@@ -1,7 +1,6 @@
 #include "loop/GameLoop.hpp"
+
 #include "util/logger/Logger.hpp"
-#include "entity/DrawableTransformable.hpp"
-#include "entity/Returnable.hpp"
 
 GameLoop::GameLoop()
 	: mk_type("GameLoop")
@@ -12,8 +11,6 @@ GameLoop::GameLoop()
 	, mk_windowName("Emmoria")
 	, m_collection("files")
 	, m_subcollection("")
-	//, mk_collection("map")
-	//, mk_subcollection("dawn_pillar")
 	, mk_iconDir("image/logo/logo.png")
 	, m_returnable()
 	, mk_screenReductionRatio(120)
@@ -29,11 +26,8 @@ GameLoop::GameLoop()
 bool GameLoop::Start()
 {
 	s_pLogger->DebugLog(mk_type, "Gameloop started");
-
 	auto pGameWindow = GetGameWindowPtr_();
-
 	auto pDatabaseReader = GetDatabaseReaderPtr_();
-	//pDatabaseReader->LoadFilesScreen(mk_collection, m_entityContainer);
 	pDatabaseReader->LoadNewRegion(m_collection.c_str(), m_subcollection.c_str(), m_entityContainer);
 	while (pGameWindow->isOpen()) { RunLoop_(pGameWindow, pDatabaseReader); }
 	return true;
@@ -71,17 +65,12 @@ void GameLoop::CheckForEvents_(std::shared_ptr<sf::Window> pGameWindow)
 	sf::Event event;
 	while (pGameWindow->pollEvent(event))
 	{
-		if (event.type == sf::Event::Closed)
+		switch (event.type)
 		{
-			pGameWindow->close();
-		}
-		else if(event.type == sf::Event::GainedFocus)
-		{
-			s_pLogger->DebugLog(mk_type, "Window Gained Focus");
-		}
-		else if(event.type == sf::Event::LostFocus)
-		{
-			s_pLogger->DebugLog(mk_type, "Window Lost Focus");
+			case sf::Event::Closed: pGameWindow->close(); break;
+			case sf::Event::GainedFocus: s_pLogger->DebugLog(mk_type, "Window Gained Focus"); break;
+			case sf::Event::LostFocus: s_pLogger->DebugLog(mk_type, "Window Lost Focus"); break;
+			default: break;
 		}
 	}
 }
@@ -99,9 +88,7 @@ void GameLoop::RunLoop_(
 		m_entityContainer.ClearAllEntities();
 	 	m_collection = m_returnable.collection;
 		m_subcollection = m_returnable.subCollection;
-		s_pLogger->WarningLog(mk_type, "Loading new region");
-		s_pLogger->WarningLog(mk_type, m_collection.c_str());
-		s_pLogger->WarningLog(mk_type, m_subcollection.c_str());
+		s_pLogger->DebugLog(mk_type, (std::string("Loading new region ") + m_collection + std::string(".") + m_subcollection).c_str());
 		pDatabaseReader->LoadNewRegion(m_collection.c_str(), m_subcollection.c_str(), m_entityContainer);
 		m_pLocation->Reset();
 		m_returnable = Returnable();

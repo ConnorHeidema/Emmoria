@@ -1,5 +1,21 @@
 #include "entity/player/Player.hpp"
 
+#include "util/enum/QuadPosition.hpp"
+
+Player::Player(int x, int y, std::shared_ptr<TileMap> pTileMap,
+	bsoncxx::array::element element) :
+		DrawableTransformableIInteractableIUpdatable(x, y, pTileMap),
+		m_tileset(),
+		m_tilesetPath("image/player/player.png"),
+		m_tileUnitSize(sf::Vector2i(120, 120)),
+		mk_type("Player")
+{
+	m_vertices.setPrimitiveType(sf::Quads);
+	m_vertices.resize(4);
+	m_tileset.loadFromFile(m_tilesetPath);
+	PopulateQuad_(8,4);
+}
+
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();

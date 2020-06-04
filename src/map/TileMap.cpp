@@ -73,9 +73,6 @@ void TileMap::PopulateQuad_(
 	int tileNumber = GetCurrentTileNumber_(xTileIndex, yTileIndex);
 	if (tileNumber == mk_tileNotDefined)
 	{
-		s_pLogger->DebugLog(mk_type, (std::string("Tilemap region: (") +
-			std::to_string(xTileIndex) + std::string(",") +
-			std::to_string(yTileIndex) + std::string(") is not defined")).c_str());
 		return;
 	}
 	int textureColumn = tileNumber % (m_tileset.getSize().x / m_tileUnitSize.x);

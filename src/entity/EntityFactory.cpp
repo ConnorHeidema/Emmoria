@@ -12,30 +12,32 @@
 #include "entity/simple/Hole.hpp"
 #include "entity/simple/Sign.hpp"
 #include "entity/button/FileButton.hpp"
+
+#include "util/DatabaseUtil.hpp"
 #include "util/logger/Logger.hpp"
 
-#include "util/logger/Logger.hpp"
+#include <vector>
+#include <sstream>
 
 void EntityFactory::LoadEntityOntoContainer(
 	bsoncxx::array::element element,
 	EntityContainer& entityContainer)
 {
-	auto stringName = GetStringName_(element);
+	auto stringName = DatabaseUtil::GetStringValueFromKeyDb(element, "name");
 
 	int x = -1;
 	int y = -1;
 	bsoncxx::document::element indexObject{element["index"]};
 	if (indexObject.length() != 0)
 	{
-		Coordinate coordinate = GetCoordinate_(element);
+		Coordinate coordinate = DatabaseUtil::GetCoordinate_(element);
 		x = coordinate.first;
 		y = coordinate.second;
 	}
 	bsoncxx::document::element positionObject{element["position"]};
 	if (positionObject.length() != 0)
 	{
-		s_pLogger->WarningLog(LoggerType_t("EntityFactory"), "BeforeGetLocation");
-		Coordinate coordinate = GetLocation_(element);
+		Coordinate coordinate = DatabaseUtil::GetLocation_(element);
 		x = coordinate.first;
 		y = coordinate.second;
 	}
@@ -56,42 +58,4 @@ void EntityFactory::LoadEntityOntoContainer(
 		LOAD_ENTITY2(Hole, IGridded, IInteractable)
 		LOAD_ENTITY3(Player, DrawableTransformable, IInteractable, IUpdatable)
 	#include "util/define/UndefineLoadEntity.hpp"
-}
-
-void EntityFactory::MapGriddablesToTilemap(
-	EntityContainer& entityContainer,
-	std::string tilemapName)
-{
-	entityContainer.m_pTileMap->SetTextureFile(tilemapName);
-	for (auto&& gridded : entityContainer.GetGriddedEntities())
-	{
-		entityContainer.m_pTileMap->PrepareTile(gridded->m_xIndex, gridded->m_yIndex, gridded->GetSubTextureIndexPtr());
-	}
-}
-
-Coordinate EntityFactory::GetCoordinate_(bsoncxx::array::element element)
-{
-	bsoncxx::document::element position{element["index"]};
-	bsoncxx::document::element xPositionElement{position["x"]};
-	int xIndex = xPositionElement.get_int32();
-	bsoncxx::document::element yPositionElement{position["y"]};
-	int yIndex = yPositionElement.get_int32();
-	return Coordinate(xIndex, yIndex);
-}
-
-Coordinate EntityFactory::GetLocation_(bsoncxx::array::element element)
-{
-	bsoncxx::document::element position{element["position"]};
-	bsoncxx::document::element xPositionElement{position["x"]};
-	int xIndex = xPositionElement.get_int32();
-	bsoncxx::document::element yPositionElement{position["y"]};
-	int yIndex = yPositionElement.get_int32();
-	return Coordinate(xIndex, yIndex);
-}
-
-std::string EntityFactory::GetStringName_(bsoncxx::array::element element)
-{
-	bsoncxx::document::element entityName{element["name"]};
-	auto entityNameValue = entityName.get_utf8().value;
-	return entityNameValue.to_string();
 }

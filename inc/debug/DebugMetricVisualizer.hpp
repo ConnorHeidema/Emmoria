@@ -1,8 +1,9 @@
 #ifndef DEBUG_METRIC_VISUALIZER_HPP
 #define DEBUG_METRIC_VISUALIZER_HPP
 
-#include "util/logger/Logger.hpp"
 #include "entity/Returnable.hpp"
+
+#include "util/logger/ILogger.hpp"
 
 #include <SFML/Graphics.hpp>
 

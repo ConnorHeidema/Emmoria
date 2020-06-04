@@ -1,6 +1,9 @@
 # Use command "make mode=ERROR" for default build
 all:
-	cd build && g++ -c -Wall -Werror \
+	cd build && g++ -c -Wall -Werror -fno-rtti \
+	../inc/util/enum/QuadPosition.hpp \
+	../src/util/DatabaseUtil.cpp \
+	../inc/util/DatabaseUtil.hpp \
 	../src/entity/Returnable.cpp \
 	../inc/entity/Returnable.hpp \
 	../src/entity/simple/Sign.cpp \
@@ -61,6 +64,7 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	DatabaseUtil.o \
 	Returnable.o \
 	Sign.o \
 	Stair.o \
@@ -84,7 +88,7 @@ all:
 	GameLoop.o \
 	Logger.o \
 	-o ../output/emmoria \
-	-I/media/connor/DATA/Documents/git/FirstSfmlMongoProject/Emmoria/inc \
+	-I/media/connor/DATA/Documents/git/FirstSfmlMongoProject/Emmoria/inc -fno-rtti \
 	$$(pkg-config --cflags --libs libmongocxx) \
 	-Wl,-rpath,/usr/local/lib \
 	-lsfml-graphics -lsfml-window -lsfml-system

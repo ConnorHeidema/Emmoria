@@ -1,12 +1,13 @@
 #ifndef GAME_LOOP_HPP
 #define GAME_LOOP_HPP
 
-#include "util/logger/ILogger.hpp"
 #include "database/DatabaseReader.hpp"
-#include "debug/DebugMetricVisualizer.hpp"
+
 #include "util/Location.hpp"
-#include "entity/EntityContainer.hpp"
-#include "entity/Returnable.hpp"
+
+#ifdef DEBUG
+	#include "debug/DebugMetricVisualizer.hpp"
+#endif
 
 #include <SFML/Graphics.hpp>
 

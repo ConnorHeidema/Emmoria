@@ -5,6 +5,7 @@
 #include "entity/IGridded.hpp"
 #include "entity/IInteractable.hpp"
 #include "entity/IUpdatable.hpp"
+
 #include "map/TileMap.hpp"
 
 /**

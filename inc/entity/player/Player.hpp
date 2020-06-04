@@ -3,6 +3,7 @@
 
 #include "entity/EntityCombination.hpp"
 #include "entity/player/Player.hpp"
+
 #include "util/logger/Logger.hpp"
 
 class Player
@@ -10,18 +11,7 @@ class Player
 {
 public:
 	Player(int x, int y, std::shared_ptr<TileMap> pTileMap,
-		bsoncxx::array::element element) :
-			DrawableTransformableIInteractableIUpdatable(x, y, pTileMap),
-			m_tileset(),
-			m_tilesetPath("image/player/player.png"),
-			m_tileUnitSize(sf::Vector2i(120, 120)),
-			mk_type("Player")
-	{
-		m_vertices.setPrimitiveType(sf::Quads);
-		m_vertices.resize(4);
-		m_tileset.loadFromFile(m_tilesetPath);
-		PopulateQuad_(8,4);
-	}
+		bsoncxx::array::element element);
 
 	virtual ~Player() {};
 
@@ -35,17 +25,6 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
-	/**
-	 * Labels the index of the quad points to more easily
-	 * understand which point matches to which corner.
-	 */
-	enum QuadPosition
-	{
-		TOP_LEFT = 0,
-		TOP_RIGHT = 1,
-		BOTTOM_RIGHT = 2,
-		BOTTOM_LEFT = 3
-	};
 
 	void PopulateQuad_(
 		int const xTileIndex,

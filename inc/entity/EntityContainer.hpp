@@ -1,12 +1,7 @@
 #ifndef ENTITY_CONTAINER_HPP
 #define ENTITY_CONTAINER_HPP
 
-#include "entity/DrawableTransformable.hpp"
-#include "entity/IUpdatable.hpp"
-#include "entity/IInteractable.hpp"
-#include "entity/IGridded.hpp"
 #include "entity/EntityCombination.hpp"
-#include "map/TileMap.hpp"
 
 #include <list>
 #include <memory>

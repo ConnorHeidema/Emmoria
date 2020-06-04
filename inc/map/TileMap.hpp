@@ -3,6 +3,7 @@
 
 #include "util/logger/ILogger.hpp"
 #include "util/observer/IGriddedObserver.hpp"
+#include "util/enum/QuadPosition.hpp"
 
 #include "entity/DrawableTransformable.hpp"
 
@@ -55,17 +56,6 @@ public:
 	void OnNotify(int x, int y) override;
 
 private:
-	/**
-	 * Labels the index of the quad points to more easily
-	 * understand which point matches to which corner.
-	 */
-	enum QuadPosition
-	{
-		TOP_LEFT = 0,
-		TOP_RIGHT = 1,
-		BOTTOM_RIGHT = 2,
-		BOTTOM_LEFT = 3
-	};
 
 	/**
 	 * utililsed to draw the array to the window.

@@ -1,25 +1,12 @@
 #ifndef DATABASE_READER_HPP
 #define DATABASE_READER_HPP
 
-#include "util/logger/ILogger.hpp"
-#include "map/TileMap.hpp"
-#include "entity/IGridded.hpp"
-#include "entity/DrawableTransformable.hpp"
 #include "entity/EntityContainer.hpp"
 
 #include <mongocxx/instance.hpp>
 #include <mongocxx/client.hpp>
 
-#include <bsoncxx/builder/stream/document.hpp>
-
 #include <SFML/Graphics.hpp>
-
-#include <memory>
-#include <list>
-
-using Range = std::pair<int, int>;
-
-using bsoncxx::builder::stream::document;
 
 /**
  * The databasereader interfaces with mongodb when necessary
@@ -55,42 +42,13 @@ public:
 private:
 
 	/**
-	 * Gets a region of objects from the mongodb
-	 * @param collection The collection to grab the stream from
-	 * @param keyX The x key
-	 * @param rangeX The range of regions wanted in the x plane
-	 * @param keyY The y key
-	 * @param rangeY The range of regions wanted in the y plane
-	 * @return A cursor to the list of documents that match the criteria
+	 * Upon loading a new region this function maps all the gridabble objects into the tilemap
+	 * @param entityContainer The entity container to get the griddables from
+	 * @param tilemapName The tilemap filename to set to map the griddables to
 	 */
-	mongocxx::cursor GetRegions_(
-		mongocxx::collection& collection,
-		std::string const& keyX,
-		Range const& rangeX,
-		std::string const& keyY,
-		Range const& rangeY);
-
-	/**
-	 * Creates the query for only getting contrained regions over one dimension
-	 * @param condition The condition modified to create this query
-	 * @param key The key for the dimension
-	 * @param range The range of regions wanted in the dimension
-	 */
-	void UpdateCondition1D_(
-		document& condition /*in-out*/,
-		std::string const& key,
-		Range const& range);
-
-	/**
-	 * Combines 2 conditions together
-	 * @param combinedCondition The combined condition
-	 * @param firstCondition The first condition to combine
-	 * @param secondCondition The second condition to combine
-	 */
-	void CombineConditions_(
-			document& combinedCondition /*in-out*/,
-			document& firstCondition,
-			document& secondCondition);
+	void MapGriddablesToTilemap_(
+		EntityContainer& entityContainer,
+		std::string const& tilemapName);
 
 	LoggerType_t const mk_type;
 	mongocxx::instance const mk_inst;

@@ -1,20 +1,15 @@
 #include "database/DatabaseReader.hpp"
-#include "util/logger/Logger.hpp"
-#include "entity/EntityFactory.hpp"
-#include "entity/EntityContainer.hpp"
 
+#include "entity/EntityFactory.hpp"
+
+#include "util/logger/Logger.hpp"
+
+#include <bsoncxx/builder/stream/document.hpp>
 #include <bsoncxx/json.hpp>
 #include <bsoncxx/stdx/string_view.hpp>
 #include <bsoncxx/string/to_string.hpp>
 
 #include <string>
-
-using bsoncxx::builder::stream::open_document;
-using bsoncxx::builder::stream::close_document;
-using bsoncxx::builder::stream::finalize;
-using bsoncxx::builder::stream::open_array;
-using bsoncxx::builder::stream::close_array;
-using bsoncxx::builder::concatenate_doc;
 
 DatabaseReader::DatabaseReader(
 		char const * const database,
@@ -46,46 +41,18 @@ void DatabaseReader::LoadNewRegion(
 			EntityFactory::LoadEntityOntoContainer(entity, entityContainer);
 		}
 	}
-	EntityFactory::MapGriddablesToTilemap(entityContainer, "image/background/Generic.png");
+	MapGriddablesToTilemap_(entityContainer, "image/background/Generic.png");
 	entityContainer.m_pTileMap->Load();
 	entityContainer.InsertDrawableTransformableEntity(entityContainer.m_pTileMap);
 }
 
-mongocxx::cursor DatabaseReader::GetRegions_(
-	mongocxx::collection& collection,
-	std::string const& keyX,
-	Range const& rangeX,
-	std::string const& keyY,
-	Range const& rangeY)
+void DatabaseReader::MapGriddablesToTilemap_(
+	EntityContainer& entityContainer,
+	std::string const& tilemapName)
 {
-	document query, conditionX, conditionY;
-	UpdateCondition1D_(conditionX, keyX, rangeX);
-	UpdateCondition1D_(conditionY, keyY, rangeY);
-	CombineConditions_(query, conditionX, conditionY);
-	return collection.find(query.view());
-}
-
-void DatabaseReader::UpdateCondition1D_(
-	document& condition /*in-out*/,
-	std::string const& key,
-	Range const& range)
-{
-	condition <<
-			key <<
-			open_document <<
-				"$gte" << range.first <<
-				"$lte" << range.second <<
-			close_document;
-}
-
-void DatabaseReader::CombineConditions_(
-		document& combinedCondition /*in-out*/,
-		document& firstCondition,
-		document& secondCondition)
-{
-	combinedCondition << "$and" <<
-		open_array <<
-			open_document << concatenate_doc{firstCondition.view()} << close_document <<
-			open_document << concatenate_doc{secondCondition.view()} << close_document <<
-		close_array;
+	entityContainer.m_pTileMap->SetTextureFile(tilemapName);
+	for (auto&& gridded : entityContainer.GetGriddedEntities())
+	{
+		entityContainer.m_pTileMap->PrepareTile(gridded->m_xIndex, gridded->m_yIndex, gridded->GetSubTextureIndexPtr());
+	}
 }
