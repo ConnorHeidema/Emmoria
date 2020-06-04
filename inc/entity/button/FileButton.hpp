@@ -19,6 +19,10 @@ public:
 	bool ClickedInText_();
 
 private:
+
+	void SetText_();
+	void SetRect_();
+
 	sf::Text m_thisText;
 	sf::RectangleShape m_thisRect;
 
@@ -32,6 +36,7 @@ private:
 	int m_y;
 	int m_height;
 	int m_width;
+	int m_padding;
 	Returnable m_returnable;
 };
 
