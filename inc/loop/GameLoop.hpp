@@ -33,6 +33,11 @@ public:
 	 */
 	bool Start();
 
+	static unsigned int ms_uScreenWidth;
+	static unsigned int ms_uScreenHeight;
+
+	static unsigned int ms_screenReductionRatio;
+
 private:
 
 	/**
@@ -73,12 +78,16 @@ private:
 	void DrawAllEntities_(
 		std::shared_ptr<sf::RenderWindow> pGameWindow);
 
+	/**
+	 * Updates the location that is loaded once a new returnable has been made
+	 * @param pDatabaseReader a pointer to the database reader
+	 */
+	void UpdateMap_(std::shared_ptr<DatabaseReader> pDatabaseReader);
+
 	LoggerType_t const mk_type;
 
 	std::shared_ptr<Location> m_pLocation;
 
-	unsigned int const mk_uScreenWidth;
-	unsigned int const mk_uScreenHeight;
 	unsigned int const mk_uFrameRate;
 	char const * const mk_windowName;
 	std::string m_collection;
@@ -86,9 +95,7 @@ private:
 	char const * const mk_iconDir;
 	Returnable m_returnable;
 
-	unsigned int const mk_screenReductionRatio;
-
-	EntityContainer m_entityContainer;
+	std::shared_ptr<EntityContainer> m_pEntityContainer;
 
 	#ifdef DEBUG
 		DebugMetricVisualizer m_debugMetricVisualizer;

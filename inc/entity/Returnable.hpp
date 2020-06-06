@@ -2,6 +2,9 @@
 #define RETURNABLE_HPP
 
 #include <tuple>
+#include <memory>
+
+class EntityContainer;
 
 /**
  * The returnable consists of everything an interaction or update can provide back
@@ -15,5 +18,7 @@ public:
 	std::string collection;
 	std::string subCollection;
 	bool updated = false;
+
+	std::shared_ptr<EntityContainer> m_pNewStartingEntityContainer;
 };
 #endif

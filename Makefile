@@ -1,6 +1,8 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror -fno-rtti \
+	../src/entity/Entity.cpp \
+	../inc/entity/Entity.hpp \
 	../inc/util/enum/QuadPosition.hpp \
 	../src/util/DatabaseUtil.cpp \
 	../inc/util/DatabaseUtil.hpp \
@@ -64,6 +66,7 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	Entity.o \
 	DatabaseUtil.o \
 	Returnable.o \
 	Sign.o \

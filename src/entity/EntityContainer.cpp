@@ -90,6 +90,19 @@ void EntityContainer::InsertIUpdatableEntity(std::shared_ptr<IUpdatable> updatab
 
 #undef INSERT
 
+void EntityContainer::DeleteAllowedEntities()
+{
+	auto removeEntityPredicate = [&](std::shared_ptr<Entity> pEntity) -> bool
+	{
+		return pEntity->ShouldBeDeleted();
+	};
+
+	m_entityDrawableTransformableList.remove_if(removeEntityPredicate);
+	m_entityIGriddedList.remove_if(removeEntityPredicate);
+	m_entityIInteractableList.remove_if(removeEntityPredicate);
+	m_entityIUpdatableList.remove_if(removeEntityPredicate);
+}
+
 void EntityContainer::ClearAllEntities()
 {
 	m_entityDrawableTransformableList.clear();

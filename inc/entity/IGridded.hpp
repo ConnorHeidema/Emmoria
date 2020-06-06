@@ -1,6 +1,8 @@
 #ifndef I_GRIDDED_HPP
 #define I_GRIDDED_HPP
 
+#include "entity/Entity.hpp"
+
 #include "map/TileMap.hpp"
 #include "util/observer/IGriddedSubject.hpp"
 
@@ -12,7 +14,9 @@
  * This includes a pointer to where the subtexture is in the
  * texture file
  */
-class IGridded : public IGriddedSubject
+class IGridded
+	: public IGriddedSubject
+	, public Entity
 {
 public:
 	IGridded(int x, int y, std::shared_ptr<TileMap> pTileMap) : IGriddedSubject(x, y) { RegisterObserver(pTileMap); }

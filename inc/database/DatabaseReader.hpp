@@ -37,7 +37,7 @@ public:
 	void LoadNewRegion(
 		char const * const collectionName,
 		char const * const subCollectionName,
-		EntityContainer& entityContainer);
+		std::shared_ptr<EntityContainer> pEntityContainer);
 
 private:
 
@@ -47,7 +47,7 @@ private:
 	 * @param tilemapName The tilemap filename to set to map the griddables to
 	 */
 	void MapGriddablesToTilemap_(
-		EntityContainer& entityContainer,
+		std::shared_ptr<EntityContainer> entityContainer,
 		std::string const& tilemapName);
 
 	LoggerType_t const mk_type;

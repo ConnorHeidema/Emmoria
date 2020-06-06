@@ -21,10 +21,9 @@
 
 void EntityFactory::LoadEntityOntoContainer(
 	bsoncxx::array::element element,
-	EntityContainer& entityContainer)
+	std::shared_ptr<EntityContainer> pEntityContainer)
 {
 	auto stringName = DatabaseUtil::GetStringValueFromKeyDb(element, "name");
-
 	int x = -1;
 	int y = -1;
 	bsoncxx::document::element indexObject{element["index"]};
@@ -41,7 +40,6 @@ void EntityFactory::LoadEntityOntoContainer(
 		x = coordinate.first;
 		y = coordinate.second;
 	}
-
 	#include "util/define/DefineLoadEntity.hpp"
 		if (false) {}
 		LOAD_ENTITY(RoyalMat, IGridded)

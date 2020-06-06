@@ -24,35 +24,34 @@ DatabaseReader::DatabaseReader(
 void DatabaseReader::LoadNewRegion(
 	char const * const collectionName,
 	char const * const subCollectionName,
-	EntityContainer& entityContainer)
+	std::shared_ptr<EntityContainer> pEntityContainer)
 {
 	auto qualifiedCollection = subCollectionName != NULL && subCollectionName[0] == '\0' ?
 		std::string(collectionName) :
 		std::string(collectionName) + "." + std::string(subCollectionName);
 	auto collection = mk_clientConnection[mk_databaseName][qualifiedCollection];
 	auto documents = collection.find({});
-
 	for (auto doc : documents)
 	{
 		bsoncxx::document::element allEntities{doc["entities"]};
 		auto entitySets = allEntities.get_array().value;
 		for (auto entity : entitySets)
 		{
-			EntityFactory::LoadEntityOntoContainer(entity, entityContainer);
+			EntityFactory::LoadEntityOntoContainer(entity, pEntityContainer);
 		}
 	}
-	MapGriddablesToTilemap_(entityContainer, "image/background/Generic.png");
-	entityContainer.m_pTileMap->Load();
-	entityContainer.InsertDrawableTransformableEntity(entityContainer.m_pTileMap);
+	MapGriddablesToTilemap_(pEntityContainer, "image/background/Generic.png");
+	pEntityContainer->m_pTileMap->Load();
+	pEntityContainer->InsertDrawableTransformableEntity(pEntityContainer->m_pTileMap);
 }
 
 void DatabaseReader::MapGriddablesToTilemap_(
-	EntityContainer& entityContainer,
+	std::shared_ptr<EntityContainer> pEntityContainer,
 	std::string const& tilemapName)
 {
-	entityContainer.m_pTileMap->SetTextureFile(tilemapName);
-	for (auto&& gridded : entityContainer.GetGriddedEntities())
+	pEntityContainer->m_pTileMap->SetTextureFile(tilemapName);
+	for (auto&& gridded : pEntityContainer->GetGriddedEntities())
 	{
-		entityContainer.m_pTileMap->PrepareTile(gridded->m_xIndex, gridded->m_yIndex, gridded->GetSubTextureIndexPtr());
+		pEntityContainer->m_pTileMap->PrepareTile(gridded->m_xIndex, gridded->m_yIndex, gridded->GetSubTextureIndexPtr());
 	}
 }

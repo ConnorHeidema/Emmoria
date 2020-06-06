@@ -13,7 +13,7 @@ Player::Player(int x, int y, std::shared_ptr<TileMap> pTileMap,
 	m_vertices.setPrimitiveType(sf::Quads);
 	m_vertices.resize(4);
 	m_tileset.loadFromFile(m_tilesetPath);
-	PopulateQuad_(8,4);
+	PopulateQuad_(x, y);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -48,20 +48,20 @@ void Player::DefineQuadCorners_(
 	int yTileIndex)
 {
 	currentTile[TOP_LEFT].position = sf::Vector2f(
-		xTileIndex * m_tileUnitSize.x,
-		yTileIndex * m_tileUnitSize.y);
+		xTileIndex,
+		yTileIndex);
 
 	currentTile[TOP_RIGHT].position = sf::Vector2f(
-		(xTileIndex + 1) * m_tileUnitSize.x,
-		yTileIndex * m_tileUnitSize.y);
+		xTileIndex + m_tileUnitSize.x,
+		yTileIndex);
 
 	currentTile[BOTTOM_RIGHT].position = sf::Vector2f(
-		(xTileIndex + 1) * m_tileUnitSize.x,
-		(yTileIndex + 1) * m_tileUnitSize.y);
+		xTileIndex + m_tileUnitSize.x,
+		yTileIndex + m_tileUnitSize.y);
 
 	currentTile[BOTTOM_LEFT].position = sf::Vector2f(
-		xTileIndex * m_tileUnitSize.x,
-		(yTileIndex + 1) * m_tileUnitSize.y);
+		xTileIndex,
+		yTileIndex + m_tileUnitSize.y);
 }
 
 void Player::ApplyTexturesToCorners_(
@@ -69,11 +69,6 @@ void Player::ApplyTexturesToCorners_(
 	int textureRow,
 	int textureColumn)
 {
-		s_pLogger->WarningLog(mk_type, "HERE4");
-	currentTile[TOP_LEFT].texCoords = sf::Vector2f
-		(textureRow * m_tileUnitSize.x,
-		textureColumn * m_tileUnitSize.y);
-
 	currentTile[TOP_RIGHT].texCoords = sf::Vector2f(
 		(textureRow + 1) * m_tileUnitSize.x,
 		textureColumn * m_tileUnitSize.y);

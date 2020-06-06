@@ -1,8 +1,15 @@
 #include "entity/button/FileButton.hpp"
+#include "entity/player/Player.hpp"
 
 #include "util/DatabaseUtil.hpp"
 
+#include "entity/EntityFactory.hpp"
+
+#include "loop/GameLoop.hpp"
+
 #include <SFML/Graphics.hpp>
+
+unsigned int FileButton::ms_instanceCount = 0;
 
 FileButton::FileButton(
 		int x,
@@ -19,7 +26,10 @@ FileButton::FileButton(
 		, m_height(0)
 		, m_width(0)
 		, m_padding(10)
+		, mk_defaultColor(sf::Color::Blue)
+		, mk_MouseOverColor(sf::Color::Green)
 		, m_returnable()
+		, m_element(element)
 {
 	std::string fullyQualifiedCollection = DatabaseUtil::GetStringValueFromKeyDb(element, "area");
 	m_returnable.collection = fullyQualifiedCollection.substr(0, fullyQualifiedCollection.find('.'));
@@ -28,6 +38,12 @@ FileButton::FileButton(
 
 	SetText_();
 	SetRect_();
+	ms_instanceCount++;
+}
+
+FileButton::~FileButton()
+{
+	ms_instanceCount--;
 }
 
 void FileButton::SetText_()
@@ -40,6 +56,8 @@ void FileButton::SetText_()
 	m_height = int(m_thisText.getGlobalBounds().height);
 	m_width = int(m_thisText.getGlobalBounds().width);
 
+	m_y += ms_instanceCount * m_height * 3;
+
 	m_thisText.setPosition(sf::Vector2f(m_x - m_width/2, m_y - m_height/2));
 	m_thisText.setFillColor(sf::Color::White);
 }
@@ -50,7 +68,10 @@ void FileButton::SetRect_()
 	m_thisRect.setPosition(sf::Vector2f(m_x - m_width/2 - m_padding, m_y- m_height/2 - m_padding));
 	m_thisRect.setSize(sf::Vector2f(m_width + 2 * m_padding, m_height + 2 * m_padding));
 	m_thisRect.setOutlineColor(sf::Color::Black);
-	m_thisRect.setFillColor(sf::Color::Blue);
+	m_thisRect.setFillColor(mk_defaultColor);
+
+	m_height = int(m_thisRect.getGlobalBounds().height);
+	m_width = int(m_thisRect.getGlobalBounds().width);
 }
 
 void FileButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -61,20 +82,29 @@ void FileButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 Returnable FileButton::Update()
 {
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) || !ClickedInText_())
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) || !MouseInRectangle_())
 	{
+		m_thisRect.setFillColor(MouseInRectangle_() ? mk_MouseOverColor : mk_defaultColor);
 		return Returnable();
 	}
-	// Processing
+	m_returnable.m_pNewStartingEntityContainer = std::make_shared<EntityContainer>(
+		sf::Vector2u(GameLoop::ms_screenReductionRatio, GameLoop::ms_screenReductionRatio),
+		GameLoop::ms_uScreenWidth/GameLoop::ms_screenReductionRatio,
+		GameLoop::ms_uScreenHeight/GameLoop::ms_screenReductionRatio);
+	m_returnable.
+		m_pNewStartingEntityContainer->
+			InsertDrawableTransformableIInteractableIUpdatableEntity(
+				std::make_shared<Player>(100, 600, nullptr, m_element));
+
 	m_returnable.updated = true;
 	return m_returnable;
 }
 
-bool FileButton::ClickedInText_()
+bool FileButton::MouseInRectangle_()
 {
 	return
-		(int(sf::Mouse::getPosition().x) > m_x &&
-		int(sf::Mouse::getPosition().x) < m_x + m_width &&
-		int(sf::Mouse::getPosition().y) > m_y &&
-		int(sf::Mouse::getPosition().y) < m_y + m_height);
+		(int(sf::Mouse::getPosition().x) > m_x - m_width/2 &&
+		int(sf::Mouse::getPosition().x) <  m_x + m_width/2 &&
+		int(sf::Mouse::getPosition().y) > m_y - m_height/2 &&
+		int(sf::Mouse::getPosition().y) < m_y + m_height/2);
 }

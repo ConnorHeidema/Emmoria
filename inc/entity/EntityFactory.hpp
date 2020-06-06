@@ -19,7 +19,7 @@ public:
 	 */
 	static void LoadEntityOntoContainer(
 		bsoncxx::array::element element,
-		EntityContainer& entityContainer);
+		std::shared_ptr<EntityContainer> entityContainer);
 };
 
 #endif

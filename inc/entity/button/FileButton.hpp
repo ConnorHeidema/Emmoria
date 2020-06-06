@@ -16,11 +16,22 @@ public:
 
 	Returnable Update() override;
 
-	bool ClickedInText_();
+	bool MouseInRectangle_();
+
+	~FileButton();
 
 private:
 
+	static unsigned int ms_instanceCount;
+
+	/**
+	 * Sets the text upon initialization of the file data
+	 */
 	void SetText_();
+
+	/**
+	 * Sets the bounding rectangle for the text that will be seen
+	 */
 	void SetRect_();
 
 	sf::Text m_thisText;
@@ -37,7 +48,12 @@ private:
 	int m_height;
 	int m_width;
 	int m_padding;
+
+	sf::Color const mk_defaultColor;
+	sf::Color const mk_MouseOverColor;
+
 	Returnable m_returnable;
+	bsoncxx::array::element m_element;
 };
 
 #endif

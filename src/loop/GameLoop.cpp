@@ -2,33 +2,38 @@
 
 #include "util/logger/Logger.hpp"
 
+unsigned int GameLoop::ms_uScreenWidth = 0;
+unsigned int GameLoop::ms_uScreenHeight = 0;
+unsigned int GameLoop::ms_screenReductionRatio = 120;
+
+
 GameLoop::GameLoop()
 	: mk_type("GameLoop")
 	, m_pLocation(std::make_shared<Location>(std::pair<int, int>(0, 0)))
-	, mk_uScreenWidth(sf::VideoMode::getDesktopMode().width)
-	, mk_uScreenHeight(sf::VideoMode::getDesktopMode().height)
 	, mk_uFrameRate(60)
 	, mk_windowName("Emmoria")
 	, m_collection("files")
 	, m_subcollection("")
 	, mk_iconDir("image/logo/logo.png")
 	, m_returnable()
-	, mk_screenReductionRatio(120)
-	, m_entityContainer(
-		sf::Vector2u(mk_screenReductionRatio, mk_screenReductionRatio),
-		mk_uScreenWidth/mk_screenReductionRatio,
-		mk_uScreenHeight/mk_screenReductionRatio)
+	, m_pEntityContainer(std::make_shared<EntityContainer>(
+		sf::Vector2u(GameLoop::ms_screenReductionRatio, GameLoop::ms_screenReductionRatio),
+		sf::VideoMode::getDesktopMode().width/GameLoop::ms_screenReductionRatio,
+		sf::VideoMode::getDesktopMode().height/GameLoop::ms_screenReductionRatio))
 	#ifdef DEBUG
 		, m_debugMetricVisualizer()
 	#endif
-{ }
+{
+	GameLoop::ms_uScreenWidth = sf::VideoMode::getDesktopMode().width;
+	GameLoop::ms_uScreenHeight = sf::VideoMode::getDesktopMode().height;
+}
 
 bool GameLoop::Start()
 {
 	s_pLogger->DebugLog(mk_type, "Gameloop started");
 	auto pGameWindow = GetGameWindowPtr_();
 	auto pDatabaseReader = GetDatabaseReaderPtr_();
-	pDatabaseReader->LoadNewRegion(m_collection.c_str(), m_subcollection.c_str(), m_entityContainer);
+	pDatabaseReader->LoadNewRegion(m_collection.c_str(), m_subcollection.c_str(), m_pEntityContainer);
 	while (pGameWindow->isOpen()) { RunLoop_(pGameWindow, pDatabaseReader); }
 	return true;
 }
@@ -36,7 +41,7 @@ bool GameLoop::Start()
 std::shared_ptr<sf::RenderWindow> GameLoop::GetGameWindowPtr_()
 {
 	auto pWindow(std::make_shared<sf::RenderWindow>
-			(sf::VideoMode(mk_uScreenWidth, mk_uScreenHeight),
+			(sf::VideoMode(GameLoop::ms_uScreenWidth, GameLoop::ms_uScreenHeight),
 			mk_windowName,
 			sf::Style::Fullscreen));
 	pWindow->setFramerateLimit(mk_uFrameRate);
@@ -85,13 +90,7 @@ void GameLoop::RunLoop_(
 	UpdateAllEntities_();
 	if (m_returnable.updated)
 	{
-		m_entityContainer.ClearAllEntities();
-	 	m_collection = m_returnable.collection;
-		m_subcollection = m_returnable.subCollection;
-		s_pLogger->DebugLog(mk_type, (std::string("Loading new region ") + m_collection + std::string(".") + m_subcollection).c_str());
-		pDatabaseReader->LoadNewRegion(m_collection.c_str(), m_subcollection.c_str(), m_entityContainer);
-		m_pLocation->Reset();
-		m_returnable = Returnable();
+		UpdateMap_(pDatabaseReader);
 	}
 	#ifdef DEBUG
 		m_debugMetricVisualizer.Update();
@@ -101,16 +100,28 @@ void GameLoop::RunLoop_(
 	CheckForEvents_(pGameWindow);
 }
 
+void GameLoop::UpdateMap_(std::shared_ptr<DatabaseReader> pDatabaseReader)
+{
+	 	m_collection = m_returnable.collection;
+		m_subcollection = m_returnable.subCollection;
+		m_pEntityContainer = m_returnable.m_pNewStartingEntityContainer;
+		s_pLogger->DebugLog(mk_type, (std::string("Loading new region ") + m_collection + std::string(".") + m_subcollection).c_str());
+		pDatabaseReader->LoadNewRegion(m_collection.c_str(), m_subcollection.c_str(), m_pEntityContainer);
+		m_pLocation->Reset();
+		m_returnable = Returnable();
+}
+
 void GameLoop::UpdateAllEntities_()
 {
-	for (auto&& pEntity : m_entityContainer.GetUpdatableEntities())
+	for (auto&& pEntity : m_pEntityContainer->GetUpdatableEntities())
 	{
 		auto returnable = pEntity->Update();
-		if (returnable.updated)
+		if (returnable.m_pNewStartingEntityContainer)
 		{
 			s_pLogger->InfoLog(mk_type, "Loading new location");
 			m_returnable.collection = returnable.collection;
 			m_returnable.subCollection = returnable.subCollection;
+			m_returnable.m_pNewStartingEntityContainer = returnable.m_pNewStartingEntityContainer;
 			m_returnable.updated = true;
 			break;
 		}
@@ -121,7 +132,7 @@ void GameLoop::DrawAllEntities_(
 	std::shared_ptr<sf::RenderWindow> pGameWindow)
 {
 	auto pair = m_pLocation->GetCurrentPosition();
-	for (auto&& pEntity : m_entityContainer.GetDrawableTransformableEntities())
+	for (auto&& pEntity : m_pEntityContainer->GetDrawableTransformableEntities())
 	{
 		pEntity->setPosition(sf::Vector2f(-pair.first, -pair.second));
 		pGameWindow->draw(*pEntity);
