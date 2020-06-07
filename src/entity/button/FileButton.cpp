@@ -96,7 +96,7 @@ Returnable FileButton::Update()
 	m_returnable.
 		m_pNewStartingEntityContainer->
 			InsertDrawableTransformableIInteractableIUpdatableEntity(
-				std::make_shared<Player>(100, 600, nullptr, m_element));
+				std::make_shared<Player>(100, 600, m_pTileMap, m_element));
 
 	m_returnable.updated = true;
 	return m_returnable;

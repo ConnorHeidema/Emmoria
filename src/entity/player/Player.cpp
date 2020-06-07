@@ -10,9 +10,11 @@ Player::Player(int x, int y, std::shared_ptr<TileMap> pTileMap,
 		m_tileUnitSize(sf::Vector2i(120, 120)),
 		mk_type("Player")
 {
+
 	m_vertices.setPrimitiveType(sf::Quads);
 	m_vertices.resize(4);
 	m_tileset.loadFromFile(m_tilesetPath);
+	m_tileset = *pTileMap->m_textureContainer.GetTexture(m_tilesetPath);
 	PopulateQuad_(x, y);
 }
 
