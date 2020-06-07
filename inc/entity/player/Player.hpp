@@ -53,7 +53,9 @@ private:
 	sf::Vector2u const m_tileUnitSize;
 	int m_x;
 	int m_y;
-	int m_currentDirection;
+	int m_currentPhase;
+	int m_framesUntilAnimationChange;
+	int m_currentFrame;
 	LoggerType_t const mk_type;
 };
 

@@ -17,7 +17,9 @@ Player::Player(int x, int y, std::shared_ptr<TileMap> pTileMap,
 		m_tileUnitSize(sf::Vector2i(120, 120)),
 		m_x(x),
 		m_y(y),
-		m_currentDirection(0),
+		m_currentPhase(0),
+		m_framesUntilAnimationChange(15),
+		m_currentFrame(0),
 		mk_type("Player")
 {
 	m_vertices.setPrimitiveType(sf::Quads);
@@ -34,22 +36,39 @@ void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(m_vertices, states);
 }
 
-
 Returnable Player::Update()
 {
+	m_currentFrame++;
+	int currentFace = 0;
 	int xDelta = sf::Mouse::getPosition().x - (m_x + m_tileUnitSize.x/2);
 	int yDelta = sf::Mouse::getPosition().y - (m_y + m_tileUnitSize.y/2);
 	int wideScreenFactor = 2;
 	if (std::abs(xDelta/wideScreenFactor) > std::abs(yDelta))
 	{
-		m_currentDirection = (xDelta > 0 ? rightFace : leftFace);
+		currentFace = (xDelta > 0 ? rightFace : leftFace);
 	}
 	else
 	{
-		m_currentDirection = (yDelta > 0 ? downFace : upFace);
+		currentFace = (yDelta > 0 ? downFace : upFace);
 	}
+
 	sf::Vertex* currentTile = &m_vertices[0];
-	ApplyTexturesToCorners_(currentTile, m_currentDirection, 0);
+	if (m_currentFrame % m_framesUntilAnimationChange == 0)
+	{
+		m_currentFrame = 0;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::S) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			m_currentPhase = (m_currentPhase + 1) % 4;
+		}
+		else
+		{
+			m_currentPhase = 0;
+		}
+	}
+	ApplyTexturesToCorners_(currentTile, currentFace + (4 * m_currentPhase), 0);
 	return Returnable();
 }
 

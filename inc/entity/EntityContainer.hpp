@@ -22,7 +22,9 @@ public:
 
 	std::list<std::shared_ptr<DrawableTransformable>> GetDrawableTransformableEntities();
 	std::list<std::shared_ptr<IGridded>> GetGriddedEntities();
-	std::list<std::shared_ptr<IInteractable>> GetInteractableEntities();
+	std::list<std::shared_ptr<IInteractable>> GetInteractableEntities(); // In a world with enough time or if I wanted to include boost, this would
+																		 // would be a quad map instead of a list. Someday it likely will need to be
+																		 // a quad map for significant performance gains
 	std::list<std::shared_ptr<IUpdatable>> GetUpdatableEntities();
 
 	#define REMOVE(entity) void Remove##entity##Entity(std::shared_ptr<entity>)
