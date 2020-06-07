@@ -29,14 +29,14 @@ void EntityFactory::LoadEntityOntoContainer(
 	bsoncxx::document::element indexObject{element["index"]};
 	if (indexObject.length() != 0)
 	{
-		Coordinate coordinate = DatabaseUtil::GetCoordinate_(element);
+		Coordinate coordinate = DatabaseUtil::GetPositionValueFromKeyDb_(element, "index");
 		x = coordinate.first;
 		y = coordinate.second;
 	}
 	bsoncxx::document::element positionObject{element["position"]};
 	if (positionObject.length() != 0)
 	{
-		Coordinate coordinate = DatabaseUtil::GetLocation_(element);
+		Coordinate coordinate = DatabaseUtil::GetPositionValueFromKeyDb_(element, "position");
 		x = coordinate.first;
 		y = coordinate.second;
 	}

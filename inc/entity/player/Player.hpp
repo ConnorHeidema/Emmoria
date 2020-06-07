@@ -9,6 +9,12 @@
 class Player
 	: public DrawableTransformableIInteractableIUpdatable
 {
+
+	static int const downFace;
+	static int const rightFace;
+	static int const upFace;
+	static int const leftFace;
+
 public:
 	Player(int x, int y, std::shared_ptr<TileMap> pTileMap,
 		bsoncxx::array::element element);
@@ -45,7 +51,11 @@ private:
 
 	std::string const m_tilesetPath;
 	sf::Vector2u const m_tileUnitSize;
+	int m_x;
+	int m_y;
+	int m_currentDirection;
 	LoggerType_t const mk_type;
 };
+
 
 #endif

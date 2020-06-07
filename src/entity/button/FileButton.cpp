@@ -26,17 +26,22 @@ FileButton::FileButton(
 		, m_height(0)
 		, m_width(0)
 		, m_padding(10)
+		, m_playerX(0)
+		, m_playerY(0)
 		, mk_defaultColor(sf::Color::Blue)
 		, mk_MouseOverColor(sf::Color::Green)
 		, m_returnable()
-		, m_element(element)
 		, m_pTileMap(pTileMap)
+		, m_element(element) // m_element cannot be used outside of the constructor currently because the document it
+							 // looks at loses scope
 {
 	std::string fullyQualifiedCollection = DatabaseUtil::GetStringValueFromKeyDb(element, "area");
 	m_returnable.collection = fullyQualifiedCollection.substr(0, fullyQualifiedCollection.find('.'));
 	m_returnable.subCollection = fullyQualifiedCollection.substr(fullyQualifiedCollection.find(".") + 1);
-	//GetIntValue()
 
+	auto playerCoordinates = DatabaseUtil::GetPositionValueFromKeyDb_(element, "player");
+	m_playerX = playerCoordinates.first;
+	m_playerY = playerCoordinates.second;
 	SetText_();
 	SetRect_();
 	ms_instanceCount++;
@@ -96,7 +101,7 @@ Returnable FileButton::Update()
 	m_returnable.
 		m_pNewStartingEntityContainer->
 			InsertDrawableTransformableIInteractableIUpdatableEntity(
-				std::make_shared<Player>(100, 600, m_pTileMap, m_element));
+				std::make_shared<Player>(m_playerX, m_playerY, m_pTileMap, m_element));
 
 	m_returnable.updated = true;
 	return m_returnable;

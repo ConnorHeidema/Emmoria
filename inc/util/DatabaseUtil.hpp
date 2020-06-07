@@ -54,14 +54,7 @@ public:
 			document& firstCondition,
 			document& secondCondition);
 
-	/**
-	 * Gets the coordinate that the entity should be
-	 * @param element The element that the index may be found
-	 * @return The coordinate.
-	 */
-	static Coordinate GetCoordinate_(bsoncxx::array::element element);
-
-	static Coordinate GetLocation_(bsoncxx::array::element element);
+	static Coordinate GetPositionValueFromKeyDb_(bsoncxx::array::element element, char const * const key);
 
 	/**
 	 * Gets the name of the entity

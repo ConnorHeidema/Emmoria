@@ -49,12 +49,15 @@ private:
 	int m_width;
 	int m_padding;
 
+	int m_playerX;
+	int m_playerY;
+
 	sf::Color const mk_defaultColor;
 	sf::Color const mk_MouseOverColor;
 
 	Returnable m_returnable;
-	bsoncxx::array::element m_element;
 	std::shared_ptr<TileMap> m_pTileMap;
+	bsoncxx::array::element m_element;
 };
 
 #endif

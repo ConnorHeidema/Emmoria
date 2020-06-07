@@ -1,5 +1,7 @@
 #include "util/DatabaseUtil.hpp"
 
+#include "util/logger/Logger.hpp"
+
 using bsoncxx::builder::stream::open_document;
 using bsoncxx::builder::stream::close_document;
 using bsoncxx::builder::stream::finalize;
@@ -46,19 +48,9 @@ void DatabaseUtil::CombineConditions_(
 		close_array;
 }
 
-Coordinate DatabaseUtil::GetCoordinate_(bsoncxx::array::element element)
+Coordinate DatabaseUtil::GetPositionValueFromKeyDb_(bsoncxx::array::element element, char const * const key)
 {
-	bsoncxx::document::element position{element["index"]};
-	bsoncxx::document::element xPositionElement{position["x"]};
-	int xIndex = xPositionElement.get_int32();
-	bsoncxx::document::element yPositionElement{position["y"]};
-	int yIndex = yPositionElement.get_int32();
-	return Coordinate(xIndex, yIndex);
-}
-
-Coordinate DatabaseUtil::GetLocation_(bsoncxx::array::element element)
-{
-	bsoncxx::document::element position{element["position"]};
+	bsoncxx::document::element position{element[key]};
 	bsoncxx::document::element xPositionElement{position["x"]};
 	int xIndex = xPositionElement.get_int32();
 	bsoncxx::document::element yPositionElement{position["y"]};
