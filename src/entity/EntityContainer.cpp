@@ -1,5 +1,8 @@
 #include "entity/EntityContainer.hpp"
 
+EntityContainer::EntityContainer(TextureContainer& textureContainer, sf::Vector2u tileUnitSize, unsigned int tileWidth, unsigned int tileHeight)
+	: m_textureContainer(textureContainer), m_pTileMap(std::make_shared<TileMap>(tileUnitSize, tileWidth, tileHeight, textureContainer)) {}
+
 std::list<std::shared_ptr<DrawableTransformable>> EntityContainer::GetDrawableTransformableEntities()
 {
 	return m_entityDrawableTransformableList;

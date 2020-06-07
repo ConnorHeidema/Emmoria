@@ -30,6 +30,7 @@ FileButton::FileButton(
 		, mk_MouseOverColor(sf::Color::Green)
 		, m_returnable()
 		, m_element(element)
+		, m_pTileMap(pTileMap)
 {
 	std::string fullyQualifiedCollection = DatabaseUtil::GetStringValueFromKeyDb(element, "area");
 	m_returnable.collection = fullyQualifiedCollection.substr(0, fullyQualifiedCollection.find('.'));
@@ -88,6 +89,7 @@ Returnable FileButton::Update()
 		return Returnable();
 	}
 	m_returnable.m_pNewStartingEntityContainer = std::make_shared<EntityContainer>(
+		m_pTileMap->m_textureContainer,
 		sf::Vector2u(GameLoop::ms_screenReductionRatio, GameLoop::ms_screenReductionRatio),
 		GameLoop::ms_uScreenWidth/GameLoop::ms_screenReductionRatio,
 		GameLoop::ms_uScreenHeight/GameLoop::ms_screenReductionRatio);
@@ -104,7 +106,7 @@ bool FileButton::MouseInRectangle_()
 {
 	return
 		(int(sf::Mouse::getPosition().x) > m_x - m_width/2 &&
-		int(sf::Mouse::getPosition().x) <  m_x + m_width/2 &&
-		int(sf::Mouse::getPosition().y) > m_y - m_height/2 &&
-		int(sf::Mouse::getPosition().y) < m_y + m_height/2);
+		 int(sf::Mouse::getPosition().x) < m_x + m_width/2 &&
+		 int(sf::Mouse::getPosition().y) > m_y - m_height/2 &&
+		 int(sf::Mouse::getPosition().y) < m_y + m_height/2);
 }

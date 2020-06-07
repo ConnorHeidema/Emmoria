@@ -1,12 +1,14 @@
 #include "map/TileMap.hpp"
 #include "util/logger/Logger.hpp"
+#include "map/TextureContainer.hpp"
 
 #include <string>
 
 TileMap::TileMap(
 		sf::Vector2u const tileUnitSize,
 		unsigned int const tileWidth,
-		unsigned int const tileHeight)
+		unsigned int const tileHeight,
+		TextureContainer& textureContainer)
 		: DrawableTransformable(0, 0, nullptr)
 		, m_tileUnitSize(tileUnitSize)
 		, m_tileWidth(tileWidth)
@@ -14,6 +16,7 @@ TileMap::TileMap(
 		, m_quadVertices(4u)
 		, mk_tileNotDefined(-1)
 		, mk_type("TileMap")
+		, m_textureContainer(textureContainer)
 {
 	m_screenArrayVect.assign(tileWidth * tileHeight, nullptr);
 }
@@ -37,13 +40,8 @@ void TileMap::PrepareTile(int xIndex, int yIndex, std::shared_ptr<int> pSubTextu
 
 bool TileMap::SetTextureFile(std::string const tilesetPath)
 {
-	if (m_tileset.loadFromFile(tilesetPath))
-	{
-		s_pLogger->DebugLog(mk_type, (std::string("Loaded texture for: ") + tilesetPath).c_str());
-		return true;
-	}
-	s_pLogger->ErrorLog(mk_type, (std::string("Could not load texture") + tilesetPath).c_str());
-	return false;
+	m_tileset = *m_textureContainer.GetTexture(tilesetPath);
+	return true;
 }
 
 

@@ -15,9 +15,9 @@ class EntityContainer
 {
 public:
 
-	EntityContainer(sf::Vector2u tileUnitSize, unsigned int tileWidth, unsigned int tileHeight)
-		: m_pTileMap(std::make_shared<TileMap>(tileUnitSize, tileWidth, tileHeight)) {}
+	EntityContainer(TextureContainer& textureContainer, sf::Vector2u tileUnitSize, unsigned int tileWidth, unsigned int tileHeight);
 
+	TextureContainer& m_textureContainer;
 	std::shared_ptr<TileMap> m_pTileMap;
 
 	std::list<std::shared_ptr<DrawableTransformable>> GetDrawableTransformableEntities();
@@ -63,6 +63,7 @@ private:
 	std::list<std::shared_ptr<IGridded>> m_entityIGriddedList;
 	std::list<std::shared_ptr<IInteractable>> m_entityIInteractableList;
 	std::list<std::shared_ptr<IUpdatable>> m_entityIUpdatableList;
+
 };
 
 #endif

@@ -5,6 +5,8 @@
 #include "util/observer/IGriddedObserver.hpp"
 #include "util/enum/QuadPosition.hpp"
 
+#include "map/TextureContainer.hpp"
+
 #include "entity/DrawableTransformable.hpp"
 
 #include <memory>
@@ -29,7 +31,8 @@ public:
 	TileMap(
 		sf::Vector2u const tileUnitSize,
 		unsigned int const tileWidth,
-		unsigned int const tileHeight);
+		unsigned int const tileHeight,
+		TextureContainer& textureContainer);
 
 	/**
 	 * Prepares a single tile to be drawn
@@ -117,5 +120,7 @@ private:
 	int const mk_tileNotDefined;
 
 	LoggerType_t const mk_type;
+public:
+	TextureContainer& m_textureContainer;
 };
 #endif

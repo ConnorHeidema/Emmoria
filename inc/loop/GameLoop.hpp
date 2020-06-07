@@ -5,6 +5,8 @@
 
 #include "util/Location.hpp"
 
+#include "map/TextureContainer.hpp"
+
 #ifdef DEBUG
 	#include "debug/DebugMetricVisualizer.hpp"
 #endif
@@ -94,6 +96,7 @@ private:
 	std::string m_subcollection;
 	char const * const mk_iconDir;
 	Returnable m_returnable;
+	TextureContainer m_textureContainer;
 
 	std::shared_ptr<EntityContainer> m_pEntityContainer;
 

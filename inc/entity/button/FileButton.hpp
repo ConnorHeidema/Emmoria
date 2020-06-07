@@ -54,6 +54,7 @@ private:
 
 	Returnable m_returnable;
 	bsoncxx::array::element m_element;
+	std::shared_ptr<TileMap> m_pTileMap;
 };
 
 #endif

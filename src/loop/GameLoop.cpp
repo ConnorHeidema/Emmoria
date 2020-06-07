@@ -16,7 +16,8 @@ GameLoop::GameLoop()
 	, m_subcollection("")
 	, mk_iconDir("image/logo/logo.png")
 	, m_returnable()
-	, m_pEntityContainer(std::make_shared<EntityContainer>(
+	, m_textureContainer()
+	, m_pEntityContainer(std::make_shared<EntityContainer>(m_textureContainer,
 		sf::Vector2u(GameLoop::ms_screenReductionRatio, GameLoop::ms_screenReductionRatio),
 		sf::VideoMode::getDesktopMode().width/GameLoop::ms_screenReductionRatio,
 		sf::VideoMode::getDesktopMode().height/GameLoop::ms_screenReductionRatio))
