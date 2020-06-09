@@ -132,10 +132,10 @@ void GameLoop::UpdateAllEntities_()
 void GameLoop::DrawAllEntities_(
 	std::shared_ptr<sf::RenderWindow> pGameWindow)
 {
-	auto pair = m_pLocation->GetCurrentPosition();
+	//auto pair = m_pLocation->GetCurrentPosition();
 	for (auto&& pEntity : m_pEntityContainer->GetDrawableTransformableEntities())
 	{
-		pEntity->setPosition(sf::Vector2f(-pair.first, -pair.second));
+		//pEntity->setPosition(sf::Vector2f(-pair.first, -pair.second));
 		pGameWindow->draw(*pEntity);
 	}
 }

@@ -12,13 +12,16 @@ class Grass
 	: public IGriddedIUpdatable
 {
 public:
-	Grass(int x, int y, std::shared_ptr<TileMap> pTileMap,
+	Grass(
+		int x,
+		int y,
+		std::shared_ptr<TileMap> pTileMap,
 		bsoncxx::array::element element) :
-		IGriddedIUpdatable(x, y, pTileMap),
-		m_ptmp(std::make_shared<int>(0)),
-		m_currentFrame(0),
-		m_cyclicFrame(120),
-		m_numAnimations(4)
+			IGriddedIUpdatable(x, y, pTileMap),
+			m_ptmp(std::make_shared<int>(0)),
+			m_currentFrame(0),
+			m_cyclicFrame(120),
+			m_numAnimations(4)
 	{}
 
 	virtual ~Grass() {};

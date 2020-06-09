@@ -2,6 +2,8 @@
 
 #include "util/enum/QuadPosition.hpp"
 
+#include "util/InputUtil.hpp"
+
 #include <cstdlib>
 
 int const Player::downFace = 0;
@@ -36,30 +38,22 @@ void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(m_vertices, states);
 }
 
-Returnable Player::Update()
+int Player::GetCurrentFace_()
 {
-	m_currentFrame++;
-	int currentFace = 0;
 	int xDelta = sf::Mouse::getPosition().x - (m_x + m_tileUnitSize.x/2);
 	int yDelta = sf::Mouse::getPosition().y - (m_y + m_tileUnitSize.y/2);
 	int wideScreenFactor = 2;
-	if (std::abs(xDelta/wideScreenFactor) > std::abs(yDelta))
-	{
-		currentFace = (xDelta > 0 ? rightFace : leftFace);
-	}
-	else
-	{
-		currentFace = (yDelta > 0 ? downFace : upFace);
-	}
+	return (std::abs(xDelta/wideScreenFactor) > std::abs(yDelta) ?
+				(xDelta > 0 ? rightFace : leftFace) :
+				(yDelta > 0 ? downFace : upFace));
+}
 
-	sf::Vertex* currentTile = &m_vertices[0];
+void Player::CurrentPhaseProcedure_()
+{
 	if (m_currentFrame % m_framesUntilAnimationChange == 0)
 	{
 		m_currentFrame = 0;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) ||
-			sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
-			sf::Keyboard::isKeyPressed(sf::Keyboard::S) ||
-			sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if (InputUtil::WasdPressed())
 		{
 			m_currentPhase = (m_currentPhase + 1) % 4;
 		}
@@ -68,7 +62,38 @@ Returnable Player::Update()
 			m_currentPhase = 0;
 		}
 	}
+}
+
+void Player::CurrentPositionProcedure_()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		m_y -= 1;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		m_x -= 1;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		m_y += 1;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		m_x += 1;
+	}
+}
+
+Returnable Player::Update()
+{
+	m_currentFrame++;
+	int currentFace = GetCurrentFace_();
+	CurrentPhaseProcedure_();
+	CurrentPositionProcedure_();
+
+	sf::Vertex* currentTile = &m_vertices[0];
 	ApplyTexturesToCorners_(currentTile, currentFace + (4 * m_currentPhase), 0);
+	DefineQuadCorners_(currentTile, m_x, m_y);
 	return Returnable();
 }
 

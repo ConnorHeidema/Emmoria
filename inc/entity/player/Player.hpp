@@ -32,6 +32,12 @@ public:
 
 private:
 
+	void CurrentPositionProcedure_();
+
+	int GetCurrentFace_();
+	void CurrentPhaseProcedure_();
+
+
 	void PopulateQuad_(
 		int const xTileIndex,
 		int const yTileIndex);

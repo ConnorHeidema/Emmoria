@@ -62,6 +62,15 @@ public:
 	 * @return The name.
 	 */
 	static std::string GetStringValueFromKeyDb(bsoncxx::array::element element, char const * const key);
+
+	/**
+	 * Gets the name of the entity
+	 * @param element The element the name can be found from
+	 * @return The name.
+	 */
+	static std::string GetStringValueFromKeyDb(
+		bsoncxx::v_noabi::document::view element,
+		char const * const key);
 };
 
 #endif

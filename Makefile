@@ -1,6 +1,8 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror -fno-rtti \
+	../src/util/InputUtil.cpp \
+	../inc/util/InputUtil.hpp \
 	../src/map/TextureContainer.cpp \
 	../inc/map/TextureContainer.hpp \
 	../src/entity/Entity.cpp \
@@ -68,6 +70,7 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	InputUtil.o \
 	TextureContainer.o \
 	Entity.o \
 	DatabaseUtil.o \

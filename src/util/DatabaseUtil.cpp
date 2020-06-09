@@ -66,3 +66,13 @@ std::string DatabaseUtil::GetStringValueFromKeyDb(
 	auto entityNameValue = entityName.get_utf8().value;
 	return entityNameValue.to_string();
 }
+
+std::string DatabaseUtil::GetStringValueFromKeyDb(
+	bsoncxx::v_noabi::document::view element,
+	char const * const key)
+{
+
+	bsoncxx::document::element entityName{element[key]};
+	auto entityNameValue = entityName.get_utf8().value;
+	return entityNameValue.to_string();
+}

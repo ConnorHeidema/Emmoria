@@ -11,7 +11,8 @@ class Corner
 {
 public:
 	Corner(int x, int y, std::shared_ptr<TileMap> pTileMap,
-		bsoncxx::array::element element) : IGridded(x, y, pTileMap) {}
+		bsoncxx::array::element element);
+
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 };
 
