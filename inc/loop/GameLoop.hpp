@@ -71,6 +71,9 @@ private:
 		std::shared_ptr<sf::RenderWindow> pGameWindow,
 		std::shared_ptr<DatabaseReader> pDatabaseReader);
 
+	/**
+	 * Updates all the updatable entities in the current containers updatable entities
+	 */
 	void UpdateAllEntities_();
 
 	/**

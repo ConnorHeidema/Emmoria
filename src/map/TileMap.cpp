@@ -9,14 +9,14 @@ TileMap::TileMap(
 		unsigned int const tileWidth,
 		unsigned int const tileHeight,
 		TextureContainer& textureContainer)
-		: DrawableTransformable(0, 0, nullptr)
-		, m_tileUnitSize(tileUnitSize)
-		, m_tileWidth(tileWidth)
-		, m_tileHeight(tileHeight)
-		, m_quadVertices(4u)
-		, mk_tileNotDefined(-1)
-		, mk_type("TileMap")
-		, m_textureContainer(textureContainer)
+			: DrawableTransformable(0, 0, nullptr)
+			, m_tileUnitSize(tileUnitSize)
+			, m_tileWidth(tileWidth)
+			, m_tileHeight(tileHeight)
+			, m_quadVertices(4u)
+			, mk_tileNotDefined(-1)
+			, mk_type("TileMap")
+			, m_textureContainer(textureContainer)
 {
 	m_screenArrayVect.assign(tileWidth * tileHeight, nullptr);
 }

@@ -10,6 +10,9 @@
 
 using Coordinate = std::pair<int, int>;
 
+/**
+ * The entity factory will load all the required entities into a container given an array of entities.
+ */
 class EntityFactory
 {
 public:

@@ -33,9 +33,10 @@ private:
 	 */
 	std::shared_ptr<sf::Texture> LoadTexture_(std::string const& textureName);
 
+	LoggerType_t const mk_type;
+
 	std::unordered_map<std::string, std::shared_ptr<sf::Texture>> m_textureMap;
 
-	LoggerType_t const mk_type;
 };
 
 #endif

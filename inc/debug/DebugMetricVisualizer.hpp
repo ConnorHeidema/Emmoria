@@ -27,17 +27,23 @@ public:
 
 	/**
 	 * Each frame should update the metrics received
+	 * @return Everything that the game state may need
+	 * 		   to return back (may load a new region for example)
 	 */
 	Returnable Update();
 
 private:
 	/**
 	 * Draws the info gathered from the update
+	 * NOTE: if the drawing doesn't move a lot, I should only draw on an isUpdated condition that
+	 * 		 would say whether the object has changed or moved or not.
 	 * @param target The target that will be drawn with
 	 * @param states The renderstate the we want the target to be in
 	 * 				 any transform may be applied leveraging this parameter
 	 */
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	void draw(
+		sf::RenderTarget& target,
+		sf::RenderStates states) const override;
 
 	/**
 	 * Gets the relevant string for the time elapsed.

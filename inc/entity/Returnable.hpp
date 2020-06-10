@@ -13,7 +13,8 @@ class EntityContainer;
 class Returnable
 {
 public:
-	Returnable() : position(-1,-1), collection(""), subCollection(""), updated(false) {}
+	Returnable();
+
 	std::pair<int, int> position;
 	std::string collection;
 	std::string subCollection;

@@ -14,7 +14,7 @@ class IUpdatable
 	: public Entity
 {
 public:
-	IUpdatable(int x, int y, std::shared_ptr<TileMap> pTileMap /*tileMap*/) {}
+	IUpdatable(int x, int y, std::shared_ptr<TileMap> pTileMap) {}
 	virtual Returnable Update() = 0;
 	virtual ~IUpdatable() {};
 };

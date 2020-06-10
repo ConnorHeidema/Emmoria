@@ -2,7 +2,9 @@
 
 #include "util/logger/Logger.hpp"
 
-TextureContainer::TextureContainer() : mk_type("TextureContainer") {}
+TextureContainer::TextureContainer()
+	: mk_type("TextureContainer")
+{}
 
 std::shared_ptr<sf::Texture> TextureContainer::GetTexture(std::string const& textureName)
 {
