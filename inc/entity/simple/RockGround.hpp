@@ -10,8 +10,12 @@ class RockGround
 	: public IGridded
 {
 public:
-	RockGround(int x, int y, std::shared_ptr<TileMap> pTileMap,
-		bsoncxx::array::element element) : IGridded(x, y, pTileMap) {}
+	RockGround(
+		int x,
+		int y,
+		std::shared_ptr<TileMap> pTileMap,
+		bsoncxx::array::element element);
+
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 };
 

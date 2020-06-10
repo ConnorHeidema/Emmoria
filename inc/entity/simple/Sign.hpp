@@ -10,8 +10,12 @@ class Sign
 	: public IGriddedIInteractable
 {
 public:
-	Sign(int x, int y, std::shared_ptr<TileMap> pTileMap,
-		bsoncxx::array::element element) : IGriddedIInteractable(x, y, pTileMap) {}
+	Sign(
+		int x,
+		int y,
+		std::shared_ptr<TileMap> pTileMap,
+		bsoncxx::array::element element);
+
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;
 };
 

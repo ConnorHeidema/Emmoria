@@ -16,7 +16,10 @@ class Player
 	static int const leftFace;
 
 public:
-	Player(int x, int y, std::shared_ptr<TileMap> pTileMap,
+	Player(
+		int x,
+		int y,
+		std::shared_ptr<TileMap> pTileMap,
 		bsoncxx::array::element element);
 
 	virtual ~Player() {};
@@ -24,7 +27,7 @@ public:
 	Returnable Update() override;
 
 	/**
-	 * utililsed to draw the player each frame
+	 * Utililsed to draw the player each frame
 	 * @param target The target being drawn
 	 * @param states The transformation done to the target
 	 */
@@ -52,6 +55,8 @@ private:
 		int textureRow,
 		int textureColumn);
 
+	LoggerType_t const mk_type;
+
     sf::VertexArray m_vertices;
     sf::Texture m_tileset;
 
@@ -62,7 +67,6 @@ private:
 	int m_currentPhase;
 	int m_framesUntilAnimationChange;
 	int m_currentFrame;
-	LoggerType_t const mk_type;
 };
 
 

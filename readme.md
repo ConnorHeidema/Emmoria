@@ -6,7 +6,6 @@
 
 Currently the database is locked onto my own computer.
 
-
 Things I've learned
 
 Singleton patterns make things easy but confusing.

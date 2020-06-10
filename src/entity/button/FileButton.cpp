@@ -107,7 +107,7 @@ Returnable FileButton::Update()
 	return m_returnable;
 }
 
-bool FileButton::MouseInRectangle_()
+bool FileButton::MouseInRectangle_() const
 {
 	return
 		(int(sf::Mouse::getPosition().x) > m_x - m_width/2 &&

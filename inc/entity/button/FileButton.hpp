@@ -16,7 +16,7 @@ public:
 
 	Returnable Update() override;
 
-	bool MouseInRectangle_();
+	bool MouseInRectangle_() const;
 
 	~FileButton();
 
@@ -37,8 +37,9 @@ private:
 	sf::Text m_thisText;
 	sf::RectangleShape m_thisRect;
 
-	LoggerType_t const mk_type;
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+	LoggerType_t const mk_type;
 	int m_characterSize;
 	sf::Text m_text;
 	std::string m_fileInfo;

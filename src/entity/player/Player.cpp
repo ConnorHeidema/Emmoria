@@ -11,18 +11,21 @@ int const Player::rightFace = 1;
 int const Player::upFace = 2;
 int const Player::leftFace = 3;
 
-Player::Player(int x, int y, std::shared_ptr<TileMap> pTileMap,
-	bsoncxx::array::element element) :
-		DrawableTransformableIInteractableIUpdatable(x, y, pTileMap),
-		m_tileset(),
-		m_tilesetPath("image/player/player.png"),
-		m_tileUnitSize(sf::Vector2i(120, 120)),
-		m_x(x),
-		m_y(y),
-		m_currentPhase(0),
-		m_framesUntilAnimationChange(15),
-		m_currentFrame(0),
-		mk_type("Player")
+Player::Player(
+	int x,
+	int y,
+	std::shared_ptr<TileMap> pTileMap,
+	bsoncxx::array::element element)
+		: DrawableTransformableIInteractableIUpdatable(x, y, pTileMap)
+		, mk_type("Player")
+		, m_tileset()
+		, m_tilesetPath("image/player/player.png")
+		, m_tileUnitSize(sf::Vector2i(120, 120))
+		, m_x(x)
+		, m_y(y)
+		, m_currentPhase(0)
+		, m_framesUntilAnimationChange(15)
+		, m_currentFrame(0)
 {
 	m_vertices.setPrimitiveType(sf::Quads);
 	m_vertices.resize(4);
@@ -52,15 +55,7 @@ void Player::CurrentPhaseProcedure_()
 {
 	if (m_currentFrame % m_framesUntilAnimationChange == 0)
 	{
-		m_currentFrame = 0;
-		if (InputUtil::WasdPressed())
-		{
-			m_currentPhase = (m_currentPhase + 1) % 4;
-		}
-		else
-		{
-			m_currentPhase = 0;
-		}
+		m_currentFrame = (InputUtil::WasdPressed() ? (m_currentPhase + 1) % 4 : 0);
 	}
 }
 
