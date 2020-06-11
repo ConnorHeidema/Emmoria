@@ -1,11 +1,10 @@
 #include "entity/simple/UpperWall.hpp"
 
 UpperWall::UpperWall(
-		int x,
-		int y,
-		std::shared_ptr<TileMap> pTileMap,
-		bsoncxx::array::element element)
-			: IGridded(x, y, pTileMap)
+	std::shared_ptr<SharedParameters> pSharedParameters,
+	std::shared_ptr<TileMap> pTileMap,
+	bsoncxx::array::element element)
+		: IGridded(pSharedParameters, pTileMap)
 {}
 
 std::shared_ptr<int> UpperWall::GetSubTextureIndexPtr()

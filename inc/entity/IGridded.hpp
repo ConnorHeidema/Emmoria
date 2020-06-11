@@ -19,7 +19,11 @@ class IGridded
 	, public Entity
 {
 public:
-	IGridded(int x, int y, std::shared_ptr<TileMap> pTileMap) : IGriddedSubject(x, y) { RegisterObserver(pTileMap); }
+	IGridded(
+		std::shared_ptr<SharedParameters> pSharedParameters,
+		std::shared_ptr<TileMap> pTileMap)
+			: IGriddedSubject(pSharedParameters)
+		{ RegisterObserver(pTileMap); }
 
 	/**
 	 * Gets the index of the subtextureindex.

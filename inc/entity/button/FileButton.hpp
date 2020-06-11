@@ -4,13 +4,14 @@
 #include "entity/EntityCombination.hpp"
 #include "util/logger/Logger.hpp"
 
+#include "entity/SharedParameters.hpp"
+
 class FileButton
 	: public DrawableTransformableIUpdatable
 {
 public:
 	FileButton(
-		int x,
-		int y,
+		std::shared_ptr<SharedParameters> pSharedParameters,
 		std::shared_ptr<TileMap> pTileMap,
 		bsoncxx::array::element element);
 

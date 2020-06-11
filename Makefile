@@ -1,6 +1,8 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror -fno-rtti \
+	../src/entity/SharedParameters.cpp \
+	../inc/entity/SharedParameters.hpp \
 	../src/util/InputUtil.cpp \
 	../inc/util/InputUtil.hpp \
 	../src/map/TextureContainer.cpp \
@@ -70,6 +72,7 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	SharedParameters.o \
 	InputUtil.o \
 	TextureContainer.o \
 	Entity.o \

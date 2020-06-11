@@ -12,17 +12,16 @@ int const Player::upFace = 2;
 int const Player::leftFace = 3;
 
 Player::Player(
-	int x,
-	int y,
+	std::shared_ptr<SharedParameters> pSharedParameters,
 	std::shared_ptr<TileMap> pTileMap,
 	bsoncxx::array::element element)
-		: DrawableTransformableIInteractableIUpdatable(x, y, pTileMap)
+		: DrawableTransformableIInteractableIUpdatable(pSharedParameters, pTileMap)
 		, mk_type("Player")
 		, m_tileset()
 		, m_tilesetPath("image/player/player.png")
 		, m_tileUnitSize(sf::Vector2i(120, 120))
-		, m_x(x)
-		, m_y(y)
+		, m_x(pSharedParameters->m_left)
+		, m_y(pSharedParameters->m_top)
 		, m_currentPhase(0)
 		, m_framesUntilAnimationChange(15)
 		, m_currentFrame(0)
@@ -31,7 +30,7 @@ Player::Player(
 	m_vertices.resize(4);
 	m_tileset.loadFromFile(m_tilesetPath);
 	m_tileset = *pTileMap->m_textureContainer.GetTexture(m_tilesetPath);
-	PopulateQuad_(x, y);
+	PopulateQuad_(pSharedParameters->m_left, pSharedParameters->m_top);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const

@@ -1,11 +1,10 @@
 #include "entity/simple/Sign.hpp"
 
 Sign::Sign(
-	int x,
-	int y,
+	std::shared_ptr<SharedParameters> pSharedParameters,
 	std::shared_ptr<TileMap> pTileMap,
 	bsoncxx::array::element element)
-		: IGriddedIInteractable(x, y, pTileMap)
+		: IGriddedIInteractable(pSharedParameters, pTileMap)
 {}
 
 std::shared_ptr<int> Sign::GetSubTextureIndexPtr()

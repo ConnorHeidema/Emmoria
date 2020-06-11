@@ -1,6 +1,8 @@
 #ifndef I_UPDATABLE_HPP
 #define I_UPDATABLE_HPP
 
+#include "entity/SharedParameters.hpp"
+
 #include "entity/Entity.hpp"
 
 #include "map/TileMap.hpp"
@@ -14,7 +16,7 @@ class IUpdatable
 	: public Entity
 {
 public:
-	IUpdatable(int x, int y, std::shared_ptr<TileMap> pTileMap) {}
+	IUpdatable(std::shared_ptr<SharedParameters> /*pSharedParameters*/, std::shared_ptr<TileMap> /*pTileMap*/) {}
 	virtual Returnable Update() = 0;
 	virtual ~IUpdatable() {};
 };

@@ -10,9 +10,7 @@ class Corner
 	: public IGridded
 {
 public:
-	Corner(
-		int x,
-		int y,
+	Corner(	std::shared_ptr<SharedParameters> pSharedParameters,
 		std::shared_ptr<TileMap> pTileMap,
 		bsoncxx::array::element element);
 

@@ -5,6 +5,8 @@
 
 #include "entity/EntityFactory.hpp"
 
+#include "entity/SharedParameters.hpp"
+
 #include "loop/GameLoop.hpp"
 
 #include <SFML/Graphics.hpp>
@@ -12,17 +14,16 @@
 unsigned int FileButton::ms_instanceCount = 0;
 
 FileButton::FileButton(
-		int x,
-		int y,
+		std::shared_ptr<SharedParameters> pSharedParameters,
 		std::shared_ptr<TileMap> pTileMap,
 		bsoncxx::array::element element)
-		: DrawableTransformableIUpdatable(x, y, pTileMap)
+		: DrawableTransformableIUpdatable(pSharedParameters, pTileMap)
 		, mk_type("FileButton")
 		, m_characterSize(20)
 		, m_text()
 		, m_fileInfo("No info found")
-		, m_x(x)
-		, m_y(y)
+		, m_x(pSharedParameters->m_left)
+		, m_y(pSharedParameters->m_top)
 		, m_height(0)
 		, m_width(0)
 		, m_padding(10)
@@ -93,16 +94,27 @@ Returnable FileButton::Update()
 		m_thisRect.setFillColor(MouseInRectangle_() ? mk_MouseOverColor : mk_defaultColor);
 		return Returnable();
 	}
+	s_pLogger->DebugLog(mk_type, "Updating filebutton");
 	m_returnable.m_pNewStartingEntityContainer = std::make_shared<EntityContainer>(
 		m_pTileMap->m_textureContainer,
 		sf::Vector2u(GameLoop::ms_screenReductionRatio, GameLoop::ms_screenReductionRatio),
 		GameLoop::ms_uScreenWidth/GameLoop::ms_screenReductionRatio,
 		GameLoop::ms_uScreenHeight/GameLoop::ms_screenReductionRatio);
+
+	s_pLogger->DebugLog(mk_type, "after making entitycontainer");
+	int x = m_playerX;
+	int y = m_playerY;
+	std::shared_ptr<SharedParameters> pSharedParameters = std::make_shared<SharedParameters>();
+	pSharedParameters->m_left = x;
+	pSharedParameters->m_top = y;
+	pSharedParameters->m_right = x + 120;
+	pSharedParameters->m_bottom = y + 120;
+	s_pLogger->DebugLog(mk_type, "Before loading player");
 	m_returnable.
 		m_pNewStartingEntityContainer->
 			InsertDrawableTransformableIInteractableIUpdatableEntity(
-				std::make_shared<Player>(m_playerX, m_playerY, m_pTileMap, m_element));
-
+				std::make_shared<Player>(pSharedParameters, m_pTileMap, m_element));
+	s_pLogger->DebugLog(mk_type, "After loading player");
 	m_returnable.updated = true;
 	return m_returnable;
 }

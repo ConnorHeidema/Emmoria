@@ -12,8 +12,7 @@ class RightWall
 {
 public:
 	RightWall(
-		int x,
-		int y,
+		std::shared_ptr<SharedParameters> pSharedParameters,
 		std::shared_ptr<TileMap> pTileMap,
 		bsoncxx::array::element element);
 

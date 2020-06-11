@@ -9,7 +9,7 @@ TileMap::TileMap(
 		unsigned int const tileWidth,
 		unsigned int const tileHeight,
 		TextureContainer& textureContainer)
-			: DrawableTransformable(0, 0, nullptr)
+			: DrawableTransformable(std::make_shared<SharedParameters>(0, 0, 0, 0), nullptr)
 			, m_tileUnitSize(tileUnitSize)
 			, m_tileWidth(tileWidth)
 			, m_tileHeight(tileHeight)

@@ -11,7 +11,7 @@ class BottomWall
 	: public IGridded
 {
 public:
-	BottomWall(int x, int y, std::shared_ptr<TileMap> pTileMap,
+	BottomWall(std::shared_ptr<SharedParameters> pSharedParameters, std::shared_ptr<TileMap> pTileMap,
 		bsoncxx::array::element element);
 
 	std::shared_ptr<int> GetSubTextureIndexPtr() override;

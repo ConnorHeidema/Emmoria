@@ -1,11 +1,10 @@
 #include <entity/simple/Grass.hpp>
 
 Grass::Grass(
-	int x,
-	int y,
+	std::shared_ptr<SharedParameters> pSharedParameters,
 	std::shared_ptr<TileMap> pTileMap,
 	bsoncxx::array::element element)
-		: IGriddedIUpdatable(x, y, pTileMap)
+		: IGriddedIUpdatable(pSharedParameters, pTileMap)
 		, m_ptmp(std::make_shared<int>(0))
 		, m_currentFrame(0)
 		, m_cyclicFrame(120)

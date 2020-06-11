@@ -3,6 +3,8 @@
 
 #include "util/observer/IGriddedObserver.hpp"
 
+#include "entity/SharedParameters.hpp"
+
 #include <functional>
 #include <vector>
 #include <memory>
@@ -16,7 +18,10 @@ class IGriddedSubject
 {
 public:
 
-  IGriddedSubject(int x, int y) : m_xIndex(x), m_yIndex(y) {}
+  IGriddedSubject(std::shared_ptr<SharedParameters> pSharedParameters)
+    : m_xIndex(pSharedParameters->m_left/120)
+    , m_yIndex(pSharedParameters->m_top/120)
+  {}
 
 	/**
 	 * The subject interface will notify pObservers when a particular event happens

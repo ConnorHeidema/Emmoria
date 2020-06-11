@@ -11,8 +11,7 @@ class UpperWall
 {
 public:
 	UpperWall(
-		int x,
-		int y,
+		std::shared_ptr<SharedParameters> pSharedParameters,
 		std::shared_ptr<TileMap> pTileMap,
 		bsoncxx::array::element element);
 

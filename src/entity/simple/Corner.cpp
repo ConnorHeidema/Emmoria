@@ -1,11 +1,9 @@
 #include "entity/simple/Corner.hpp"
 
-Corner::Corner(
-	int x,
-	int y,
+Corner::Corner(	std::shared_ptr<SharedParameters> pSharedParameters,
 	std::shared_ptr<TileMap> pTileMap,
 	bsoncxx::array::element element)
-		: IGridded(x, y, pTileMap)
+		: IGridded(pSharedParameters, pTileMap)
 {}
 
 std::shared_ptr<int> Corner::GetSubTextureIndexPtr()

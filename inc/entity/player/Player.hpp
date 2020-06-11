@@ -4,6 +4,8 @@
 #include "entity/EntityCombination.hpp"
 #include "entity/player/Player.hpp"
 
+#include "entity/SharedParameters.hpp"
+
 #include "util/logger/Logger.hpp"
 
 class Player
@@ -17,8 +19,7 @@ class Player
 
 public:
 	Player(
-		int x,
-		int y,
+		std::shared_ptr<SharedParameters> pSharedParameters,
 		std::shared_ptr<TileMap> pTileMap,
 		bsoncxx::array::element element);
 

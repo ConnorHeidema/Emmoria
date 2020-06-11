@@ -13,6 +13,8 @@
 #include "entity/simple/Sign.hpp"
 #include "entity/button/FileButton.hpp"
 
+#include "entity/SharedParameters.hpp"
+
 #include "util/DatabaseUtil.hpp"
 #include "util/logger/Logger.hpp"
 
@@ -23,22 +25,31 @@ void EntityFactory::LoadEntityOntoContainer(
 	bsoncxx::array::element element,
 	std::shared_ptr<EntityContainer> pEntityContainer)
 {
+	std::shared_ptr<SharedParameters> pEntitySharedParameters = std::make_shared<SharedParameters>();
 	auto stringName = DatabaseUtil::GetStringValueFromKeyDb(element, "name");
-	int x = -1;
-	int y = -1;
+	s_pLogger->InfoLog(LoggerType_t("EntityFactory"), "Loading entity");
 	bsoncxx::document::element indexObject{element["index"]};
 	if (indexObject.length() != 0)
 	{
 		Coordinate coordinate = DatabaseUtil::GetPositionValueFromKeyDb_(element, "index");
-		x = coordinate.first;
-		y = coordinate.second;
+		int x = coordinate.first;
+		int y = coordinate.second;
+
+		pEntitySharedParameters->m_left = x * 120;
+		pEntitySharedParameters->m_top = y * 120;
+		pEntitySharedParameters->m_right = (x + 1) * 120;
+		pEntitySharedParameters->m_bottom = (y + 1) * 120;
 	}
 	bsoncxx::document::element positionObject{element["position"]};
 	if (positionObject.length() != 0)
 	{
 		Coordinate coordinate = DatabaseUtil::GetPositionValueFromKeyDb_(element, "position");
-		x = coordinate.first;
-		y = coordinate.second;
+		int x = coordinate.first;
+		int y = coordinate.second;
+		pEntitySharedParameters->m_left = x;
+		pEntitySharedParameters->m_top = y;
+		pEntitySharedParameters->m_right = x + 120;
+		pEntitySharedParameters->m_bottom = y + 120;
 	}
 	#include "util/define/DefineLoadEntity.hpp"
 		if (false) {}

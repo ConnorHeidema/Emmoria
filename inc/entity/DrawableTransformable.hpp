@@ -1,6 +1,8 @@
 #ifndef DRAWABLE_TRANSFORMABLE_HPP
 #define DRAWABLE_TRANSFORMABLE_HPP
 
+#include "entity/SharedParameters.hpp"
+
 #include "entity/Entity.hpp"
 
 #include <SFML/Graphics.hpp>
@@ -17,7 +19,11 @@ class DrawableTransformable
 	, public Entity
 {
 public:
-	DrawableTransformable(int x, int y, std::shared_ptr<TileMap> /*pTileMap*/) {};
+	DrawableTransformable(
+		std::shared_ptr<SharedParameters> /*pSharedParameters*/,
+		std::shared_ptr<TileMap> /*pTileMap*/)
+	{};
+
 	virtual ~DrawableTransformable() {};
 };
 

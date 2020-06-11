@@ -1,11 +1,10 @@
 #include "entity/simple/RoyalMat.hpp"
 
 RoyalMat::RoyalMat(
-	int x,
-	int y,
+	std::shared_ptr<SharedParameters> pSharedParameters,
 	std::shared_ptr<TileMap> pTileMap,
 	bsoncxx::array::element element)
-		: IGridded(x, y, pTileMap)
+		: IGridded(pSharedParameters, pTileMap)
 {}
 
 std::shared_ptr<int> RoyalMat::GetSubTextureIndexPtr()

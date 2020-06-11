@@ -6,6 +6,8 @@
 #include "entity/IInteractable.hpp"
 #include "entity/IUpdatable.hpp"
 
+#include "entity/SharedParameters.hpp"
+
 #include "map/TileMap.hpp"
 
 /**
@@ -18,9 +20,9 @@
 		: public firstInterface \
 		, public secondInterface \
 		{ public: \
-		firstInterface##secondInterface(int x, int y, std::shared_ptr<TileMap> pTileMap) \
-		: firstInterface(x, y, pTileMap) \
-		, secondInterface(x, y, pTileMap) \
+		firstInterface##secondInterface(std::shared_ptr<SharedParameters> pSharedParameters, std::shared_ptr<TileMap> pTileMap) \
+		: firstInterface(pSharedParameters, pTileMap) \
+		, secondInterface(pSharedParameters, pTileMap) \
 		{} \
 		virtual ~firstInterface##secondInterface() {}; }
 
@@ -38,10 +40,10 @@
 		, public secondInterface \
 		, public thirdInterface \
 		{ public:\
-		firstInterface##secondInterface##thirdInterface(int x, int y, std::shared_ptr<TileMap> pTileMap) \
-		: firstInterface(x, y, pTileMap) \
-		, secondInterface(x, y, pTileMap) \
-		, thirdInterface(x, y, pTileMap) \
+		firstInterface##secondInterface##thirdInterface(std::shared_ptr<SharedParameters> pSharedParameters, std::shared_ptr<TileMap> pTileMap) \
+		: firstInterface(pSharedParameters, pTileMap) \
+		, secondInterface(pSharedParameters, pTileMap) \
+		, thirdInterface(pSharedParameters, pTileMap) \
 		{} \
 			 virtual ~firstInterface##secondInterface##thirdInterface() {}; }
 
