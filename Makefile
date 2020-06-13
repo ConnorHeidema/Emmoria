@@ -1,6 +1,10 @@
 # Use command "make mode=ERROR" for default build
 all:
 	cd build && g++ -c -Wall -Werror -fno-rtti \
+	../src/util/datastructure/QuadNode.cpp \
+	../inc/util/datastructure/QuadNode.hpp \
+	../src/util/datastructure/QuadTree.cpp \
+	../inc/util/datastructure/QuadTree.hpp \
 	../src/entity/SharedParameters.cpp \
 	../inc/entity/SharedParameters.hpp \
 	../src/util/InputUtil.cpp \
@@ -72,6 +76,8 @@ all:
 	-Wl,-rpath,/usr/local/lib && \
 	g++ \
 	main.o \
+	QuadNode.o \
+	QuadTree.o \
 	SharedParameters.o \
 	InputUtil.o \
 	TextureContainer.o \

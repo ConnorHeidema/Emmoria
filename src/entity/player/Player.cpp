@@ -54,7 +54,7 @@ void Player::CurrentPhaseProcedure_()
 {
 	if (m_currentFrame % m_framesUntilAnimationChange == 0)
 	{
-		m_currentFrame = (InputUtil::WasdPressed() ? (m_currentPhase + 1) % 4 : 0);
+		m_currentPhase = (InputUtil::WasdPressed() ? (m_currentPhase + 1) % 4 : 0);
 	}
 }
 

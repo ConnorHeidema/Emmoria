@@ -3,6 +3,8 @@
 
 #include "entity/EntityCombination.hpp"
 
+#include "util/datastructure/QuadTree.hpp"
+
 #include <list>
 #include <memory>
 
@@ -22,7 +24,7 @@ public:
 
 	std::list<std::shared_ptr<DrawableTransformable>> GetDrawableTransformableEntities();
 	std::list<std::shared_ptr<IGridded>> GetGriddedEntities();
-	std::list<std::shared_ptr<IInteractable>> GetInteractableEntities(); // In a world with enough time or if I wanted to include boost, this would
+	std::list<std::shared_ptr<QuadNode>> GetInteractableEntities(); // In a world with enough time or if I wanted to include boost, this would
 																		 // would be a quad map instead of a list. Someday it likely will need to be
 																		 // a quad map for significant performance gains
 	std::list<std::shared_ptr<IUpdatable>> GetUpdatableEntities();
@@ -59,11 +61,11 @@ public:
 	#undef INSERT
 
 	void ClearAllEntities();
-	void DeleteAllowedEntities();
+
+	QuadTree m_entityIInteractableList;
 private:
 	std::list<std::shared_ptr<DrawableTransformable>> m_entityDrawableTransformableList;
 	std::list<std::shared_ptr<IGridded>> m_entityIGriddedList;
-	std::list<std::shared_ptr<IInteractable>> m_entityIInteractableList;
 	std::list<std::shared_ptr<IUpdatable>> m_entityIUpdatableList;
 
 };

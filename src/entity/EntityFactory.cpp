@@ -27,7 +27,6 @@ void EntityFactory::LoadEntityOntoContainer(
 {
 	std::shared_ptr<SharedParameters> pEntitySharedParameters = std::make_shared<SharedParameters>();
 	auto stringName = DatabaseUtil::GetStringValueFromKeyDb(element, "name");
-	s_pLogger->InfoLog(LoggerType_t("EntityFactory"), "Loading entity");
 	bsoncxx::document::element indexObject{element["index"]};
 	if (indexObject.length() != 0)
 	{

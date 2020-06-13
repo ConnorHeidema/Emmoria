@@ -89,6 +89,7 @@ void GameLoop::RunLoop_(
 	pGameWindow->clear();
 	DrawAllEntities_(pGameWindow);
 	UpdateAllEntities_();
+	InteractAllEntities_();
 	if (m_returnable.updated)
 	{
 		UpdateMap_(pDatabaseReader);
@@ -108,6 +109,7 @@ void GameLoop::UpdateMap_(std::shared_ptr<DatabaseReader> pDatabaseReader)
 		m_pEntityContainer = m_returnable.m_pNewStartingEntityContainer;
 		s_pLogger->DebugLog(mk_type, (std::string("Loading new region ") + m_collection + std::string(".") + m_subcollection).c_str());
 		pDatabaseReader->LoadNewRegion(m_collection.c_str(), m_subcollection.c_str(), m_pEntityContainer);
+		s_pLogger->DebugLog(mk_type, std::to_string(m_returnable.m_pNewStartingEntityContainer->m_entityIInteractableList.RetrieveAll().size()).c_str());
 		m_pLocation->Reset();
 		m_returnable = Returnable();
 }
@@ -125,6 +127,18 @@ void GameLoop::UpdateAllEntities_()
 			m_returnable.m_pNewStartingEntityContainer = returnable.m_pNewStartingEntityContainer;
 			m_returnable.updated = true;
 			break;
+		}
+	}
+}
+
+void GameLoop::InteractAllEntities_()
+{
+	for (auto entity : m_pEntityContainer->GetInteractableEntities())
+	{
+		auto quadNode = m_pEntityContainer->m_entityIInteractableList.Retrieve(entity->m_left, entity->m_top, entity->m_right, entity->m_bottom);
+		if (quadNode.size() > 0)
+		{
+			s_pLogger->DebugLog(mk_type, "Interaction!");
 		}
 	}
 }

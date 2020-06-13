@@ -1,7 +1,10 @@
 #include "entity/EntityContainer.hpp"
 
 EntityContainer::EntityContainer(TextureContainer& textureContainer, sf::Vector2u tileUnitSize, unsigned int tileWidth, unsigned int tileHeight)
-	: m_textureContainer(textureContainer), m_pTileMap(std::make_shared<TileMap>(tileUnitSize, tileWidth, tileHeight, textureContainer)) {}
+	: m_textureContainer(textureContainer)
+	, m_pTileMap(std::make_shared<TileMap>(tileUnitSize, tileWidth, tileHeight, textureContainer))
+	, m_entityIInteractableList(0, 0, 1920, 1080)
+{}
 
 std::list<std::shared_ptr<DrawableTransformable>> EntityContainer::GetDrawableTransformableEntities()
 {
@@ -13,9 +16,9 @@ std::list<std::shared_ptr<IGridded>> EntityContainer::GetGriddedEntities()
 	return m_entityIGriddedList;
 }
 
-std::list<std::shared_ptr<IInteractable>> EntityContainer::GetInteractableEntities()
+std::list<std::shared_ptr<QuadNode>> EntityContainer::GetInteractableEntities()
 {
-	return m_entityIInteractableList;
+	return m_entityIInteractableList.RetrieveAll();
 }
 
 std::list<std::shared_ptr<IUpdatable>> EntityContainer::GetUpdatableEntities()
@@ -35,7 +38,7 @@ void EntityContainer::RemoveIGriddedEntity(std::shared_ptr<IGridded> griddedEnti
 
 void EntityContainer::RemoveIInteractableEntity(std::shared_ptr<IInteractable> interactableEntity)
 {
-	m_entityIInteractableList.remove(interactableEntity);
+	m_entityIInteractableList.Remove(interactableEntity->m_id);
 }
 
 void EntityContainer::RemoveIUpdatableEntity(std::shared_ptr<IUpdatable> updatableEntity)
@@ -66,8 +69,8 @@ void EntityContainer::InsertIUpdatableEntity(std::shared_ptr<IUpdatable> updatab
 #define INSERT(interface1, interface2) \
 	void EntityContainer::Insert##interface1##interface2##Entity(std::shared_ptr<interface1##interface2> entity) \
 	{ \
-		m_entity##interface1##List.emplace_back(entity); \
-		m_entity##interface2##List.emplace_back(entity); \
+		m_entity##interface1##List.emplace_front(entity); \
+		m_entity##interface2##List.emplace_front(entity); \
 	}
 	INSERT(DrawableTransformable, IGridded)
 	INSERT(DrawableTransformable, IInteractable)
@@ -81,9 +84,9 @@ void EntityContainer::InsertIUpdatableEntity(std::shared_ptr<IUpdatable> updatab
 #define INSERT(interface1, interface2, interface3) \
 	void EntityContainer::Insert##interface1##interface2##interface3##Entity(std::shared_ptr<interface1##interface2##interface3> entity) \
 	{ \
-		m_entity##interface1##List.emplace_back(entity); \
-		m_entity##interface2##List.emplace_back(entity); \
-		m_entity##interface3##List.emplace_back(entity); \
+		m_entity##interface1##List.emplace_front(entity); \
+		m_entity##interface2##List.emplace_front(entity); \
+		m_entity##interface3##List.emplace_front(entity); \
 	}
 
 	INSERT(DrawableTransformable, IGridded, IInteractable)
@@ -93,23 +96,10 @@ void EntityContainer::InsertIUpdatableEntity(std::shared_ptr<IUpdatable> updatab
 
 #undef INSERT
 
-void EntityContainer::DeleteAllowedEntities()
-{
-	auto removeEntityPredicate = [&](std::shared_ptr<Entity> pEntity) -> bool
-	{
-		return pEntity->ShouldBeDeleted();
-	};
-
-	m_entityDrawableTransformableList.remove_if(removeEntityPredicate);
-	m_entityIGriddedList.remove_if(removeEntityPredicate);
-	m_entityIInteractableList.remove_if(removeEntityPredicate);
-	m_entityIUpdatableList.remove_if(removeEntityPredicate);
-}
-
 void EntityContainer::ClearAllEntities()
 {
 	m_entityDrawableTransformableList.clear();
 	m_entityIGriddedList.clear();
-	m_entityIInteractableList.clear();
+	m_entityIInteractableList.Clear();
 	m_entityIUpdatableList.clear();
 }

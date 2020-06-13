@@ -76,6 +76,8 @@ private:
 	 */
 	void UpdateAllEntities_();
 
+	void InteractAllEntities_();
+
 	/**
 	 * Writes all the entitiess to the screen
 	 * @param pDatabaseReader the database reader which provides the entities
